@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Cadastrar Venda</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,16 +69,33 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Cadastrar Venda</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<th:block th:include="mensagem-validacao"></th:block>
+	
+			<form method="post">
+				<div class="form-group">
+					<label for=""><strong>Quantidade Vendida:</strong></label>
+					<input type="number" class="form-control" value=""
+					placeholder="Quantidade vendida" name="quantidade_venda" required>
+				</div>
+	
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Data Vendida:</strong></label>
+							<input type="date" value="" name="data_venda" class="form-control" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Valor da Venda:</strong></label>
+						<input type="number" value="" name="valor_venda" class="form-control" placeholder="Valor da venda" required />
+					</div>
+				</div>
+				
+				<button type="submit" class="btn btn-success">Cadastrar Venda</button>
+			</form>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

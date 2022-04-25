@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Cadastrar Fornecedor</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
+								<a class="nav-link" href="/clientes">Listar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
@@ -49,7 +49,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								<a class="nav-link" href="/fornecedor">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -66,16 +66,63 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Cadastro de Fornecedor</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<%@ include file="../mensagem-validacao.jsp" %>	
+	
+			<form method="post">
+				<div class="form-group">
+					<label for=""><strong>Razão Social:</strong></label>
+					<input type="text" class="form-control" value=""
+					placeholder="Razão Social" name="razao_social" required>
+				</div>
+	
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>CNPJ:</strong></label>
+							<input type="text" value="" name="cnpj" placeholder="Digite o cnpj" class="form-control" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Endereço:</strong></label>
+						<input type="text" value="" name="endereco" class="form-control" placeholder="Digite o endereço" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Bairro:</strong></label>
+						<input type="text" value="" name="bairro" class="form-control" placeholder="Digite o bairro" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Cidade:</strong></label>
+						<input type="text" value="" name="cidade" class="form-control" placeholder="Digite a cidade" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>UF:</strong></label>
+						<input type="text" value="" name="uf" class="form-control" placeholder="Digite o uf" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>CEP:</strong></label>
+						<input type="text" value="" name="cep" class="form-control" placeholder="Digite o cep" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Telefone:</strong></label>
+						<input type="text" value="" name="telefone" class="form-control" placeholder="Digite o telefone" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>E-mail:</strong></label>
+						<input type="text" value="" name="email" class="form-control" placeholder="Digite o email" required />
+					</div>
+				</div>
+				
+				<button type="submit" class="btn btn-success">Adicionar Fornecedor</button>
+			</form>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

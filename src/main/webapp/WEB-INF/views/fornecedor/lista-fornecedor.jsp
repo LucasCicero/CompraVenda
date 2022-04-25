@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Lista de Fornecedores</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,16 +71,99 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Lista de fornecedores</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<table class="table table-hover table-responsive w-auto table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Razão Social:</th>
+						<th scope="col">CNPJ:</th>
+						<th scope="col">Endereço:</th>
+						<th scope="col">Bairro:</th>
+						<th scope="col">Cidade:</th>
+						<th scope="col">UF:</th>
+						<th scope="col">CEP:</th>
+						<th scope="col">Telefone:</th>
+						<th scope="col">E-mail:</th>
+						<th scope="col"></th>
+						<th scope="col">Ação</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<c:forEach var="fornecedores" items="${fornecedores}" varStatus="i">
+						<tr>
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.razao_social}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.cnpj}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.endereco}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.bairro}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.cidade}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.uf}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.cep}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.telefone}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+									${fornecedores.email}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/deletarFornecedor?id=${fornecedores.id}"/>'
+									class="waves-effect waves-light btn-small">
+									<button type="button" class="btn btn-danger">Excluir</button>
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/editar-fornecedor?id=${fornecedores.id}"/>'>
+									<button type="button" class="btn btn-primary">Editar</button>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

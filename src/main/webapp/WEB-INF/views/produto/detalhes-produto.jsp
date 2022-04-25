@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Detalhes dos produtos</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,13 +66,36 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
+			<h1>Informações dos Produtos</h1>
 			
 			<div class="container">
 				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
+					<strong>Nome do Produto:</strong> <span>${produtos.nome_produto}></span>
 				</p>
 				
+				<p>
+					<strong>Descrição:</strong> <span>${produtos.descricao}></span>
+				</p>
+				
+				<p>
+					<strong>Preço de Compra:</strong> <span>${produtos.preco_compra}></span>
+				</p>
+				
+				<p>
+					<strong>Preço de Venda:</strong> <span>${produtos.preco_venda}></span>
+				</p>
+				
+				<p>
+					<strong>Quantidade Disponivel:</strong> <span>${produtos.quantidade_disponivel}></span>
+				</p>
+				
+				<p>
+					<strong>Liberado:</strong> <span>${produtos.liberado_venda}></span>
+				</p>
+				
+				<p>
+					<strong>Id da Categoria:</strong> <span>${produtos.id_categoria}></span>
+				</p>
 			</div>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>

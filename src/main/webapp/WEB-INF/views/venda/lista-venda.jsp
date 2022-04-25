@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" >
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Listar Vendas</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +46,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
+								<a class="nav-link" href="/clientes">Listar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
@@ -49,7 +54,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -66,16 +71,54 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Lista de Vendas Cadastradas</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<table class="table table-hover table-responsive w-auto table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Quantidade Vendida:</th>
+						<th scope="col">Data Vendida:</th>
+						<th scope="col">Valor da Venda:</th>
+						<th scope="col"></th>
+						<th scope="col">Ação</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+				
+					<c:forEach var="venda" items="${vendas}" varStatus="i">
+					<tr>
+						<td>
+							<a href='<c:url value="/detalhes-venda/${venda.id}"/>'>
+								<span >${venda.quantidade_venda}</span>
+							</a>
+						</td>
+						
+						<td>
+							<span>${venda.data_venda}</span>
+						</td>
+						
+						<td>
+							<span>${venda.valor_venda}</span>
+						</td>
+						
+						<td>
+							<a href='<c:url value="/deletarVenda?id=${venda.id}"/>'
+								class="waves-effect waves-light btn-small">
+								<button type="button" class="btn btn-danger">Excluir</button>
+							</a>
+						</td>
+						
+						<td>
+							<a href='<c:url value="/editar-venda?id=${venda.id}"/>'>
+								<button type="button" class="btn btn-primary">Editar</button>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

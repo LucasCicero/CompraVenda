@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Detalhes da Compra</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -66,16 +66,35 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
+			<h1>Informações da Compra</h1>
 			
 			<div class="container">
 				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
+					<strong>Quantidade Comprada:</strong> <span>${compras.quantidade_compra}></span>
 				</p>
 				
+				<p>
+					<strong>Data da Compra:</strong> <span>${compras.data_compra}></span>
+				</p>
+				
+				<p>
+					<strong>Valor da Compra:</strong> <span>${compras.valor_compra}></span>
+				</p>
+				
+				<p>
+					<strong>Id do Fornecedor:</strong> <span>${compras.id_fornecedor}></span>
+				</p>
+				
+				<p>
+					<strong>Id do Produto:</strong> <span>${compras.id_produto}></span>
+				</p>
+				
+				<p>
+					<strong>Id do Funcionario:</strong> <span>${compras.id_funcionario}></span>
+				</p>
 			</div>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<th:block th:include="mensagem-validacao"></th:block>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

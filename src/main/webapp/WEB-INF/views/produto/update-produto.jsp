@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Atualizar Produto</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -66,16 +66,64 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
-	
 			<%@ include file="../mensagem-validacao.jsp" %>
+			
+			<form method="post">
+				<h1>Atualizar Produto</h1>
+
+				<div class="form-group">
+					<label for=""><strong>Nome do produto:</strong></label>
+					<input type="text" class="form-control" value="${produtos.nome_produto}" name="nome_produto" required />
+				</div>
+				
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Descrição:</strong></label>
+							<input type="text" class="form-control" value="${produtos.descricao}" name="descricao" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Preço de Compra</strong></label>
+							<input type="number" class="form-control" value="${produtos.preco_compra}" name="preco_compra" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Preço de Venda</strong></label>
+							<input type="number" class="form-control" value="${produtos.preco_venda}" name="preco_venda" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Quantidade Disponivel</strong></label>
+							<input type="number" class="form-control" value="${produtos.quantidade_disponivel}" name="quantidade_disponivel" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Liberado</strong></label>
+							<input type="text" class="form-control" value="${produtos.liberado_venda}" name="liberado_venda" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id da Categoria</strong></label>
+							<input type="number" class="form-control" value="${produtos.id_categoria}" name="id_categoria" required />
+						</div>
+					</div>
+				</div>
+	
+				<button type="submit" class="btn btn-success">
+					Atualizar Produto
+				</button>
+			</form>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

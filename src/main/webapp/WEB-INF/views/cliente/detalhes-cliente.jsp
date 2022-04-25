@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Detalhes do Cliente</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,13 +66,23 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
+			<h1>Informações do Cliente</h1>
 			
 			<div class="container">
 				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
+					<strong>Nome do Cliente:</strong> <span>${clientes.nome}</span>
 				</p>
 				
+				<p>
+					<strong>CPF:</strong> <span> ${clientes.cpf}</span>
+				</p>
+				
+				<p>
+					<b>E-mail:</b> <span>${clientes.email}></span>
+				</p>
+	
+
+	
 			</div>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>

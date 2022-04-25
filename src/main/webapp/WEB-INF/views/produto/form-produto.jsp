@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Cadastrar Produto</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,16 +66,48 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Cadastrar Produto</h1>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>
+	
+			<form method="post">
+				<div class="form-group">
+					<label for=""><strong>Nome do Produto:</strong></label>
+					<input type="text" class="form-control" value=""
+					placeholder="Insira o nome do produto" name="nome_produto" required>
+				</div>
+	
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Descrição:</strong></label>
+							<input type="text" value="" name="descricao" placeholder="Digite a descrição do produto" class="form-control" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Preço de Compra:</strong></label>
+						<input type="number" value="" name="preco_compra" class="form-control" placeholder="Digite o preço de compra" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Preço de Venda:</strong></label>
+						<input type="number" value="" name="preco_venda" class="form-control" placeholder="Digite o preço de venda" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Quantidade Disponivel:</strong></label>
+						<input type="number" value="" name="quantidade_disponivel" class="form-control" placeholder="Quantidade Disponivel" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Liberado:</strong></label>
+						<input type="text" value="" name="liberado_venda" class="form-control" placeholder="Liberado para venda?" required />
+					</div>
+				</div>
+				
+				<button type="submit" class="btn btn-success">Adicionar Produto</button>
+			</form>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

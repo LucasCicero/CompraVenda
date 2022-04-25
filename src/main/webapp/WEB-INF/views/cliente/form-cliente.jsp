@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Cadastrar Cliente</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,16 +71,38 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Cadastrar Cliente</h1>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>
+	
+			<form method="post">
+				<div class="form-group">
+					<label for=""><strong>Nome:</strong></label>
+					<input type="text" class="form-control" value=""
+					placeholder="Insira o nome do funcionario" name="nome" required>
+				</div>
+	
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>CPF:</strong></label>
+							<input type="text" value="" name="cpf" placeholder="Digite o cpf" class="form-control" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Senha:</strong></label>
+						<input type="text" value="" name="senha" class="form-control" placeholder="Digite o email" required />
+					</div>
+					
+					<div class="col">
+						<label for=""><strong>Papel:</strong></label>
+						<input type="text" value="" name="papel" class="form-control" placeholder="Digite o email" required />
+					</div>
+				</div>
+				
+				<button type="submit" class="btn btn-success">Adicionar Cliente</button>
+			</form>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

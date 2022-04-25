@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Detalhes dos Funcionarios</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,13 +66,49 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
+			<h1>Informações do funcionário</h1>
 			
-			<div class="container">
 				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
+					<strong>Nome:</strong> <span>${funcionario.nome}</span>
 				</p>
 				
+				<p>
+					<strong>CPF:</strong> <span>${funcionario.cpf}</span>
+				</p>
+				
+				<p>
+					<strong>Papel</strong> <span>${funcionario.papel}></span>
+				</p>
+	
+				<h2>Cadastrar dependentes</h2>
+	
+				<form method="post" th:object="${dependente}">
+	
+					<div class="form-group">
+						<div class="row">
+							<div class="col">
+								<label for=""><strong>Nome:</strong></label>
+								<input type="text" value="" name="nome" class="form-control" placeholder="Digite seu noome"
+								required />
+							</div>
+							
+							<div class="col">
+								<label for=""><strong>CPF: </strong></label>
+								<input type="text" value="" name="cpf" placeholder="Somente números, sem traçõs ou pontos."
+								class="validate form-control" onkeypress="$(this).mask('000.000.000-00');" required />
+							</div>
+	
+							<div class="col">
+								<div class="form-group">
+									<label for=""><strong>Data de nascimento:</strong></label>
+									<input type="text" value="" name="cpf" class="form-control" required />
+								</div>
+							</div>
+						</div>
+						
+						<button type="submit" class="btn btn-success">Adicionar Dependente</button>
+					</div>
+				</form>
 			</div>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>

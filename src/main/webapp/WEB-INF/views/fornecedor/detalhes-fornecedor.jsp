@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Detalhes do Fornecedor</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,13 +66,44 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
+			<h1>Informações do Fornecedor</h1>
 			
 			<div class="container">
 				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
+					<strong>Razão Social:</strong> <span>${fornecedores.razao_social}></span>
 				</p>
 				
+				<p>
+					<strong>CNPJ:</strong> <span>${fornecedores.cnpj}></span>
+				</p>
+				
+				<p>
+					<strong>Endereço:</strong> <span>${fornecedores.endereco}></span>
+				</p>
+				
+				<p>
+					<strong>Bairro:</strong> <span>${fornecedores.bairro}></span>
+				</p>
+				
+				<p>
+					<strong>Cidade:</strong> <span>${fornecedores.cidade}></span>
+				</p>
+				
+				<p>
+					<strong>UF:</strong> <span>${fornecedores.uf}></span>
+				</p>
+				
+				<p>
+					<strong>CEP:</strong> <span>${fornecedores.cep}></span>
+				</p>
+				
+				<p>
+					<strong>Telefone:</strong> <span>${fornecedores.telefone}></span>
+				</p>
+				
+				<p>
+					<strong>E-mail:</strong> <span>${fornecedores.email}></span>
+				</p>
 			</div>
 	
 			<%@ include file="../mensagem-validacao.jsp" %>

@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Detalhes da Categoria</title>
+	    <title>Compra & Venda - Lista de Produtos</title>
 	    
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,16 +71,85 @@
 		</header>
 		
 		<main class="container">
-			<h1>Informações de Categoria</h1>
-			
-			<div class="container">
-				<p>
-					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
-				</p>
-				
-			</div>
+			<h1>Lista de Produtos</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<table class="table table-hover table-responsive w-auto table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Nome do Produto:</th>
+						<th scope="col">Descrição:</th>
+						<th scope="col">Preço de Compra:</th>
+						<th scope="col">Preço de Venda:</th>
+						<th scope="col">Quantidade Disponivel:</th>
+						<th scope="col">Liberado:</th>
+						<th scope="col">Id da Categoria:</th>
+						<th scope="col"></th>
+						<th scope="col">Ação</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<c:forEach var="produtos" items="${produtos}" varStatus="i">
+						<tr>
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.nome_produto}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.descricao}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.preco_compra}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.preco_venda}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.quantidade_disponivel}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.liberado_venda}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+									${produtos.id_categoria}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/deletarProduto?id=${produtos.id}"/>'
+									class="waves-effect waves-light btn-small">
+									<button type="button" class="btn btn-danger">Excluir</button>
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/editar-produto?id=${produtos.id}"/>'>
+									<button type="button" class="btn btn-primary">Editar</button>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
