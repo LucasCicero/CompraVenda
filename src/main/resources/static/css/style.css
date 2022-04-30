@@ -1,113 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
 *{
     margin: 0;
-    border: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
 }
 
-/* Cor de fundo e alinhamento */
 body{
-    background:  #d45451;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    min-width: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	font-family: "Poppins", sans-serif;
+	overflow-x: hidden;
 }
 
-/* Cor, tamanho e formato da caixa */
-main.container{
-    background: #f3f3f3;
-    width: 550px;
-    height: 50vh;
-    padding: 2rem;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #eee;
+	height: 100%;
+	width: 100%;
 }
 
-main h2{
-    font-weight: 600;
-    margin-bottom: 2rem;
-    position: relative;
-    text-align: center;
+#login-container{
+	background-color: #f3f3f3;
+	width: 500px;
+	height: 50vh;
+	padding: 2rem;
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
+#login-container .login-title{
+	font-size: 22px;
+	font-weight: 700;
+	margin-bottom: 1rem;
 }
 
-.input-field{
-    position: relative;
+#form-login{
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
-/* Dando margem somente no primeiro input */
-form .input-field:first-child{
-    margin-bottom: 2.5rem;
+#form-login input{
+	padding: .8rem;
+	font-size: 18px;
+	border: 1px solid;
+	outline: none;
+	border-radius: 5px;
 }
 
-/* Linha em baixo dos inputs */
-.input-field .underline:before{
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    bottom: -5px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.2);
+#form-login input:focus{
+	border-color: #214AF3;
 }
 
-/* Transição de cor ao selecionar um dos inputs */
-.input-field .underline:after{
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    bottom: -5px;
-    left: 0;
-    background: linear-gradient(45deg, #5c422b, #d45451);
-    transform: scaleX(0);
-    transition: all .3s ease-in-out;
-    transform-origin: left;
+#form-login button{
+	margin: 0 auto;
+	width: 80px;
+	padding: .8rem;
+	border-radius: 5px;
+	border: 1px solid;
+	outline: none;
+	cursor: pointer;
+	transition: .5s
 }
 
-.input-field input:focus ~ .underline:after{
-    transform: scaleX(1);
-}
-
-.input-field input{
-    outline: none;
-    font-size: 0.9rem;
-    color: rgba(0, 0, 0, 0.7);
-    background-color: #f3f3f3;
-}
-
-.input-field  input::placeholder{
-    color: rgba(0, 0, 0, 0.5);
-}
-
-/* Animação do botão "Continue" ao passar o mouse */
-form input[type="submit"]{
-    margin-top: 4rem;
-    padding: 0.4rem;
-    background: linear-gradient(to left, #5c422b, #d45451);
-    cursor: pointer;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 300;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-form input[type="submit"]:hover{
-    letter-spacing: 0.5px;
-    background: linear-gradient(to right, #5c422b, #d45451);
+#form-login button:hover{
+	background-color: #A1A3A0;
+	color: #fff;
 }
 
 /* Animação ao entrar na página de Login*/
-main.container{
+#login-container{
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;

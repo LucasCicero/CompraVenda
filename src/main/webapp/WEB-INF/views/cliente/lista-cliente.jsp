@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -85,31 +86,31 @@
 				</thead>
 				
 				<tbody>
-				<c:forEach var="cliente" items="${clientes}" varStatus="i">
+				<c:forEach var="clientes" items="${clientes}" varStatus="i">
 					<tr>
 						<td>
-							<a href='<c:url value="/detalhes-categoria/${cliente.id}"/>'>
-								<span>${cliente.nome}</span>
+							<a href='<c:url value="/detalhes-clientes/${clientes.id}"/>'>
+								<span>${clientes.nome}</span>
 							</a>
 						</td>
 						
 						<td>
-							<span>${cliente.cpf}></span>
+							<span>${clientes.cpf}</span>
 						</td>
 						
 						<td>
-							<span>${cliente.email}</span>
+							<span>${clientes.email}</span>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/deletarCategoria?id=${cliente.id}"/>'
+							<a href='<c:url value="/deletarCliente?id=${clientes.id}"/>'
 								class="waves-effect waves-light btn-small">
 								<button type="button" class="btn btn-danger">Excluir</button>
 							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/editar-cliente?id=${cliente.id}"/>'>
+							<a href='<c:url value="/editar-cliente?id=${clientes.id}"/>'>
 								<button type="button" class="btn btn-primary">Editar</button>
 							</a>
 						</td>

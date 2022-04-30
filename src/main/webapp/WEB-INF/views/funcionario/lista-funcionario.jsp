@@ -89,7 +89,7 @@
 					<tr>
 						<td>
 							<a href='<c:url value="/detalhes-funcionario/${funcionario.id}"/>'>
-								<span>${funcionario.nome}></span>
+								<span>${funcionario.nome}</span>
 							</a>
 						</td>
 						

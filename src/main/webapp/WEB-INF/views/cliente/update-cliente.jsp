@@ -4,10 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,16 +84,14 @@
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>CPF:</strong></label>
-							<input type="text" class="form-control" value="" name="cpf" required
-								th:attr="value = ${clientes.cpf}" />
+							<input type="text" class="form-control" value="${clientes.cpf}" name="cpf" required />
 						</div>
 					</div>
 					
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>E-mail:</strong></label>
-							<input type="text" class="form-control" value="" name="email" required
-								th:attr="value = ${clientes.email}" />
+							<input type="text" class="form-control" value="${clientes.email}" name="email" required />
 						</div>
 					</div>
 				</div>

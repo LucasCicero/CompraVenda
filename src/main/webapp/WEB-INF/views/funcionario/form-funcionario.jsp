@@ -68,7 +68,6 @@
 		<main class="container">
 			<h1>Cadastro de Funcionário</h1>
 	
-			<th:block th:include="mensagem-validacao"></th:block>
 	
 			<form method="post">
 				<div class="form-group">
@@ -82,6 +81,13 @@
 						<div class="form-group">
 							<label for=""><strong>CPF:</strong></label>
 							<input type="text" value="" name="cpf" placeholder="Digite o cpf" class="form-control" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Senha:</strong></label>
+							<input type="text" value="" name="senha" placeholder="Digite a senha" class="form-control" required />
 						</div>
 					</div>
 					

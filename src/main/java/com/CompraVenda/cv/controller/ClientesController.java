@@ -42,9 +42,9 @@ public class ClientesController {
 	// GET que lista os clientes
 	@RequestMapping("/clientes")
 	public ModelAndView listaClientes() {
-		ModelAndView mv = new ModelAndView("lista-cliente");
-		//Iterable<Clientes> clientes = clr.findAll();
-		//mv.addObject("clientes", clientes);
+		ModelAndView mv = new ModelAndView("cliente/lista-cliente");
+		Iterable<Clientes> clientes = clr.findAll();
+		mv.addObject("clientes", clientes);
 		return mv;
 	}
 	
@@ -54,11 +54,6 @@ public class ClientesController {
 		Clientes clientes = clr.findById(id);
 		ModelAndView mv = new ModelAndView("cliente/detalhes-cliente");
 		mv.addObject("clientes", clientes);
-
-		// lista de dependentes baseada no id do funcionário
-		//Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
-		//mv.addObject("dependentes", dependentes);
-
 		return mv;
 	}
 	
@@ -76,7 +71,7 @@ public class ClientesController {
 	public ModelAndView editarCliente(int id) {
 		Clientes clientes = clr.findById(id);
 		ModelAndView mv = new ModelAndView("cliente/update-cliente");
-		mv.addObject("cliente", clientes);
+		mv.addObject("clientes", clientes);
 		return mv;
 	}
 	

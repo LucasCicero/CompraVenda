@@ -15,7 +15,7 @@ public class Compras implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotEmpty
@@ -69,4 +69,29 @@ public class Compras implements Serializable{
 	public void setValor_compra(int valor_compra) {
 		this.valor_compra = valor_compra;
 	}
+	
+	public Fornecedores getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(Fornecedores fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+	public Produtos getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produtos produtos) {
+		this.produtos = produtos;
+	}
+
+	public Funcionarios getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(Funcionarios funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
 }

@@ -9,6 +9,10 @@ import com.CompraVenda.cv.model.Funcionarios;
 public interface FuncionariosRepository extends CrudRepository<Funcionarios, Long>{
 	
 	Funcionarios findById(int id);
+	Funcionarios findByCpf(String cpf);
+	
+
+	
 	/*
 	List<Funcionarios> findByNome(String nome);
 	List<Funcionarios> findByCpf(String cpf);
