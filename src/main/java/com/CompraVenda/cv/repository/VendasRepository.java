@@ -1,14 +1,20 @@
 package com.CompraVenda.cv.repository;
+import java.util.List;
+
 /*
 import java.util.List;
 import java.util.Date;
 import org.springframework.data.jpa.repository.Query;
 */
 import org.springframework.data.repository.CrudRepository;
+
+
+import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.model.Vendas;
 
 public interface VendasRepository extends CrudRepository<Vendas, Long>{
 	Vendas findById(int id);
+	List<Vendas> findByProdutos(Produtos produtos);
 	/*
 	List<Vendas> findByQuantidadeVenda(int quantidadeVenda);
 	List<Vendas> findByDataVenda(Date dataVenda);

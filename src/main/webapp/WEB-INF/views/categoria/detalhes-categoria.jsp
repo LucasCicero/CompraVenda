@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -6,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes da Categoria</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -73,10 +77,97 @@
 					<strong>Nome da Categoria:</strong> <span >${categorias.nome_categoria}</span>
 				</p>
 				
+				<a class="btn-link" href="/categorias">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</div>
-	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			
+			<h2>Registrar Produtos</h2>
+			
+			<br>
+			
+			<form method="post">
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+							<label for=""><strong>Nome do Produto</strong></label>
+							<input type="text" value="" name="nome_produto" class="form-control" placeholder="Nome do Produto" required />
+						</div>
+
+						<div class="col">
+							<label for=""><strong>Descrição</strong></label>
+							<input type="text" value="" name="descricao" class="validate form-control" required />
+						</div>
+
+						<div class="col">
+							<label for=""><strong>Preço de Compra</strong></label>
+							<input type="number" value="" name="preco_compra" class="form-control" placeholder="Preço da Compra" required />
+						</div>
+						
+						<div class="col">
+							<label for=""><strong>Preço de Venda</strong></label>
+							<input type="number" value="" name="preco_venda" class="form-control" placeholder="Preço de Venda" required />
+						</div>
+						<div class="col">
+							<label for=""><strong>Quantidade Disponível</strong></label>
+							<input type="number" value="" name="quantidade_disponivel" class="form-control" placeholder="Quantidade Disponível" required />
+						</div>
+						<div class="col">
+							<label for=""><strong>Liberado</strong></label>
+							<input type="text" value="" name="liberado_venda" class="form-control" placeholder="Liberado" required />
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-success">
+					Adicionar Compra
+				</button>
+			</form>
+			
+			<br>
+			
+			<table class="table table-hover table-responsive w-auto table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Nome do Produto</th>
+						<th scope="col">Descrição:</th>
+						<th scope="col">Preço de Compra:</th>
+						<th scope="col">Preço de Venda:</th>
+						<th scope="col">Quantidade Disponível:</th>
+						<th scope="col">Liberado:</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+				<c:forEach var="produtos" items="${produtos}" varStatus="i">
+					<tr>
+						<td>
+							<span>${produtos.nome_produto}</span>
+						</td>
+						
+						<td>
+							<span>${produtos.descricao}</span>
+						</td>
+						
+						<td>
+							<span>${produtos.preco_compra}</span>
+						</td>
+						<td>
+							<span>${produtos.preco_venda}</span>
+						</td>
+						<td>
+							<span>${produtos.quantidade_disponivel}</span>
+						</td>
+						<td>
+							<span>${produtos.liberado_venda}</span>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		
 		</main>
+				
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Lista de Compras</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -79,9 +79,6 @@
 						<th scope="col">Quantidade Comprada:</th>
 						<th scope="col">Data da Compra:</th>
 						<th scope="col">Valor da Compra:</th>
-						<th scope="col">Id do Fornecedor:</th>
-						<th scope="col">Id do Produto:</th>
-						<th scope="col">Id do Funcionario:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
 						<th scope="col"></th>
@@ -110,24 +107,6 @@
 							</td>
 							
 							<td>
-								<a href='<c:url value="/detalhes-compra/${compras.id}"/>'>
-									${compras.id_fornecedor}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-compra/${compras.id}"/>'>
-									${compras.id_produto}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-compra/${compras.id}"/>'>
-									${compras.id_funcionario}
-								</a>
-							</td>
-							
-							<td>
 								<a href='<c:url value="/deletarCompra?id=${compras.id}"/>'
 									class="waves-effect waves-light btn-small">
 									<button type="button" class="btn btn-danger">Excluir</button>
@@ -135,7 +114,7 @@
 							</td>
 							
 							<td>
-								<a href='<c:url value="/editar-compra?id=${compra.id}"/>'>
+								<a href='<c:url value="/editar-compra?id=${compras.id}"/>'>
 									<button type="button" class="btn btn-primary">Editar</button>
 								</a>
 							</td>
@@ -143,6 +122,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a class="btn-link" href="/cadastrarCompra">
+				<button type="button" class="btn btn-success">Cadastrar Compra</button>
+			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

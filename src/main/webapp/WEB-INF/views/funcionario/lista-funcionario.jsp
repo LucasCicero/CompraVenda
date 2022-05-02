@@ -10,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Lista de Funcionarios</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -85,31 +85,31 @@
 				</thead>
 				
 				<tbody>
-				<c:forEach var="funcionario" items="${funcionarios}" varStatus="i">
+				<c:forEach var="funcionarios" items="${funcionarios}" varStatus="i">
 					<tr>
 						<td>
-							<a href='<c:url value="/detalhes-funcionario/${funcionario.id}"/>'>
-								<span>${funcionario.nome}</span>
+							<a href='<c:url value="/detalhes-funcionario/${funcionarios.id}"/>'>
+								<span>${funcionarios.nome}></span>
 							</a>
 						</td>
 						
 						<td>
-							<span>${funcionario.cpf}</span>
+							<span>${funcionarios.cpf}</span>
 						</td>
 						
 						<td>
-							<span>${funcionario.papel}</span>
+							<span>${funcionarios.papel}</span>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/deletarCategoria?id=${funcionario.id}"/>'
+							<a href='<c:url value="/deletarFuncionario?id=${funcionarios.id}"/>'
 								class="waves-effect waves-light btn-small">
 								<button type="button" class="btn btn-danger">Excluir</button>
 							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/editar-funcionario?id=${funcionario.id}"/>'>
+							<a href='<c:url value="/editar-funcionario?id=${funcionarios.id}"/>'>
 								<button type="button" class="btn btn-primary">Editar</button>
 							</a>
 						</td>
@@ -117,6 +117,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a class="btn-link" href="/cadastrarFuncionario">
+				<button type="button" class="btn btn-success">Cadastrar Funcionario</button>
+			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

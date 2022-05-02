@@ -10,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Atualizar Cliente</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -70,14 +70,12 @@
 		</header>
 		
 		<main class="container">
-			<%@ include file="../mensagem-validacao.jsp" %>
-			
 			<form method="post">
 				<h1>Atualizar Cliente</h1>
 
 				<div class="form-group">
 					<label for=""><strong>Nome do Cliente:</strong></label>
-					<input type="text" class="form-control" value="${clientes.nome}"  name="nome" required />
+					<input type="text" class="form-control" value="${clientes.nome}" name="nome" required />
 				</div>
 				
 				<div class="row">
@@ -85,6 +83,48 @@
 						<div class="form-group">
 							<label for=""><strong>CPF:</strong></label>
 							<input type="text" class="form-control" value="${clientes.cpf}" name="cpf" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Endereço:</strong></label>
+							<input type="text" class="form-control" value="${clientes.endereco}" name="endereco" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Bairro:</strong></label>
+							<input type="text" class="form-control" value="${clientes.bairro}" name="bairro" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Cidade:</strong></label>
+							<input type="text" class="form-control" value="${clientes.cidade}" name="cidade" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>UF:</strong></label>
+							<input type="text" class="form-control" value="${clientes.uf}" name="uf" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>CEP:</strong></label>
+							<input type="text" class="form-control" value="${clientes.cep}" name="cep" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Telefone:</strong></label>
+							<input type="text" class="form-control" value="${clientes.telefone}" name="telefone" required />
 						</div>
 					</div>
 					
@@ -99,6 +139,10 @@
 				<button type="submit" class="btn btn-success">
 					Atualizar Cliente
 				</button>
+				
+				<a class="btn-link" href="/clientes">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

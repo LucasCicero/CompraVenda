@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Cadastrar Categoria</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -68,8 +68,6 @@
 		<main class="container">
 			<h1>Cadastrar Categoria</h1>
 	
-		<%@ include file="../mensagem-validacao.jsp" %>	
-	
 			<form method="post">
 				<div class="form-group">
 					<label for=""><strong>Nome da Categoria:</strong></label>
@@ -78,6 +76,10 @@
 				</div>
 				
 				<button type="submit" class="btn btn-success">Adicionar Categoria</button>
+				
+				<a class="btn-link" href="/categorias">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

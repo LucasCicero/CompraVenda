@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Cadastrar Funcionario</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -68,7 +68,6 @@
 		<main class="container">
 			<h1>Cadastro de Funcionário</h1>
 	
-	
 			<form method="post">
 				<div class="form-group">
 					<label for=""><strong>Nome:</strong></label>
@@ -98,6 +97,10 @@
 				</div>
 				
 				<button type="submit" class="btn btn-success">Adicionar Funcionário</button>
+				
+				<a class="btn-link" href="/funcionarios">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

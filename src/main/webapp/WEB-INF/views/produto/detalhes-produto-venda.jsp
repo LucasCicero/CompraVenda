@@ -1,16 +1,15 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Compra & Venda - Lista de Categorias</title>
+	    <title>Compra & Venda - Detalhes dos produtos</title>
 	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +45,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Cliente</a>
+								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
@@ -54,7 +53,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
 							
 							<li class="nav-item">
@@ -71,47 +70,102 @@
 		</header>
 		
 		<main class="container">
-			<h1>Lista de Categorias</h1>
-	
+			<h1>Informações dos Produtos</h1>
+			
+			<div class="container">
+				<p>
+					<strong>Nome do Produto:</strong> <span>${produtos.nome_produto}</span>
+				</p>
+				
+				<p>
+					<strong>Descrição:</strong> <span>${produtos.descricao}</span>
+				</p>
+				
+				<p>
+					<strong>Preço de Compra:</strong> <span>${produtos.preco_compra}</span>
+				</p>
+				
+				<p>
+					<strong>Preço de Venda:</strong> <span>${produtos.preco_venda}</span>
+				</p>
+				
+				<p>
+					<strong>Quantidade Disponivel:</strong> <span>${produtos.quantidade_disponivel}</span>
+				</p>
+				
+				<p>
+					<strong>Liberado:</strong> <span>${produtos.liberado_venda}</span>
+				</p>
+				
+				<a class="btn-link" href="/produtos">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
+			</div>
+			
+			<h2>Registrar Venda do produto</h2>
+			
+			<br>
+			
+			<form method="post">
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+							<label for=""><strong>Quantidade Venda:</strong></label>
+							<input type="number" value="" name="quantidade_venda" class="form-control" placeholder="Quantidade Vendida" required />
+						</div>
+
+						<div class="col">
+							<label for=""><strong>Data da Venda:</strong></label>
+							<input type="date" value="" name="data_venda" class="validate form-control" required />
+						</div>
+
+						<div class="col">
+							<label for=""><strong>Valor da Venda</strong></label>
+							<input type="number" value="" name="valor_venda" class="form-control" placeholder="Valor da Venda" required />
+						</div>
+						
+						<div class="col">
+							<label for=""><strong>Id Cliente</strong></label>
+							<input type="number" value="" name="id_cliente" class="form-control" placeholder="Id do Cliente" required />
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-success">
+					Adicionar Venda
+				</button>
+			</form>
+			
+			<br>
+			
 			<table class="table table-hover table-responsive w-auto table-striped">
 				<thead>
 					<tr>
-						<th scope="col">Nome da Categoria:</th>
-						<th scope="col"></th>
-						<th scope="col">Ação</th>
-						<th scope="col"></th>
+						<th scope="col">Quantidade Vendida</th>
+						<th scope="col">Data da Venda:</th>
+						<th scope="col">Valor da Venda:</th>
 					</tr>
 				</thead>
-			
+				
 				<tbody>
-					<c:forEach var="categorias" items="${categorias}" varStatus="i">
-						<tr>
-							<td>
-								<a href='<c:url value="/detalhes-categoria/${categorias.id}"/>'>
-									${categorias.nome_categoria}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/deletarCategoria?id=${categorias.id}"/>'
-									class="waves-effect waves-light btn-small">
-									<button type="button" class="btn btn-danger">Excluir</button>
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/editar-categoria?id=${categorias.id}"/>'>
-									<button type="button" class="btn btn-primary">Editar</button>
-								</a>
-							</td>
-						</tr>
-					</c:forEach>
+				<c:forEach var="vendas" items="${vendas}" varStatus="i">
+					<tr>
+						<td>
+							<span>${vendas.quantidade_venda}</span>
+						</td>
+						
+						<td>
+							<span>${vendas.data_venda}</span>
+						</td>
+						
+						<td>
+							<span>${vendas.valor_venda}</span>
+						</td>
+					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarCategoria">
-				<button type="button" class="btn btn-success">Cadastrar Categoria</button>
-			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

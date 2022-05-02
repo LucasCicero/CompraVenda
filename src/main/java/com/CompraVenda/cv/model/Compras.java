@@ -2,12 +2,16 @@ package com.CompraVenda.cv.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Compras implements Serializable{
@@ -18,24 +22,27 @@ public class Compras implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty
+	@NotNull
 	private int quantidade_compra;
 	
 	@NotEmpty
-	private Date data_compra;
+	private String data_compra;
 	
-	@NotEmpty
+	@NotNull
 	private int valor_compra;
 	
 	@ManyToOne
+	@JoinColumn(name="id_fornecedor")
 	private Fornecedores fornecedores;
 	
-	@NotEmpty
+	
 	@ManyToOne
+	@JoinColumn(name="id_produto")
 	private Produtos produtos;
 	
-	@NotEmpty
+	
 	@ManyToOne
+	@JoinColumn(name="id_funcionario")
 	private Funcionarios funcionarios;
 
 	public int getId() {
@@ -54,11 +61,11 @@ public class Compras implements Serializable{
 		this.quantidade_compra = quantidade_compra;
 	}
 
-	public Date getData_compra() {
+	public String getData_compra() {
 		return data_compra;
 	}
 
-	public void setData_compra(Date data_compra) {
+	public void setData_compra(String data_compra) {
 		this.data_compra = data_compra;
 	}
 

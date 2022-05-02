@@ -10,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">	   
 	    <title>Compra & Venda</title>
-	     <link rel="stylesheet" href="<c:url value='/css/style.css'/>"/>
+	   
 	    
 	</head>
 	<body>
@@ -18,10 +18,9 @@
 			<div id="login-container">
 				<h1 class="login-title input-field first">Compra & Venda</h1>
 				
-				<form > 
+				<form method="post" id="form-login" action="<c:url value='/'/>"> 
 					<input type="text" id="cpf" name="username" placeholder="Digite seu CPF" class="input-field second">
-					<input type="password" id="password" name="password" placeholder="Digite sua senha" class="input-field third">
-					
+					<input type="password" id="password" name="password" placeholder="Digite sua senha" class="input-field third">				
 					<button type="submit" class="input-field fourth">Entrar</button>
 				</form>
 			</div>

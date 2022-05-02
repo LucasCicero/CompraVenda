@@ -4,16 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Atualizar Funcionario</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -73,28 +70,33 @@
 		</header>
 		
 		<main class="container">
-			<th:block th:include="mensagem-validacao"></th:block>
-			
 			<form method="post">
 				<h1>Atualizar Funcionário</h1>
 
 				<div class="form-group">
 					<label for=""><strong>Nome do funcionário:</strong></label>
-					<input type="text" class="form-control" value="${funcionario.nome}" name="nome" required />
+					<input type="text" class="form-control" value="${funcionarios.nome}" name="nome" required />
 				</div>
 				
 				<div class="row">
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>CPF:</strong></label>
-							<input type="text" class="form-control" value="${funcionario.cpf}" name="cpf" required />
+							<input type="text" class="form-control" value="${funcionarios.cpf}" name="cpf" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Senha:</strong></label>
+							<input type="text" value="${funcionarios.senha}" name="senha" placeholder="Digite a senha" class="form-control" required />
 						</div>
 					</div>
 					
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>Cargo:</strong></label>
-							<input type="text" class="form-control" value="${funcionario.papel}" name="papel" required />
+							<input type="text" class="form-control" value="${funcionarios.papel}" name="papel" required />
 						</div>
 					</div>
 				</div>
@@ -102,6 +104,10 @@
 				<button type="submit" class="btn btn-success">
 					Atualizar Funcionário
 				</button>
+				
+				<a class="btn-link" href="/funcionarios">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Vendas implements Serializable{
@@ -17,24 +18,24 @@ public class Vendas implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty
+	@NotNull
 	private int quantidade_venda;
 	
 	@NotEmpty
-	private Date data_venda;
+	private String data_venda;
 	
-	@NotEmpty
+	@NotNull
 	private double valor_venda;
 	
-	@NotEmpty
+
 	@ManyToOne
 	private Clientes clientes;
 	
-	@NotEmpty
+
 	@ManyToOne
 	private Produtos produtos;
 	
-	@NotEmpty
+	
 	@ManyToOne
 	private Funcionarios funcionarios;
 
@@ -45,6 +46,31 @@ public class Vendas implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+		
+
+	public Clientes getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
+	}
+
+	public Produtos getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produtos produtos) {
+		this.produtos = produtos;
+	}
+
+	public Funcionarios getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(Funcionarios funcionarios) {
+		this.funcionarios = funcionarios;
+	}
 
 	public int getQuantidade_venda() {
 		return quantidade_venda;
@@ -54,11 +80,11 @@ public class Vendas implements Serializable{
 		this.quantidade_venda = quantidade_venda;
 	}
 
-	public Date getData_venda() {
+	public String getData_venda() {
 		return data_venda;
 	}
 
-	public void setData_venda(Date data_venda) {
+	public void setData_venda(String data_venda) {
 		this.data_venda = data_venda;
 	}
 

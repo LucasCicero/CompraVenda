@@ -9,7 +9,7 @@ public class CvApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CvApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("123"));
+		//System.out.println(new BCryptPasswordEncoder().encode("123"));
 	}
 
 }

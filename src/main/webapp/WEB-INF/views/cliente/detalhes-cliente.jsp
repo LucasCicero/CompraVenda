@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes do Cliente</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -70,22 +70,45 @@
 			
 			<div class="container">
 				<p>
-					<strong>Nome do Cliente:</strong> <span>${clientes.nome}</span>
+					<strong>Nome do Cliente:</strong> <span>${clientes.nome}></span>
 				</p>
 				
 				<p>
-					<strong>CPF:</strong> <span> ${clientes.cpf}</span>
+					<strong>CPF:</strong> <span>${clientes.cpf}></span>
 				</p>
 				
 				<p>
-					<b>E-mail:</b> <span>${clientes.email}></span>
+					<strong>Endereço:</strong> <span>${clientes.endereco}></span>
 				</p>
-	
-
-	
+				
+				<p>
+					<strong>Bairro:</strong> <span>${clientes.bairro}></span>
+				</p>
+				
+				<p>
+					<strong>Cidade:</strong> <span>${clientes.cidade}></span>
+				</p>
+				
+				<p>
+					<strong>UF:</strong> <span>${clientes.uf}></span>
+				</p>
+				
+				<p>
+					<strong>CEP:</strong> <span>${clientes.cep}></span>
+				</p>
+				
+				<p>
+					<strong>Telefone:</strong> <span>${clientes.telefone}></span>
+				</p>
+				
+				<p>
+					<strong>E-mail:</strong> <span>${clientes.email}></span>
+				</p>
+				
+				<a class="btn-link" href="/clientes">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</div>
-	
-			<%@ include file="../mensagem-validacao.jsp" %>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

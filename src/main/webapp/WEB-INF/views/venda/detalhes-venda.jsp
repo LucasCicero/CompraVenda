@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes das Vendas</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -83,39 +80,11 @@
 				<p>
 					<strong>Valor da Venda:</strong> <span>${vendas.valor_venda}</span>
 				</p>
-	
-				<h2>Cadastrar dependentes</h2>
-	
-				<form method="post" th:object="${dependente}">
-	
-					<div class="form-group">
-						<div class="row">
-							<div class="col">
-								<label for=""><strong>Nome:</strong></label>
-								<input type="text" value="" name="nome" class="form-control" placeholder="Digite seu noome"
-								required />
-							</div>
-							
-							<div class="col">
-								<label for=""><strong>CPF: </strong></label>
-								<input type="text" value="" name="cpf" placeholder="Somente números, sem traçõs ou pontos."
-								class="validate form-control" onkeypress="$(this).mask('000.000.000-00');" required />
-							</div>
-	
-							<div class="col">
-								<div class="form-group">
-									<label for=""><strong>Data de nascimento:</strong></label>
-									<input type="text" value="" name="cpf" class="form-control" required />
-								</div>
-							</div>
-						</div>
-						
-						<button type="submit" class="btn btn-success">Adicionar Dependente</button>
-					</div>
-				</form>
+				
+				<a class="btn-link" href="/vendas">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</div>
-	
-			<th:block th:include="mensagem-validacao"></th:block>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

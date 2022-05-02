@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -71,8 +68,6 @@
 		<main class="container">
 			<h1>Cadastrar Compra</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
-	
 			<form method="post">
 				<div class="form-group">
 					<label for=""><strong>Quantidade Comprada:</strong></label>
@@ -84,7 +79,7 @@
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>Data da Compra:</strong></label>
-							<input type="date" value="" name="cpf" class="form-control" required />
+							<input type="date" value="" name="data_compra" class="form-control" required />
 						</div>
 					</div>
 					
@@ -95,6 +90,10 @@
 				</div>
 				
 				<button type="submit" class="btn btn-success">Adicionar Compra</button>
+				
+				<a class="btn-link" href="/compras">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

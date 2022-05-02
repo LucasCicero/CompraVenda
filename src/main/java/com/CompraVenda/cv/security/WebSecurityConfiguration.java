@@ -27,7 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());	
-	//.auth.userDetailsService(userDetailsService);
+	//auth.userDetailsService(userDetailsService);
 	}
 
 protected void configure(HttpSecurity http) throws Exception{

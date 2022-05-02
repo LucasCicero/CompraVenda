@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Cadastrar Cliente</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -73,13 +73,11 @@
 		<main class="container">
 			<h1>Cadastrar Cliente</h1>
 	
-			<%@ include file="../mensagem-validacao.jsp" %>
-	
 			<form method="post">
 				<div class="form-group">
 					<label for=""><strong>Nome:</strong></label>
 					<input type="text" class="form-control" value=""
-					placeholder="Insira o nome do funcionario" name="nome" required>
+					placeholder="Insira o nome do cliente" name="nome" required>
 				</div>
 	
 				<div class="row">
@@ -91,17 +89,60 @@
 					</div>
 					
 					<div class="col">
-						<label for=""><strong>Senha:</strong></label>
-						<input type="text" value="" name="senha" class="form-control" placeholder="Digite o email" required />
+						<div class="form-group">
+							<label for=""><strong>Endereço:</strong></label>
+							<input type="text" value="" name="endereco" class="form-control" placeholder="Digite o endereço" required />
+						</div>
 					</div>
 					
 					<div class="col">
-						<label for=""><strong>Papel:</strong></label>
-						<input type="text" value="" name="papel" class="form-control" placeholder="Digite o email" required />
+						<div class="form-group">
+							<label for=""><strong>Bairro:</strong></label>
+							<input type="text" value="" name="bairro" class="form-control" placeholder="Digite o bairro" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Cidade:</strong></label>
+							<input type="text" value="" name="cidade" class="form-control" placeholder="Digite a cidade" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>UF:</strong></label>
+							<input type="text" value="" name="uf" class="form-control" placeholder="Digite o uf" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>CEP:</strong></label>
+							<input type="text" value="" name="cep" class="form-control" placeholder="Digite o cep" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>Telefone:</strong></label>
+							<input type="text" value="" name="telefone" class="form-control" placeholder="Digite o telefone" required />
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="form-group">
+							<label for=""><strong>E-mail:</strong></label>
+							<input type="text" value="" name="email" class="form-control" placeholder="Digite o email" required />
+						</div>
 					</div>
 				</div>
 				
 				<button type="submit" class="btn btn-success">Adicionar Cliente</button>
+				
+				<a class="btn-link" href="/clientes">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

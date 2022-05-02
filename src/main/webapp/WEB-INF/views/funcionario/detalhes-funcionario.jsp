@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes dos Funcionarios</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -68,50 +68,21 @@
 		<main class="container">
 			<h1>Informações do funcionário</h1>
 			
-				<p>
-					<strong>Nome:</strong> <span>${funcionario.nome}</span>
-				</p>
-				
-				<p>
-					<strong>CPF:</strong> <span>${funcionario.cpf}</span>
-				</p>
-				
-				<p>
-					<strong>Papel</strong> <span>${funcionario.papel}></span>
-				</p>
-	
-				<h2>Cadastrar dependentes</h2>
-	
-				<form method="post" th:object="${dependente}">
-	
-					<div class="form-group">
-						<div class="row">
-							<div class="col">
-								<label for=""><strong>Nome:</strong></label>
-								<input type="text" value="" name="nome" class="form-control" placeholder="Digite seu noome"
-								required />
-							</div>
-							
-							<div class="col">
-								<label for=""><strong>CPF: </strong></label>
-								<input type="text" value="" name="cpf" placeholder="Somente números, sem traçõs ou pontos."
-								class="validate form-control" onkeypress="$(this).mask('000.000.000-00');" required />
-							</div>
-	
-							<div class="col">
-								<div class="form-group">
-									<label for=""><strong>Data de nascimento:</strong></label>
-									<input type="text" value="" name="cpf" class="form-control" required />
-								</div>
-							</div>
-						</div>
-						
-						<button type="submit" class="btn btn-success">Adicionar Dependente</button>
-					</div>
-				</form>
-			</div>
-	
-			<%@ include file="../mensagem-validacao.jsp" %>
+			<p>
+				<strong>Nome:</strong> <span>${funcionarios.nome}</span>
+			</p>
+			
+			<p>
+				<strong>CPF:</strong> <span>${funcionarios.cpf}</span>
+			</p>
+			
+			<p>
+				<strong>Papel</strong> <span>${funcionarios.papel}></span>
+			</p>
+			
+			<a class="btn-link" href="/funcionarios">
+				<button type="button" class="btn btn-info">Voltar</button>
+			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

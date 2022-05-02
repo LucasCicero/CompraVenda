@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Atualizar Produto</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -66,8 +66,6 @@
 		</header>
 		
 		<main class="container">
-			<%@ include file="../mensagem-validacao.jsp" %>
-			
 			<form method="post">
 				<h1>Atualizar Produto</h1>
 
@@ -111,18 +109,15 @@
 							<input type="text" class="form-control" value="${produtos.liberado_venda}" name="liberado_venda" required />
 						</div>
 					</div>
-					
-					<div class="col">
-						<div class="form-group">
-							<label for=""><strong>Id da Categoria</strong></label>
-							<input type="number" class="form-control" value="${produtos.id_categoria}" name="id_categoria" required />
-						</div>
-					</div>
 				</div>
 	
 				<button type="submit" class="btn btn-success">
 					Atualizar Produto
 				</button>
+				
+				<a class="btn-link" href="/produtos">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</form>
 		</main>
 		

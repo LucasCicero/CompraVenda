@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Listar Vendas</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -87,31 +87,35 @@
 				
 				<tbody>
 				
-					<c:forEach var="venda" items="${vendas}" varStatus="i">
+					<c:forEach var="vendas" items="${vendas}" varStatus="i">
 					<tr>
 						<td>
-							<a href='<c:url value="/detalhes-venda/${venda.id}"/>'>
-								<span >${venda.quantidade_venda}</span>
+							<a href='<c:url value="/detalhes-venda/${vendas.id}"/>'>
+								<span >${vendas.quantidade_venda}</span>
 							</a>
 						</td>
 						
 						<td>
-							<span>${venda.data_venda}</span>
+							<a href='<c:url value="/detalhes-venda/${vendas.id}"/>'>
+								${vendas.data_venda}
+							</a>
 						</td>
 						
 						<td>
-							<span>${venda.valor_venda}</span>
+							<a href='<c:url value="/detalhes-produto/${vendas.id}"/>'>
+								${vendas.valor_venda}
+							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/deletarVenda?id=${venda.id}"/>'
+							<a href='<c:url value="/deletarVenda?id=${vendas.id}"/>'
 								class="waves-effect waves-light btn-small">
 								<button type="button" class="btn btn-danger">Excluir</button>
 							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/editar-venda?id=${venda.id}"/>'>
+							<a href='<c:url value="/editar-venda?id=${vendas.id}"/>'>
 								<button type="button" class="btn btn-primary">Editar</button>
 							</a>
 						</td>
@@ -119,6 +123,10 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
+			<a class="btn-link" href="/cadastrarVenda">
+				<button type="button" class="btn btn-success">Cadastrar Venda</button>
+			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

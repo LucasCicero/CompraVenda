@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -11,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Lista de Clientes</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -78,7 +77,13 @@
 					<tr>
 						<th scope="col">Nome:</th>
 						<th scope="col">CPF:</th>
-						<th scope="col">E-mail:</th>
+						<th scope="col">Endereço:</th>
+						<th scope="col">Bairro:</th>
+						<th scope="col">Cidade:</th>
+						<th scope="col">UF:</th>
+						<th scope="col">CEP:</th>
+						<th scope="col">Telefone:</th>
+						<th scope="col">Email:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
 						<th scope="col"></th>
@@ -89,18 +94,58 @@
 				<c:forEach var="clientes" items="${clientes}" varStatus="i">
 					<tr>
 						<td>
-							<a href='<c:url value="/detalhes-clientes/${clientes.id}"/>'>
-								<span>${clientes.nome}</span>
-							</a>
-						</td>
-						
-						<td>
-							<span>${clientes.cpf}</span>
-						</td>
-						
-						<td>
-							<span>${clientes.email}</span>
-						</td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.nome}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.cpf}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.endereco}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.bairro}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.cidade}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.uf}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.cep}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.telefone}
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+									${clientes.email}
+								</a>
+							</td>
 						
 						<td>
 							<a href='<c:url value="/deletarCliente?id=${clientes.id}"/>'
@@ -118,6 +163,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a class="btn-link" href="/cadastrarCliente">
+				<button type="button" class="btn btn-success">Cadastrar Cliente</button>
+			</a>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">

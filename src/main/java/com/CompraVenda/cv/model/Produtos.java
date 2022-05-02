@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Produtos implements Serializable{
@@ -23,27 +24,28 @@ public class Produtos implements Serializable{
 	@NotEmpty
 	private String descricao;
 	
-	@NotEmpty
+	
+	@NotNull
 	private double preco_compra;
 	
-	@NotEmpty
+	@NotNull
 	private double preco_venda;
 	
-	@NotEmpty
+	@NotNull
 	private int quantidade_disponivel;
 	
 	@NotEmpty
 	private String liberado_venda;
 	
-	@NotEmpty
+	
 	@ManyToOne
 	private Categorias categorias;
 	
-	@NotEmpty
+	
 	@ManyToOne
 	private Vendas vendas;
 	
-	@NotEmpty
+	
 	@ManyToOne
 	private Compras compras;
 	
@@ -103,6 +105,29 @@ public class Produtos implements Serializable{
 
 	public void setLiberado_venda(String liberado_venda) {
 		this.liberado_venda = liberado_venda;
+	}
+	public Categorias getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Categorias categorias) {
+		this.categorias = categorias;
+	}
+
+	public Vendas getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(Vendas vendas) {
+		this.vendas = vendas;
+	}
+
+	public Compras getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Compras compras) {
+		this.compras = compras;
 	}
 
 	

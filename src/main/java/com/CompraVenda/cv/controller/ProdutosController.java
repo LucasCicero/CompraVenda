@@ -2,22 +2,51 @@ package com.CompraVenda.cv.controller;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.CompraVenda.cv.model.Clientes;
+import com.CompraVenda.cv.model.Compras;
+import com.CompraVenda.cv.model.Fornecedores;
+import com.CompraVenda.cv.model.Funcionarios;
 import com.CompraVenda.cv.model.Produtos;
+import com.CompraVenda.cv.model.Vendas;
+import com.CompraVenda.cv.repository.ClientesRepository;
+import com.CompraVenda.cv.repository.ComprasRepository;
+import com.CompraVenda.cv.repository.FornecedoresRepository;
+import com.CompraVenda.cv.repository.FuncionariosRepository;
 import com.CompraVenda.cv.repository.ProdutosRepository;
+import com.CompraVenda.cv.repository.VendasRepository;
 
 @Controller
 public class ProdutosController {
 	
 	@Autowired
 	private ProdutosRepository pr;
+	
+	@Autowired
+	private ComprasRepository cr;
+	
+	@Autowired
+	private FornecedoresRepository fr;
+	
+	@Autowired
+	private FuncionariosRepository fcr;
+	
+	@Autowired
+	private VendasRepository vr;
+	
+	@Autowired
+	private ClientesRepository clr;
 	
 	// GET que chama o form para cadastrar produto
 	@RequestMapping("/cadastrarProduto")
@@ -27,8 +56,8 @@ public class ProdutosController {
 	
 	// POST que cadastra produto
 	@RequestMapping(value = "/cadastrarProduto", method = RequestMethod.POST)
-	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes) {
-
+	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes) {		
+		
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
 			return "redirect:/cadastrarProduto";
@@ -54,17 +83,108 @@ public class ProdutosController {
 		Produtos produtos = pr.findById(id);
 		ModelAndView mv = new ModelAndView("produto/detalhes-produto");
 		mv.addObject("produtos", produtos);
-
-		// lista de dependentes baseada no id do funcionário
-		//Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
-		//mv.addObject("dependentes", dependentes);
-
+		
+		Iterable<Compras> compras = cr.findByProdutos(produtos);
+		mv.addObject("compras", compras);
+		
 		return mv;
 	}
 	
+	// GET que detalha os produtos
+		@RequestMapping("/detalhes-produto-venda/{id}")
+		public ModelAndView detalhesProdutoVenda(@PathVariable("id") int id) {
+			Produtos produtos = pr.findById(id);
+			ModelAndView mv = new ModelAndView("produto/detalhes-produto-venda");
+			mv.addObject("produtos", produtos);
+			
+			Iterable<Vendas> vendas = vr.findByProdutos(produtos);
+			mv.addObject("vendas", vendas);
+			
+			return mv;
+		}
+		
+		
+		@RequestMapping(value = "/detalhes-produto-venda/{id}", method = RequestMethod.POST)
+		public String detalhesProdutosVendaPost(@PathVariable("id") int id, @Valid Vendas vendas,
+				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente) {
+			String cpf="";
+			if (result.hasErrors()) {
+				attributes.addFlashAttribute("mensagem", "Verifique os campos");
+				return "redirect:/detalhes-produto-venda/{id}";
+			}
+
+			/*
+			if (cr.findByRg(candidato.getRg()) != null) {
+				attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
+				return "redirect:/vaga/{codigo}";
+			}
+			*/
+			
+			
+			Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (auth instanceof UserDetails) {
+				 cpf= ((UserDetails)auth).getUsername();
+			}
+			else {
+				 cpf= auth.toString();
+			}
+			
+			Funcionarios funcionarios= fcr.findByCpf(cpf);
+			vendas.setFuncionarios(funcionarios);
+			Produtos produtos = pr.findById(id);
+			vendas.setProdutos(produtos);
+			Clientes clientes= clr.findById(id);
+			vendas.setClientes(clientes);
+			vr.save(vendas);
+			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
+			return "redirect:/detalhes-produto-venda/{id}";
+		}
+	
+	
+	
+	// POST que adiciona candidato a vaga
+		@RequestMapping(value = "/detalhes-produto/{id}", method = RequestMethod.POST)
+		public String detalhesProdutosPost(@PathVariable("id") int id, @Valid Compras compras,
+				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
+			String cpf="";
+			if (result.hasErrors()) {
+				attributes.addFlashAttribute("mensagem", "Verifique os campos");
+				return "redirect:/detalhes-produto/{id}";
+			}
+
+			/*
+			if (cr.findByRg(candidato.getRg()) != null) {
+				attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
+				return "redirect:/vaga/{codigo}";
+			}
+			*/
+			
+			
+			Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (auth instanceof UserDetails) {
+				 cpf= ((UserDetails)auth).getUsername();
+			}
+			else {
+				 cpf= auth.toString();
+			}
+			
+			Funcionarios funcionarios= fcr.findByCpf(cpf);
+			compras.setFuncionarios(funcionarios);
+			Produtos produtos = pr.findById(id);
+			compras.setProdutos(produtos);
+			Fornecedores fornecedores= fr.findById(id);
+			compras.setFornecedores(fornecedores);
+			cr.save(compras);
+			attributes.addFlashAttribute("mensagem", "Compra registrada com sucesso!");
+			return "redirect:/detalhes-produto/{id}";
+		}
+	
+	
+	
+	
 	//GET que deleta produto
 	@RequestMapping("/deletarProduto")
-	public String deletarFuncionario(int id) {
+	public String deletarProduto(int id) {
 		Produtos produtos = pr.findById(id);
 		pr.delete(produtos);
 		return "redirect:/produtos";
@@ -76,7 +196,7 @@ public class ProdutosController {
 	public ModelAndView editarProduto(int id) {
 		Produtos produtos = pr.findById(id);
 		ModelAndView mv = new ModelAndView("produto/update-produto");
-		mv.addObject("produto", produtos);
+		mv.addObject("produtos", produtos);
 		return mv;
 	}
 	

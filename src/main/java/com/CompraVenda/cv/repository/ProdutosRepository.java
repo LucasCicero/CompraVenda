@@ -1,14 +1,20 @@
 package com.CompraVenda.cv.repository;
+import java.util.List;
+
 /*
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 */
 import org.springframework.data.repository.CrudRepository;
+
+import com.CompraVenda.cv.model.Categorias;
 import com.CompraVenda.cv.model.Produtos;
+import com.CompraVenda.cv.model.Vendas;
 
 public interface ProdutosRepository extends CrudRepository<Produtos, Long>{
 	
 	Produtos findById(int id);
+	List<Produtos> findByCategorias(Categorias categorias);
 	/*
 	List<Produtos> findByNomeProduto(String nomeProduto);
 	List<Produtos> findByPrecoCompra(double precoCompra);

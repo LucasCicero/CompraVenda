@@ -28,4 +28,11 @@ public class IndexController {
 	}
 	
 	
+	@RequestMapping("/relatorio")
+	public void gerarRelatorio() {
+		//ModelAndView mv = new ModelAndView("index");
+		
+	}
+	
+	
 }

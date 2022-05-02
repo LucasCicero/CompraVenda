@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Lista de Produtos</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -82,7 +82,6 @@
 						<th scope="col">Preço de Venda:</th>
 						<th scope="col">Quantidade Disponivel:</th>
 						<th scope="col">Liberado:</th>
-						<th scope="col">Id da Categoria:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
 						<th scope="col"></th>
@@ -96,44 +95,13 @@
 								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
 									${produtos.nome_produto}
 								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.descricao}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.preco_compra}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.preco_venda}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.quantidade_disponivel}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.liberado_venda}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
-									${produtos.id_categoria}
-								</a>
-							</td>
-							
+							</td>	
+							<td>${produtos.descricao}</td>
+							<td>${produtos.preco_compra}</td>
+							<td>${produtos.preco_venda}</td>
+							<td>${produtos.quantidade_disponivel}</td>
+							<td>${produtos.liberado_venda}</td>
+					
 							<td>
 								<a href='<c:url value="/deletarProduto?id=${produtos.id}"/>'
 									class="waves-effect waves-light btn-small">
@@ -150,9 +118,13 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a class="btn-link" href="/cadastrarProduto">
+				<button type="button" class="btn btn-success">Cadastrar Produto</button>
+			</a>
 		</main>
 		
-		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
+		<footer class="footer-copyright bg-dark text-center py-3">
 			<span class="text-light align-middle">
 				&copy; Compra & Venda - 2022 - Todos os direitos reservados.
 			</span>

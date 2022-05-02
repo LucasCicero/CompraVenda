@@ -3,6 +3,10 @@ package com.CompraVenda.cv.controller;
 //import javax.management.relation.Role;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,13 +39,15 @@ public class FuncionarioController {
 	
 	// POST que cadastra funcionários
 	@RequestMapping(value = "/cadastrarFuncionario", method = RequestMethod.POST)
-	public String form(@Valid Funcionarios funcionarios, BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel) {
+	public String form(@Valid Funcionarios funcionarios, BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel, @RequestParam(value="senha")String senha) {
 			String role_name="";
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
 			return "redirect:/cadastrarFuncionario";
 		}
-		//fr.setRole(role);
+		
+		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+		funcionarios.setSenha(passwordEncoder.encode(senha));
 		
 		if (papel==0) {
 		
@@ -68,6 +74,18 @@ public class FuncionarioController {
 	// GET que lista funcionários
 	@RequestMapping("/funcionarios")
 	public ModelAndView listaFuncionarios() {
+		
+		String cpf="";
+		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (auth instanceof UserDetails) {
+			 cpf= ((UserDetails)auth).getUsername();
+		}
+		else {
+			 cpf= auth.toString();
+		}
+		System.out.println("cpf>>"+cpf);
+		
+		
 		ModelAndView mv = new ModelAndView("funcionario/lista-funcionario");
 		Iterable<Funcionarios> funcionarios = fr.findAll();
 		mv.addObject("funcionarios", funcionarios);

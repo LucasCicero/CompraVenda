@@ -6,7 +6,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes da Compra</title>
-	    
+	    <link rel="stylesheet" href="../css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -81,20 +81,10 @@
 					<strong>Valor da Compra:</strong> <span>${compras.valor_compra}></span>
 				</p>
 				
-				<p>
-					<strong>Id do Fornecedor:</strong> <span>${compras.id_fornecedor}></span>
-				</p>
-				
-				<p>
-					<strong>Id do Produto:</strong> <span>${compras.id_produto}></span>
-				</p>
-				
-				<p>
-					<strong>Id do Funcionario:</strong> <span>${compras.id_funcionario}></span>
-				</p>
+				<a class="btn-link" href="/compras">
+					<button type="button" class="btn btn-info">Voltar</button>
+				</a>
 			</div>
-	
-			<th:block th:include="mensagem-validacao"></th:block>
 		</main>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
