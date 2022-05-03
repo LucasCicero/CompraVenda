@@ -11,7 +11,7 @@ public interface FuncionariosRepository extends CrudRepository<Funcionarios, Lon
 	Funcionarios findById(int id);
 	Funcionarios findByCpf(String cpf);
 	
-
+			
 	
 	/*
 	List<Funcionarios> findByNome(String nome);

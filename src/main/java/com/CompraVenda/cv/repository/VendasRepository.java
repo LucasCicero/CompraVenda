@@ -1,6 +1,7 @@
 package com.CompraVenda.cv.repository;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 /*
 import java.util.List;
 import java.util.Date;
@@ -15,6 +16,9 @@ import com.CompraVenda.cv.model.Vendas;
 public interface VendasRepository extends CrudRepository<Vendas, Long>{
 	Vendas findById(int id);
 	List<Vendas> findByProdutos(Produtos produtos);
+	
+	@Query(value = "SELECT COUNT(u) FROM Vendas u WHERE u.data_venda LIKE %?1%")
+	Long findByDataVendido(String dataVendido);
 	/*
 	List<Vendas> findByQuantidadeVenda(int quantidadeVenda);
 	List<Vendas> findByDataVenda(Date dataVenda);
