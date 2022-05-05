@@ -1,29 +1,16 @@
 package com.CompraVenda.cv;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.CompraVenda.cv.model.Funcionarios;
-import com.CompraVenda.cv.model.Role;
-import com.CompraVenda.cv.repository.ClientesRepository;
-import com.CompraVenda.cv.repository.FuncionariosRepository;
-import com.CompraVenda.cv.repository.RoleRepository;
 
 @SpringBootApplication
 public class CvApplication {
-
-@Autowired
-private static RoleRepository rr;	
-
-@Autowired
-private static FuncionariosRepository fr;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvApplication.class, args);
-		//System.out.println(new BCryptPasswordEncoder().encode("123"));
+		System.out.println(new BCryptPasswordEncoder().encode("111"));
 		/*
 		Role role = rr.findByNome("ROLE_ADMIN");
 		

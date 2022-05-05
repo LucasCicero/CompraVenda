@@ -23,7 +23,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -34,31 +34,23 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
+								<a class="nav-link" href="/categorias">Listar Categoria</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/produtos">Listar Produtos</a>
 							</li>
 							
 							<li class="nav-item">
@@ -78,13 +70,6 @@
 					<tr>
 						<th scope="col">Razão Social:</th>
 						<th scope="col">CNPJ:</th>
-						<th scope="col">Endereço:</th>
-						<th scope="col">Bairro:</th>
-						<th scope="col">Cidade:</th>
-						<th scope="col">UF:</th>
-						<th scope="col">CEP:</th>
-						<th scope="col">Telefone:</th>
-						<th scope="col">E-mail:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
 						<th scope="col"></th>
@@ -95,68 +80,23 @@
 					<c:forEach var="fornecedores" items="${fornecedores}" varStatus="i">
 						<tr>
 							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
+								<a href='<c:url value="/fornecedores/detalhes-fornecedor/${fornecedores.id}"/>'>
 									${fornecedores.razao_social}
 								</a>
 							</td>
 							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.cnpj}
-								</a>
-							</td>
+							<td>${fornecedores.cnpj}</td>
+							
 							
 							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.endereco}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.bairro}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.cidade}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.uf}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.cep}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.telefone}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-fornecedor/${fornecedores.id}"/>'>
-									${fornecedores.email}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/deletarFornecedor?id=${fornecedores.id}"/>'
+								<a href='<c:url value="/fornecedores/deletarFornecedor?id=${fornecedores.id}"/>'
 									class="waves-effect waves-light btn-small">
 									<button type="button" class="btn btn-danger">Excluir</button>
 								</a>
 							</td>
 							
 							<td>
-								<a href='<c:url value="/editar-fornecedor?id=${fornecedores.id}"/>'>
+								<a href='<c:url value="/fornecedores/editar-fornecedor?id=${fornecedores.id}"/>'>
 									<button type="button" class="btn btn-primary">Editar</button>
 								</a>
 							</td>
@@ -165,7 +105,7 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarFornecedor">
+			<a class="btn-link" href="/fornecedores/cadastrarFornecedor">
 				<button type="button" class="btn btn-success">Cadastrar Fornecedor</button>
 			</a>
 		</main>

@@ -22,7 +22,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -32,32 +32,25 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
+							
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
+								<a class="nav-link" href="/categorias">Listar Categoria</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/produtos">Listar Produtos</a>
 							</li>
 							
 							<li class="nav-item">
@@ -81,6 +74,8 @@
 					<button type="button" class="btn btn-info">Voltar</button>
 				</a>
 			</div>
+			
+			<%@include file="../mensagem-validacao.jsp" %>
 			
 			<h2>Registrar Produtos</h2>
 			

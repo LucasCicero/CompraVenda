@@ -48,17 +48,20 @@ protected void configure(HttpSecurity http) throws Exception{
 	.and().logout().permitAll()
 	
 	*/
+	
 	.antMatchers("/resources/**").permitAll()
 	.antMatchers("/static/**").permitAll()
-	.antMatchers("/css**").permitAll()
+	.antMatchers("/css/**").permitAll()
+	.antMatchers("/relatorio-produtos").hasRole("ADMIN")
+	.antMatchers("/relatorio-vendas").hasRole("ADMIN")
 	.antMatchers("/clientes**").hasRole("VENDEDOR")
 	.antMatchers("/vendas**").hasRole("VENDEDOR")
 	.antMatchers("/produtos").hasRole("COMPRADOR")
+	.antMatchers("/produtos").hasRole("VENDEDOR")
 	.antMatchers("/compras**").hasRole("COMPRADOR")
 	.antMatchers("/fornecedor**").hasRole("COMPRADOR")
 	.antMatchers("/categorias**").hasRole("COMPRADOR")
-	.antMatchers(HttpMethod.POST,"/funcionarios").hasRole("ADMIN")
-	.antMatchers(HttpMethod.GET,"/funcionarios").hasRole("ADMIN")
+	.antMatchers("/funcionarios**").hasRole("ADMIN")
 	.anyRequest().authenticated() 
 	.and().formLogin().loginPage("/").permitAll()
 	.defaultSuccessUrl("/default")

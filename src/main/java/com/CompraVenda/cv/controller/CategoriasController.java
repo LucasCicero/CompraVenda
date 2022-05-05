@@ -31,24 +31,24 @@ public class CategoriasController {
 	private ProdutosRepository pr;
 	
 	// GET que chama o form para cadastrar categoria
-	@RequestMapping("/cadastrarCategoria")
+	@RequestMapping("/categorias/cadastrarCategoria")
 	public String form() {
 		return "categoria/form-categoria";
 	}
 	
 	// POST que cadastra uma categoria
-	@RequestMapping(value = "/cadastrarCategoria", method = RequestMethod.POST)
+	@RequestMapping(value = "/categorias/cadastrarCategoria", method = RequestMethod.POST)
 	public String form(@Valid Categorias categorias, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/cadastrarCategoria";
+			return "redirect:/categorias/cadastrarCategoria";
 		}
 		
 		
 		cr.save(categorias);
 		attributes.addFlashAttribute("mensagem", "Categoria cadastrada com sucesso!");
-		return "redirect:/cadastrarCategoria";
+		return "redirect:/categorias/cadastrarCategoria";
 	}
 	
 	// GET que lista categorias
@@ -61,7 +61,7 @@ public class CategoriasController {
 	}
 	
 	// GET que detalha as categorias
-	@RequestMapping("/detalhes-categoria/{id}")
+	@RequestMapping("/categorias/detalhes-categoria/{id}")
 	public ModelAndView detalhesCategoria(@PathVariable("id") int id) {
 		Categorias categorias = cr.findById(id);
 		ModelAndView mv = new ModelAndView("categoria/detalhes-categoria");
@@ -73,12 +73,12 @@ public class CategoriasController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/detalhes-categoria/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/categorias/detalhes-categoria/{id}", method = RequestMethod.POST)
 	public String detalhesCategoriaPost(@PathVariable("id") int id, @Valid Produtos produtos,
 			BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/detalhes-categoria/{id}";
+			return "redirect:/categorias/detalhes-categoria/{id}";
 		}
 		
 
@@ -93,12 +93,12 @@ public class CategoriasController {
 		produtos.setCategorias(categorias);
 		pr.save(produtos);
 		attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
-		return "redirect:/detalhes-categoria/{id}";
+		return "redirect:/categorias/detalhes-categoria/{id}";
 	}
 
 
 	//GET que deleta categoria
-	@RequestMapping("/deletarCategoria")
+	@RequestMapping("/categorias/deletarCategoria")
 	public String deletarCategoria(int id) {
 		Categorias categorias = cr.findById(id);
 		cr.delete(categorias);
@@ -107,7 +107,7 @@ public class CategoriasController {
 	
 	// Métodos que atualizam categoria
 	// GET que chama o FORM de edição da categoria
-	@RequestMapping("/editar-categoria")
+	@RequestMapping("/categorias/editar-categoria")
 	public ModelAndView editarCategoria(int id) {
 		Categorias categorias = cr.findById(id);
 		ModelAndView mv = new ModelAndView("categoria/update-categoria");
@@ -116,13 +116,13 @@ public class CategoriasController {
 	}
 	
 	// POST que atualiza o categoria
-	@RequestMapping(value = "/editar-categoria", method = RequestMethod.POST)
+	@RequestMapping(value = "/categorias/editar-categoria", method = RequestMethod.POST)
 	public String updateCategoria(@Valid Categorias categorias, BindingResult result, RedirectAttributes attributes){
 		cr.save(categorias);
 		attributes.addFlashAttribute("success", "Categoria alterada com sucesso!");
 			
 		int idInt = categorias.getId();
 		String id = "" + idInt;
-		return "redirect:/detalhes-categoria/" + id;
+		return "redirect:/categorias/detalhes-categoria/" + id;
 	}
 }

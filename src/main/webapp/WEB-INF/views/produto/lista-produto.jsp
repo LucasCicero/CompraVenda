@@ -42,7 +42,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
 							</li>
 							
 							<li class="nav-item">
@@ -50,7 +50,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
@@ -58,7 +58,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -92,7 +92,7 @@
 					<c:forEach var="produtos" items="${produtos}" varStatus="i">
 						<tr>
 							<td>
-								<a href='<c:url value="/detalhes-produto/${produtos.id}"/>'>
+								<a href='<c:url value="/produtos/detalhes-produto/${produtos.id}"/>'>
 									${produtos.nome_produto}
 								</a>
 							</td>	
@@ -103,14 +103,14 @@
 							<td>${produtos.liberado_venda}</td>
 					
 							<td>
-								<a href='<c:url value="/deletarProduto?id=${produtos.id}"/>'
+								<a href='<c:url value="/produtos/deletarProduto?id=${produtos.id}"/>'
 									class="waves-effect waves-light btn-small">
 									<button type="button" class="btn btn-danger">Excluir</button>
 								</a>
 							</td>
 							
 							<td>
-								<a href='<c:url value="/editar-produto?id=${produtos.id}"/>'>
+								<a href='<c:url value="/produtos/editar-produto?id=${produtos.id}"/>'>
 									<button type="button" class="btn btn-primary">Editar</button>
 								</a>
 							</td>
@@ -119,12 +119,12 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarProduto">
+			<a class="btn-link" href="/produtos/cadastrarProduto">
 				<button type="button" class="btn btn-success">Cadastrar Produto</button>
 			</a>
 		</main>
 		
-		<footer class="footer-copyright bg-dark text-center py-3">
+		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">
 				&copy; Compra & Venda - 2022 - Todos os direitos reservados.
 			</span>

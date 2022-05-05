@@ -23,7 +23,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -33,32 +33,25 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Cliente</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
-							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias">Listar Categoria</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/produtos">Listar Produtos</a>
 							</li>
 							
 							<li class="nav-item">
@@ -87,21 +80,26 @@
 					<c:forEach var="categorias" items="${categorias}" varStatus="i">
 						<tr>
 							<td>
-								<a href='<c:url value="/detalhes-categoria/${categorias.id}"/>'>
+								<a href='<c:url value="/categorias/detalhes-categoria/${categorias.id}"/>'>
 									${categorias.nome_categoria}
 								</a>
 							</td>
 							
 							<td>
-								<a href='<c:url value="/deletarCategoria?id=${categorias.id}"/>'
+								<a href='<c:url value="/categorias/deletarCategoria?id=${categorias.id}"/>'
 									class="waves-effect waves-light btn-small">
 									<button type="button" class="btn btn-danger">Excluir</button>
 								</a>
 							</td>
 							
 							<td>
-								<a href='<c:url value="/editar-categoria?id=${categorias.id}"/>'>
+								<a href='<c:url value="/categorias/editar-categoria?id=${categorias.id}"/>'>
 									<button type="button" class="btn btn-primary">Editar</button>
+								</a>
+							</td>
+							<td>
+								<a href='<c:url value="/categorias/detalhes-categoria/${categorias.id}"/>'>
+									<button type="button" class="btn btn-success">Cadastrar Produto</button>
 								</a>
 							</td>
 						</tr>
@@ -109,7 +107,7 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarCategoria">
+			<a class="btn-link" href="/categorias/cadastrarCategoria">
 				<button type="button" class="btn btn-success">Cadastrar Categoria</button>
 			</a>
 		</main>

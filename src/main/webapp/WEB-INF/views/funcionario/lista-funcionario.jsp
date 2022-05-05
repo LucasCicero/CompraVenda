@@ -22,7 +22,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -33,32 +33,12 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
 								<a class="nav-link" href="/funcionarios">Funcionários</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
-							</li>
+								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
+							</li>	
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>
@@ -88,7 +68,7 @@
 				<c:forEach var="funcionarios" items="${funcionarios}" varStatus="i">
 					<tr>
 						<td>
-							<a href='<c:url value="/detalhes-funcionario/${funcionarios.id}"/>'>
+							<a href='<c:url value="/funcionarios/detalhes-funcionario/${funcionarios.id}"/>'>
 								<span>${funcionarios.nome}></span>
 							</a>
 						</td>
@@ -102,14 +82,14 @@
 						</td>
 						
 						<td>
-							<a href='<c:url value="/deletarFuncionario?id=${funcionarios.id}"/>'
+							<a href='<c:url value="/funcionarios/deletarFuncionario?id=${funcionarios.id}"/>'
 								class="waves-effect waves-light btn-small">
 								<button type="button" class="btn btn-danger">Excluir</button>
 							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/editar-funcionario?id=${funcionarios.id}"/>'>
+							<a href='<c:url value="/funcionarios/editar-funcionario?id=${funcionarios.id}"/>'>
 								<button type="button" class="btn btn-primary">Editar</button>
 							</a>
 						</td>
@@ -118,8 +98,16 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarFuncionario">
+			<a class="btn-link" href="/funcionarios/cadastrarFuncionario">
 				<button type="button" class="btn btn-success">Cadastrar Funcionario</button>
+			</a>
+			
+			<a class="btn-link" href="/relatorio-produtos" download="relatório de produtos">
+				<button type="button" class="btn btn-secondary">Baixar Lista de Produtos</button>
+			</a>
+			
+			<a class="btn-link" href="/relatorio-vendas" download="relatório de vendas">
+				<button type="button" class="btn btn-secondary">Baixar Lista de Vendas</button>
 			</a>
 		</main>
 		

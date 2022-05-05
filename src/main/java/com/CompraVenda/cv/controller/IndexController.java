@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.model.Vendas;
@@ -35,18 +36,24 @@ public class IndexController {
 	@RequestMapping("/")
 	public String abrirIndex() {
 		//ModelAndView mv = new ModelAndView("index");
-		return "index";
+		return "login";
+	}
+	
+	@RequestMapping("/login")
+	public String abrirLogin() {
+		//ModelAndView mv = new ModelAndView("index");
+		return "login";
 	}
 	
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {
 		if (request.isUserInRole("ROLE_ADMIN")) {
-			return "redirect:/funcionarios/";
+			return "redirect:/funcionarios";
 		}
 		else if (request.isUserInRole("ROLE_VENDEDOR")) {
-			return "redirect:/clientes/";
+			return "redirect:/clientes";
 		}
-			return "redirect:/produtos/";
+			return "redirect:/produtos";
 
 	}
 	

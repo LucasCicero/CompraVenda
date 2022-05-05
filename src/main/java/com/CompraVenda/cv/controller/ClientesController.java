@@ -20,23 +20,23 @@ public class ClientesController {
 	private ClientesRepository clr;
 	
 	// GET que chama o form para cadastrar cliente
-	@RequestMapping("/cadastrarCliente")
+	@RequestMapping("/clientes/cadastrarCliente")
 	public String form() {
 		return "cliente/form-cliente";
 	}
 	
 	// POST que cadastra clientes
-	@RequestMapping(value = "/cadastrarCliente", method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes/cadastrarCliente", method = RequestMethod.POST)
 	public String form(@Valid Clientes clientes, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/cadastrarCliente";
+			return "redirect:/clientes/cadastrarCliente";
 		}
 
 		clr.save(clientes);
 		attributes.addFlashAttribute("mensagem", "Clientes cadastrado com sucesso!");
-		return "redirect:/cadastrarCliente";
+		return "redirect:/clientes/cadastrarCliente";
 	}
 	
 	// GET que lista os clientes
@@ -49,7 +49,7 @@ public class ClientesController {
 	}
 	
 	// GET que detalha os clientes
-	@RequestMapping("/detalhes-cliente/{id}")
+	@RequestMapping("/clientes/detalhes-cliente/{id}")
 	public ModelAndView detalhesCliente(@PathVariable("id") int id) {
 		Clientes clientes = clr.findById(id);
 		ModelAndView mv = new ModelAndView("cliente/detalhes-cliente");
@@ -58,7 +58,7 @@ public class ClientesController {
 	}
 	
 	//GET que deleta clientes
-	@RequestMapping("/deletarCliente")
+	@RequestMapping("/clientes/deletarCliente")
 	public String deletarCliente(int id) {
 		Clientes clientes = clr.findById(id);
 		clr.delete(clientes);
@@ -67,7 +67,7 @@ public class ClientesController {
 	
 	// Métodos que atualizam cliente
 	// GET que chama o FORM de edição do cliente
-	@RequestMapping("/editar-cliente")
+	@RequestMapping("/clientes/editar-cliente")
 	public ModelAndView editarCliente(int id) {
 		Clientes clientes = clr.findById(id);
 		ModelAndView mv = new ModelAndView("cliente/update-cliente");
@@ -76,13 +76,13 @@ public class ClientesController {
 	}
 	
 	// POST que atualiza o cliente
-	@RequestMapping(value = "/editar-cliente", method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes/editar-cliente", method = RequestMethod.POST)
 	public String updateCLiente(@Valid Clientes clientes, BindingResult result, RedirectAttributes attributes){
 		clr.save(clientes);
 		attributes.addFlashAttribute("success", "Cliente alterado com sucesso!");
 			
 		int idInt = clientes.getId();
 		String id = "" + idInt;
-		return "redirect:/detalhes-cliente/" + id;
+		return "redirect:/clientes/detalhes-cliente/" + id;
 	}
 }

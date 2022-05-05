@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -18,7 +22,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -28,32 +32,21 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								<a class="nav-link" href="/vendas">Listar Vendas</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
 							</li>
 							
 							<li class="nav-item">
@@ -70,39 +63,39 @@
 			
 			<div class="container">
 				<p>
-					<strong>Nome do Cliente:</strong> <span>${clientes.nome}></span>
+					<strong>Nome do Cliente:</strong> <span>${clientes.nome}</span>
 				</p>
 				
 				<p>
-					<strong>CPF:</strong> <span>${clientes.cpf}></span>
+					<strong>CPF:</strong> <span>${clientes.cpf}</span>
 				</p>
 				
 				<p>
-					<strong>Endereço:</strong> <span>${clientes.endereco}></span>
+					<strong>Endereço:</strong> <span>${clientes.endereco}</span>
 				</p>
 				
 				<p>
-					<strong>Bairro:</strong> <span>${clientes.bairro}></span>
+					<strong>Bairro:</strong> <span>${clientes.bairro}</span>
 				</p>
 				
 				<p>
-					<strong>Cidade:</strong> <span>${clientes.cidade}></span>
+					<strong>Cidade:</strong> <span>${clientes.cidade}</span>
 				</p>
 				
 				<p>
-					<strong>UF:</strong> <span>${clientes.uf}></span>
+					<strong>UF:</strong> <span>${clientes.uf}</span>
 				</p>
 				
 				<p>
-					<strong>CEP:</strong> <span>${clientes.cep}></span>
+					<strong>CEP:</strong> <span>${clientes.cep}</span>
 				</p>
 				
 				<p>
-					<strong>Telefone:</strong> <span>${clientes.telefone}></span>
+					<strong>Telefone:</strong> <span>${clientes.telefone}</span>
 				</p>
 				
 				<p>
-					<strong>E-mail:</strong> <span>${clientes.email}></span>
+					<strong>E-mail:</strong> <span>${clientes.email}</span>
 				</p>
 				
 				<a class="btn-link" href="/clientes">

@@ -22,7 +22,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -33,31 +33,19 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
-							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
+								<a class="nav-link" href="/vendas">Listar Vendas</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
 							</li>
 							
 							<li class="nav-item">
@@ -77,13 +65,6 @@
 					<tr>
 						<th scope="col">Nome:</th>
 						<th scope="col">CPF:</th>
-						<th scope="col">Endereço:</th>
-						<th scope="col">Bairro:</th>
-						<th scope="col">Cidade:</th>
-						<th scope="col">UF:</th>
-						<th scope="col">CEP:</th>
-						<th scope="col">Telefone:</th>
-						<th scope="col">Email:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
 						<th scope="col"></th>
@@ -94,68 +75,22 @@
 				<c:forEach var="clientes" items="${clientes}" varStatus="i">
 					<tr>
 						<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
+								<a href='<c:url value="/clientes/detalhes-cliente/${clientes.id}"/>'>
 									${clientes.nome}
 								</a>
 							</td>
 							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.cpf}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.endereco}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.bairro}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.cidade}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.uf}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.cep}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.telefone}
-								</a>
-							</td>
-							
-							<td>
-								<a href='<c:url value="/detalhes-cliente/${clientes.id}"/>'>
-									${clientes.email}
-								</a>
-							</td>
+							<td>${clientes.cpf}</td>
 						
 						<td>
-							<a href='<c:url value="/deletarCliente?id=${clientes.id}"/>'
+							<a href='<c:url value="/clientes/deletarCliente?id=${clientes.id}"/>'
 								class="waves-effect waves-light btn-small">
 								<button type="button" class="btn btn-danger">Excluir</button>
 							</a>
 						</td>
 						
 						<td>
-							<a href='<c:url value="/editar-cliente?id=${clientes.id}"/>'>
+							<a href='<c:url value="/clientes/editar-cliente?id=${clientes.id}"/>'>
 								<button type="button" class="btn btn-primary">Editar</button>
 							</a>
 						</td>
@@ -164,7 +99,7 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/cadastrarCliente">
+			<a class="btn-link" href="/clientes/cadastrarCliente">
 				<button type="button" class="btn btn-success">Cadastrar Cliente</button>
 			</a>
 		</main>

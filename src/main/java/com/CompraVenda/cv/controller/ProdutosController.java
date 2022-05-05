@@ -49,23 +49,23 @@ public class ProdutosController {
 	private ClientesRepository clr;
 	
 	// GET que chama o form para cadastrar produto
-	@RequestMapping("/cadastrarProduto")
+	@RequestMapping("/produtos/cadastrarProduto")
 	public String form() {
 		return "produto/form-produto";
 	}
 	
 	// POST que cadastra produto
-	@RequestMapping(value = "/cadastrarProduto", method = RequestMethod.POST)
+	@RequestMapping(value = "/produtos/cadastrarProduto", method = RequestMethod.POST)
 	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes) {		
 		
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/cadastrarProduto";
+			return "redirect:/produtos/cadastrarProduto";
 		}
 
 		pr.save(produtos);
 		attributes.addFlashAttribute("mensagem", "Produto cadastrado com sucesso!");
-		return "redirect:/cadastrarProduto";
+		return "redirect:/produtos/cadastrarProduto";
 	}
 	
 	// GET que lista produtos
@@ -78,7 +78,7 @@ public class ProdutosController {
 	}
 	
 	// GET que detalha os produtos
-	@RequestMapping("/detalhes-produto/{id}")
+	@RequestMapping("/produtos/detalhes-produto/{id}")
 	public ModelAndView detalhesProduto(@PathVariable("id") int id) {
 		Produtos produtos = pr.findById(id);
 		ModelAndView mv = new ModelAndView("produto/detalhes-produto");
@@ -91,7 +91,7 @@ public class ProdutosController {
 	}
 	
 	// GET que detalha os produtos
-		@RequestMapping("/detalhes-produto-venda/{id}")
+		@RequestMapping("/produtos/detalhes-produto-venda/{id}")
 		public ModelAndView detalhesProdutoVenda(@PathVariable("id") int id) {
 			Produtos produtos = pr.findById(id);
 			ModelAndView mv = new ModelAndView("produto/detalhes-produto-venda");
@@ -104,13 +104,13 @@ public class ProdutosController {
 		}
 		
 		
-		@RequestMapping(value = "/detalhes-produto-venda/{id}", method = RequestMethod.POST)
+		@RequestMapping(value = "/produtos/detalhes-produto-venda/{id}", method = RequestMethod.POST)
 		public String detalhesProdutosVendaPost(@PathVariable("id") int id, @Valid Vendas vendas,
 				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente) {
 			String cpf="";
 			if (result.hasErrors()) {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
-				return "redirect:/detalhes-produto-venda/{id}";
+				return "redirect:/produtos/detalhes-produto-venda/{id}";
 			}
 
 			/*
@@ -129,27 +129,36 @@ public class ProdutosController {
 				 cpf= auth.toString();
 			}
 			
+			Produtos produtos = pr.findById(id);		
+			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
+				attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
+				return "redirect:/produtos/detalhes-produto-venda/{id}";							
+			}
+			
+			else {
 			Funcionarios funcionarios= fcr.findByCpf(cpf);
 			vendas.setFuncionarios(funcionarios);
-			Produtos produtos = pr.findById(id);
 			vendas.setProdutos(produtos);
 			Clientes clientes= clr.findById(id);
 			vendas.setClientes(clientes);
 			vr.save(vendas);
 			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
-			return "redirect:/detalhes-produto-venda/{id}";
+			return "redirect:/produtos/detalhes-produto-venda/{id}";
+			}
 		}
 	
 	
 	
 	// POST que adiciona candidato a vaga
-		@RequestMapping(value = "/detalhes-produto/{id}", method = RequestMethod.POST)
+		@RequestMapping(value = "/produtos/detalhes-produto/{id}", method = RequestMethod.POST)
 		public String detalhesProdutosPost(@PathVariable("id") int id, @Valid Compras compras,
 				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
 			String cpf="";
+			Integer quantidadeDisponivel,quantidadeCompra =0;
+			
 			if (result.hasErrors()) {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
-				return "redirect:/detalhes-produto/{id}";
+				return "redirect:/produtos/detalhes-produto/{id}";
 			}
 
 			/*
@@ -174,16 +183,21 @@ public class ProdutosController {
 			compras.setProdutos(produtos);
 			Fornecedores fornecedores= fr.findById(id);
 			compras.setFornecedores(fornecedores);
+			
+			quantidadeCompra= compras.getQuantidade_compra();
+			System.out.println(quantidadeCompra);
+			quantidadeDisponivel= produtos.getQuantidade_disponivel();
+			produtos.setQuantidade_disponivel(quantidadeCompra+quantidadeDisponivel);
 			cr.save(compras);
 			attributes.addFlashAttribute("mensagem", "Compra registrada com sucesso!");
-			return "redirect:/detalhes-produto/{id}";
+			return "redirect:/produtos/detalhes-produto/{id}";
 		}
 	
 	
 	
 	
 	//GET que deleta produto
-	@RequestMapping("/deletarProduto")
+	@RequestMapping("/produtos/deletarProduto")
 	public String deletarProduto(int id) {
 		Produtos produtos = pr.findById(id);
 		pr.delete(produtos);
@@ -192,7 +206,7 @@ public class ProdutosController {
 	
 	// Métodos que atualizam produto
 	// GET que chama o FORM de edição de produto
-	@RequestMapping("/editar-produto")
+	@RequestMapping("/produtos/editar-produto")
 	public ModelAndView editarProduto(int id) {
 		Produtos produtos = pr.findById(id);
 		ModelAndView mv = new ModelAndView("produto/update-produto");
@@ -201,13 +215,13 @@ public class ProdutosController {
 	}
 	
 	// POST que atualiza o produto
-	@RequestMapping(value = "/editar-produto", method = RequestMethod.POST)
+	@RequestMapping(value = "/produtos/editar-produto", method = RequestMethod.POST)
 	public String updateProduto(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes){
 		pr.save(produtos);
 		attributes.addFlashAttribute("success", "Produto alterado com sucesso!");
 			
 		int idInt = produtos.getId();
 		String id = "" + idInt;
-		return "redirect:/detalhes-produto/" + id;
+		return "redirect:/produtos/detalhes-produto/" + id;
 	}
 }

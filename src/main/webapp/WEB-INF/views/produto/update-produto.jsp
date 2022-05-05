@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -37,7 +42,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
 							</li>
 							
 							<li class="nav-item">
@@ -45,15 +50,15 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -66,6 +71,7 @@
 		</header>
 		
 		<main class="container">
+		<%@include file="../mensagem-validacao.jsp" %>
 			<form method="post">
 				<h1>Atualizar Produto</h1>
 

@@ -41,7 +41,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
 							</li>
 							
 							<li class="nav-item">
@@ -49,7 +49,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
 							
 							<li class="nav-item">
@@ -57,7 +57,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
@@ -101,6 +101,9 @@
 					<button type="button" class="btn btn-info">Voltar</button>
 				</a>
 			</div>
+			<br>
+			
+			<%@include file="../mensagem-validacao.jsp" %>
 			
 			<h2>Registrar Compra do produto</h2>
 			

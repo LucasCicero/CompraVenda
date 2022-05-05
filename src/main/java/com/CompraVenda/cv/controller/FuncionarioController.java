@@ -32,18 +32,18 @@ public class FuncionarioController {
 	private RoleRepository rr;
 	
 	// GET que chama o form para cadastrar funcionário
-	@RequestMapping("/cadastrarFuncionario")
+	@RequestMapping("/funcionarios/cadastrarFuncionario")
 	public String form() {
 		return "funcionario/form-funcionario";
 	}
 	
 	// POST que cadastra funcionários
-	@RequestMapping(value = "/cadastrarFuncionario", method = RequestMethod.POST)
+	@RequestMapping(value = "/funcionarios/cadastrarFuncionario", method = RequestMethod.POST)
 	public String form(@Valid Funcionarios funcionarios, BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel, @RequestParam(value="senha")String senha) {
 			String role_name="";
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/cadastrarFuncionario";
+			return "redirect:/funcionarios/cadastrarFuncionario";
 		}
 		
 		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
@@ -68,7 +68,7 @@ public class FuncionarioController {
 		funcionarios.setRole(role);
 		fr.save(funcionarios);
 		attributes.addFlashAttribute("mensagem", "Funcionário cadastrado com sucesso!");
-		return "redirect:/cadastrarFuncionario";
+		return "redirect:/funcionarios/cadastrarFuncionario";
 	}
 	
 	// GET que lista funcionários
@@ -107,7 +107,7 @@ public class FuncionarioController {
 	}
 	
 	//GET que deleta funcionário
-	@RequestMapping("/deletarFuncionario")
+	@RequestMapping("/funcionarios/deletarFuncionario")
 	public String deletarFuncionario(int id) {
 		Funcionarios funcionarios = fr.findById(id);
 		fr.delete(funcionarios);
@@ -117,7 +117,7 @@ public class FuncionarioController {
 	
 	// Métodos que atualizam funcionário
 	// GET que chama o FORM de edição do funcionário
-	@RequestMapping("/editar-funcionario")
+	@RequestMapping("/funcionarios/editar-funcionario")
 	public ModelAndView editarFuncionario(int id) {
 		Funcionarios funcionarios = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/update-funcionario");
@@ -126,14 +126,14 @@ public class FuncionarioController {
 	}
 	
 	// POST que atualiza o funcionário
-	@RequestMapping(value = "/editar-funcionario", method = RequestMethod.POST)
+	@RequestMapping(value = "/funcionarios/editar-funcionario", method = RequestMethod.POST)
 	public String updateFuncionario(@Valid Funcionarios funcionarios,  BindingResult result, RedirectAttributes attributes){
 		fr.save(funcionarios);
 		attributes.addFlashAttribute("success", "Funcionário alterado com sucesso!");
 			
 		int idInt = funcionarios.getId();
 		String id = "" + idInt;
-		return "redirect:/detalhes-funcionario/" + id;
+		return "redirect:/funcionarios/detalhes-funcionario/" + id;
 	}
 }
 

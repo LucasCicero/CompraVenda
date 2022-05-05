@@ -20,23 +20,23 @@ public class FornecedoresController {
 	private FornecedoresRepository fcr;
 	
 	// GET que chama o form para cadastrar funcionários
-	@RequestMapping("/cadastrarFornecedor")
+	@RequestMapping("/fornecedores/cadastrarFornecedor")
 	public String form() {
 	return "fornecedor/form-fornecedor";
 	}
 	
 	// POST que cadastra fornecedor
-	@RequestMapping(value = "/cadastrarFornecedor", method = RequestMethod.POST)
+	@RequestMapping(value = "/fornecedores/cadastrarFornecedor", method = RequestMethod.POST)
 	public String form(@Valid Fornecedores fornecedores, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/cadastrarFornecedor";
+			return "redirect:/fornecedores/cadastrarFornecedor";
 		}
 
 		fcr.save(fornecedores);
 		attributes.addFlashAttribute("mensagem", "Fornecedor cadastrado com sucesso!");
-		return "redirect:/cadastrarFornecedor";
+		return "redirect:/fornecedores/cadastrarFornecedor";
 	}
 	
 	// GET que lista fornecedores
@@ -49,7 +49,7 @@ public class FornecedoresController {
 	}
 	
 	// GET que traz detalhes dos fornecedores
-	@RequestMapping("/detalhes-fornecedor/{id}")
+	@RequestMapping("/fornecedores/detalhes-fornecedor/{id}")
 	public ModelAndView detalhesFornecedor(@PathVariable("id") int id) {
 		Fornecedores fornecedores = fcr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/detalhes-fornecedor");
@@ -63,7 +63,7 @@ public class FornecedoresController {
 	}
 	
 	//GET que deleta fornecedor
-	@RequestMapping("/deletarFornecedor")
+	@RequestMapping("/fornecedores/deletarFornecedor")
 	public String deletarFornecedor(int id) {
 		Fornecedores fornecedores = fcr.findById(id);
 		fcr.delete(fornecedores);
@@ -72,7 +72,7 @@ public class FornecedoresController {
 	
 	// Métodos que atualizam fornecedores
 	// GET que chama o FORM de edição do fornecedor
-	@RequestMapping("/editar-fornecedor")
+	@RequestMapping("/fornecedores/editar-fornecedor")
 	public ModelAndView editarFornecedor(int id) {
 		Fornecedores fornecedores = fcr.findById(id);
 		ModelAndView mv = new ModelAndView("fornecedor/update-fornecedor");
@@ -81,7 +81,7 @@ public class FornecedoresController {
 	}
 	
 	// POST que atualiza o funcionário
-	@RequestMapping(value = "/editar-fornecedor", method = RequestMethod.POST)
+	@RequestMapping(value = "/fornecedores/editar-fornecedor", method = RequestMethod.POST)
 	public String updateFuncionario(@Valid Fornecedores fornecedores, BindingResult result, RedirectAttributes attributes){
 			
 		fcr.save(fornecedores);
@@ -89,6 +89,6 @@ public class FornecedoresController {
 			
 		int idInt = fornecedores.getId();
 		String id = "" + idInt;
-		return "redirect:/detalhes-fornecedor/" + id;	
+		return "redirect:/fornecedores/detalhes-fornecedor/" + id;	
 	}
 }
