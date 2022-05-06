@@ -108,6 +108,7 @@ public class ProdutosController {
 		public String detalhesProdutosVendaPost(@PathVariable("id") int id, @Valid Vendas vendas,
 				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente) {
 			String cpf="";
+			Integer quantidadeDisponivel,quantidadeVenda= 0;
 			if (result.hasErrors()) {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
 				return "redirect:/produtos/detalhes-produto-venda/{id}";
@@ -140,6 +141,11 @@ public class ProdutosController {
 			vendas.setFuncionarios(funcionarios);
 			vendas.setProdutos(produtos);
 			Clientes clientes= clr.findById(id);
+		
+			
+			quantidadeVenda= vendas.getQuantidade_venda();
+			quantidadeDisponivel= produtos.getQuantidade_disponivel();
+			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
 			vendas.setClientes(clientes);
 			vr.save(vendas);
 			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
@@ -154,7 +160,7 @@ public class ProdutosController {
 		public String detalhesProdutosPost(@PathVariable("id") int id, @Valid Compras compras,
 				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
 			String cpf="";
-			Integer quantidadeDisponivel,quantidadeCompra =0;
+			Integer quantidadeDisponivel,quantidadeCompra,precoCompra =0;
 			
 			if (result.hasErrors()) {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
@@ -185,9 +191,10 @@ public class ProdutosController {
 			compras.setFornecedores(fornecedores);
 			
 			quantidadeCompra= compras.getQuantidade_compra();
-			System.out.println(quantidadeCompra);
+			precoCompra= compras.getValor_compra();
 			quantidadeDisponivel= produtos.getQuantidade_disponivel();
 			produtos.setQuantidade_disponivel(quantidadeCompra+quantidadeDisponivel);
+			produtos.setPreco_compra(precoCompra);
 			cr.save(compras);
 			attributes.addFlashAttribute("mensagem", "Compra registrada com sucesso!");
 			return "redirect:/produtos/detalhes-produto/{id}";

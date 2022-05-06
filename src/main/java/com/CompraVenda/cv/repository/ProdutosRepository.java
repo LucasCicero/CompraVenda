@@ -1,6 +1,7 @@
 package com.CompraVenda.cv.repository;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 /*
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,9 @@ public interface ProdutosRepository extends CrudRepository<Produtos, Long>{
 	
 	Produtos findById(int id);
 	List<Produtos> findByCategorias(Categorias categorias);
+	
+	@Query(value = "SELECT u FROM Produtos u WHERE u.quantidade_disponivel > 0")
+	List<Produtos> findAllByQuantidade();
 	/*
 	List<Produtos> findByNomeProduto(String nomeProduto);
 	List<Produtos> findByPrecoCompra(double precoCompra);

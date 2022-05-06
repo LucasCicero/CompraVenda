@@ -34,9 +34,11 @@ public class IndexController {
 	private VendasRepository vr;
 	
 	@RequestMapping("/")
-	public String abrirIndex() {
-		//ModelAndView mv = new ModelAndView("index");
-		return "login";
+	public ModelAndView listaProdutosIndex() {
+		ModelAndView mv = new ModelAndView("index");
+		Iterable<Produtos> produtosIndex = pr.findAllByQuantidade();
+		mv.addObject("produtosIndex", produtosIndex);
+		return mv;
 	}
 	
 	@RequestMapping("/login")
