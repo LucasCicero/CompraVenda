@@ -33,31 +33,15 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
-							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
+								<a class="nav-link" href="/fornecedores/cadastrarCliente">Cadastrar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								<a class="nav-link" href="/produtos">Listar Produtos</a>
 							</li>
 							
 							<li class="nav-item">

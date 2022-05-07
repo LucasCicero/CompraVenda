@@ -141,12 +141,14 @@ public class ProdutosController {
 			vendas.setFuncionarios(funcionarios);
 			vendas.setProdutos(produtos);
 			Clientes clientes= clr.findById(id);
-		
 			
 			quantidadeVenda= vendas.getQuantidade_venda();
 			quantidadeDisponivel= produtos.getQuantidade_disponivel();
 			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
 			vendas.setClientes(clientes);
+			
+			
+			
 			vr.save(vendas);
 			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
 			return "redirect:/produtos/detalhes-produto-venda/{id}";

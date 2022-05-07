@@ -111,7 +111,7 @@
 			</a>
 		</main>
 		
-		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
+		<footer class="footer-copyright bg-dark text-center py-3">
 			<span class="text-light align-middle">
 				&copy; Compra & Venda - 2022 - Todos os direitos reservados.
 			</span>

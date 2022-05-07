@@ -34,19 +34,11 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
+								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/categorias">Listar Categoria</a>
+								<a class="nav-link" href="/fornecedores/cadastrarCliente">Cadastrar Clientes</a>
 							</li>
 							
 							<li class="nav-item">

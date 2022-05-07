@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
@@ -33,18 +34,7 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
+						<sec:authorize access="hasRole('VENDEDOR')">	
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
@@ -52,15 +42,24 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('COMPRADOR')">
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias">Listar Categoria</a>
+							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
-							
+						
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
-							
+							</sec:authorize>
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>
 							</li>
@@ -101,30 +100,44 @@
 							<td>${produtos.preco_venda}</td>
 							<td>${produtos.quantidade_disponivel}</td>
 							<td>${produtos.liberado_venda}</td>
-					
+						<sec:authorize access="hasRole('COMPRADOR')">	 
 							<td>
 								<a href='<c:url value="/produtos/deletarProduto?id=${produtos.id}"/>'
 									class="waves-effect waves-light btn-small">
 									<button type="button" class="btn btn-danger">Excluir</button>
 								</a>
 							</td>
-							
+						
 							<td>
 								<a href='<c:url value="/produtos/editar-produto?id=${produtos.id}"/>'>
 									<button type="button" class="btn btn-primary">Editar</button>
 								</a>
 							</td>
+							<td>
+								<a href='<c:url value="/produtos/detalhes-produto/${produtos.id}"/>'>
+									<button type="button" class="btn btn-success">Comprar</button>
+								</a>
+							</td>
+						</sec:authorize>
+						<sec:authorize access="hasRole('VENDEDOR')">
+							<td>
+								<a href='<c:url value="/produtos/detalhes-produto-venda/${produtos.id}"/>'>
+									<button type="button" class="btn btn-success">Vender</button>
+								</a>
+							</td>
+						</sec:authorize>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			<a class="btn-link" href="/produtos/cadastrarProduto">
-				<button type="button" class="btn btn-success">Cadastrar Produto</button>
-			</a>
+		   <sec:authorize access="hasRole('COMPRADOR')">	
+				 <a class="btn-link" href="/produtos/cadastrarProduto">
+					<button type="button" class="btn btn-success">Cadastrar Produto</button>
+				</a>
+		  </sec:authorize>
 		</main>
 		
-		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
+		<footer class="footer-copyright bg-dark text-center py-3">
 			<span class="text-light align-middle">
 				&copy; Compra & Venda - 2022 - Todos os direitos reservados.
 			</span>

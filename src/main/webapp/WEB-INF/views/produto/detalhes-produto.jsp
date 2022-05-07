@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -32,17 +33,7 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
+
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
@@ -51,7 +42,7 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
-							
+							<sec:authorize access="hasRole('COMPRADOR')">
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
@@ -59,7 +50,7 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
-							
+							</sec:authorize>
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>
 							</li>
@@ -104,7 +95,7 @@
 			<br>
 			
 			<%@include file="../mensagem-validacao.jsp" %>
-			
+		<sec:authorize access="hasRole('COMPRADOR')">
 			<h2>Registrar Compra do produto</h2>
 			
 			<br>
@@ -138,7 +129,7 @@
 					Adicionar Compra
 				</button>
 			</form>
-			
+		</sec:authorize>	
 			<br>
 			
 			<table class="table table-hover table-responsive w-auto table-striped">
