@@ -9,11 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.CompraVenda.cv.model.Compras;
 import com.CompraVenda.cv.model.Funcionarios;
+import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.model.Vendas;
 import com.CompraVenda.cv.repository.FuncionariosRepository;
 import com.CompraVenda.cv.repository.VendasRepository;
@@ -96,13 +98,26 @@ public class VendasController {
 	public ModelAndView editarVenda(int id) {
 		Vendas vendas = vr.findById(id);
 		ModelAndView mv = new ModelAndView("venda/update-venda");
-		mv.addObject("venda", vendas);
+		mv.addObject("vendas", vendas);
 		return mv;
 	}
 	
 	// POST que atualiza as vendas
 	@RequestMapping(value = "/vendas/editar-venda", method = RequestMethod.POST)
-	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes){
+	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="quantidade_venda")Integer quantidade_venda){
+		/*
+		Integer nova_quantidade=0;
+		if (quantidade_venda != vendas.getQuantidade_venda()) {
+			Produtos produtos = vendas.getProdutos();
+			nova_quantidade= quantidade_venda-vendas.getQuantidade_venda();
+			if (nova_quantidade<0) {
+				nova_quantidade=nova_quantidade*-1;
+			}
+			
+			produtos.setQuantidade_disponivel(produtos.getQuantidade_disponivel()-nova_quantidade);
+		}
+		*/
+		
 		vr.save(vendas);
 		attributes.addFlashAttribute("success", "Venda alterada com sucesso!");
 			

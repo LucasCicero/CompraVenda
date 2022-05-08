@@ -42,7 +42,7 @@ public class FuncionarioController {
 	public String form(@Valid Funcionarios funcionarios, BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel, @RequestParam(value="senha")String senha) {
 			String role_name="";
 		if (result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos");
+			attributes.addFlashAttribute("mensagem_erro", "Verifique os campos");
 			return "redirect:/funcionarios/cadastrarFuncionario";
 		}
 		
@@ -60,9 +60,7 @@ public class FuncionarioController {
 		else if(papel==2) {
 		role_name="ROLE_COMPRADOR";
 		}
-		else {
-		role_name="ROLE_CLIENTE";
-		}
+
 		
 		Role role =rr.findByNome(role_name);
 		funcionarios.setRole(role);
@@ -93,7 +91,7 @@ public class FuncionarioController {
 	}
 	
 	// GET que detalha os funcionários
-	@RequestMapping("/detalhes-funcionario/{id}")
+	@RequestMapping("/funcionarios/detalhes-funcionario/{id}")
 	public ModelAndView detalhesFuncionario(@PathVariable("id") int id) {
 		Funcionarios funcionarios = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/detalhes-funcionario");
@@ -121,19 +119,36 @@ public class FuncionarioController {
 	public ModelAndView editarFuncionario(int id) {
 		Funcionarios funcionarios = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/update-funcionario");
-		mv.addObject("funcionario", funcionarios);
+		mv.addObject("funcionarios", funcionarios);
 		return mv;
 	}
 	
 	// POST que atualiza o funcionário
 	@RequestMapping(value = "/funcionarios/editar-funcionario", method = RequestMethod.POST)
-	public String updateFuncionario(@Valid Funcionarios funcionarios,  BindingResult result, RedirectAttributes attributes){
+	public String updateFuncionario(@Valid Funcionarios funcionarios,  BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel){
+		String role_name="";
+		if (papel==0) {
+			
+			role_name="ROLE_ADMIN";
+			}
+			else if (papel==1) {
+			role_name="ROLE_VENDEDOR";
+			}
+			
+			else if(papel==2) {
+			role_name="ROLE_COMPRADOR";
+			}
+
+			
+			Role role =rr.findByNome(role_name);
+			funcionarios.setRole(role);
+		
 		fr.save(funcionarios);
-		attributes.addFlashAttribute("success", "Funcionário alterado com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Funcionário alterado com sucesso!");
 			
 		int idInt = funcionarios.getId();
 		String id = "" + idInt;
-		return "redirect:/funcionarios/detalhes-funcionario/" + id;
+		return "redirect:/funcionarios/editar-funcionario?id=" + id;
 	}
 }
 

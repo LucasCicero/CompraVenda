@@ -46,7 +46,7 @@
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
+								<a class="nav-link" href="/produtos">Cadastrar Vendas</a>
 							</li>
 							
 							<li class="nav-item">
@@ -104,7 +104,7 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/vendas/cadastrarVenda">
+			<a class="btn-link" href="/produtos">
 				<button type="button" class="btn btn-success">Cadastrar Venda</button>
 			</a>
 		</main>

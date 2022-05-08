@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
+import javax.persistence.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,10 +44,10 @@ public class Funcionarios implements Serializable, UserDetails{
 	@NotEmpty
 	private String papel;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "funcionarios", cascade = CascadeType.REMOVE)
 	private List<Compras> compras;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "funcionarios", cascade = CascadeType.REMOVE)
 	private List<Vendas> vendas;
 	
 	//@ManyToMany

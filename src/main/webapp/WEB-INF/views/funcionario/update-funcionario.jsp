@@ -71,7 +71,7 @@
 					<div class="col">
 						<div class="form-group">
 							<label for=""><strong>Senha:</strong></label>
-							<input type="text" value="${funcionarios.senha}" name="senha" placeholder="Digite a senha" class="form-control" required />
+							<input type="text" value="${funcionarios.senha}" name="senha" placeholder="Digite a senha" class="form-control"  readonly="readonly" />
 						</div>
 					</div>
 					

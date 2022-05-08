@@ -42,6 +42,10 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/vendas">Listar Vendas</a>
+							</li>
 							</sec:authorize>
 							<sec:authorize access="hasRole('COMPRADOR')">
 							<li class="nav-item">

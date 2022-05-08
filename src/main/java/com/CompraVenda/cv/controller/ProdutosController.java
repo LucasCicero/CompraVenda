@@ -140,7 +140,7 @@ public class ProdutosController {
 			Funcionarios funcionarios= fcr.findByCpf(cpf);
 			vendas.setFuncionarios(funcionarios);
 			vendas.setProdutos(produtos);
-			Clientes clientes= clr.findById(id);
+			Clientes clientes= clr.findById(id_cliente);
 			
 			quantidadeVenda= vendas.getQuantidade_venda();
 			quantidadeDisponivel= produtos.getQuantidade_disponivel();
@@ -189,7 +189,8 @@ public class ProdutosController {
 			compras.setFuncionarios(funcionarios);
 			Produtos produtos = pr.findById(id);
 			compras.setProdutos(produtos);
-			Fornecedores fornecedores= fr.findById(id);
+			Fornecedores fornecedores= fr.findById(id_fornecedor);
+			System.out.print("teste"+ id_fornecedor );
 			compras.setFornecedores(fornecedores);
 			
 			quantidadeCompra= compras.getQuantidade_compra();

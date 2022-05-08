@@ -52,7 +52,7 @@ public class FornecedoresController {
 	@RequestMapping("/fornecedores/detalhes-fornecedor/{id}")
 	public ModelAndView detalhesFornecedor(@PathVariable("id") int id) {
 		Fornecedores fornecedores = fcr.findById(id);
-		ModelAndView mv = new ModelAndView("funcionario/detalhes-fornecedor");
+		ModelAndView mv = new ModelAndView("fornecedor/detalhes-fornecedor");
 		mv.addObject("fornecedores", fornecedores);
 
 		// lista de dependentes baseada no id do funcionário
@@ -82,7 +82,7 @@ public class FornecedoresController {
 	
 	// POST que atualiza o funcionário
 	@RequestMapping(value = "/fornecedores/editar-fornecedor", method = RequestMethod.POST)
-	public String updateFuncionario(@Valid Fornecedores fornecedores, BindingResult result, RedirectAttributes attributes){
+	public String updateFornecedor(@Valid Fornecedores fornecedores, BindingResult result, RedirectAttributes attributes){
 			
 		fcr.save(fornecedores);
 		attributes.addFlashAttribute("success", "Fornecedor alterado com sucesso!");

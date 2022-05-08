@@ -63,7 +63,7 @@
 			</p>
 			
 			<p>
-				<strong>Papel</strong> <span>${funcionarios.papel}></span>
+				<strong>Papel</strong> <span>${funcionarios.papel}</span>
 			</p>
 			
 			<a class="btn-link" href="/funcionarios">
