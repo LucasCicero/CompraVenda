@@ -95,7 +95,7 @@ public class ComprasController {
 	public ModelAndView editarCompra(int id) {
 		Compras compras = cpr.findById(id);
 		ModelAndView mv = new ModelAndView("compra/update-compra");
-		mv.addObject("compra", compras);
+		mv.addObject("compras", compras);
 		return mv;
 	}
 	

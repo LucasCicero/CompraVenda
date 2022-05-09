@@ -2,6 +2,8 @@ package com.CompraVenda.cv.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,27 +22,30 @@ public class Vendas implements Serializable{
 	private int id;
 	
 	@NotNull
+	@Column(name="quantidade_venda")
 	private int quantidade_venda;
 	
 	@NotEmpty
+	@Column(name="data_venda")
 	private String data_venda;
 	
 	@NotNull
+	@Column(name="valor_venda")
 	private double valor_venda;
 	
 
 	@ManyToOne
-	@JoinColumn(name="id_cliente")
+	@JoinColumn(name="id_cliente", updatable=false)
 	private Clientes clientes;
 	
 
 	@ManyToOne
-	@JoinColumn(name="id_produto")
+	@JoinColumn(name="id_produto",updatable=false)
 	private Produtos produtos;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_funcionario")
+	@JoinColumn(name="id_funcionario",updatable=false)
 	private Funcionarios funcionarios;
 
 	public int getId() {

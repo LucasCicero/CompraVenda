@@ -32,6 +32,7 @@ public class Funcionarios implements Serializable, UserDetails{
 	private int id;
 	
 	@NotEmpty
+	@Column(name="nome")
 	private String nome;
 	
 	@NotEmpty
@@ -39,9 +40,11 @@ public class Funcionarios implements Serializable, UserDetails{
 	private String cpf;
 	
 	@NotEmpty
+	@Column(name="senha")
 	private String senha;
 	
 	@NotEmpty
+	@Column(name="papel")
 	private String papel;
 	
 	@OneToMany(mappedBy = "funcionarios", cascade = CascadeType.REMOVE)

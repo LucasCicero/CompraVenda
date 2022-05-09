@@ -20,6 +20,7 @@ public class Clientes implements Serializable{
 	private int id;
 	
 	@NotEmpty
+	@Column(name="nome")
 	private String nome;
 	
 	@NotEmpty
@@ -27,24 +28,31 @@ public class Clientes implements Serializable{
 	private String cpf;
 	
 	@NotEmpty
+	@Column(name="endereco")
 	private String endereco;
 	
 	@NotEmpty
+	@Column(name="bairro")
 	private String bairro;
 	
 	@NotEmpty
+	@Column(name="cidade")
 	private String cidade;
 	
 	@NotEmpty
+	@Column(name="uf")
 	private String uf;
 	
 	@NotEmpty
+	@Column(name="cep")
 	private String cep;
 	
 	@NotEmpty
+	@Column(name="telefone")
 	private String telefone;
 	
 	@NotEmpty
+	@Column(name="email")
 	private String email;
 	
 	@OneToMany

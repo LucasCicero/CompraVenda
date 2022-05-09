@@ -58,6 +58,10 @@
 							</li>
 							
 							<li class="nav-item">
+								<a class="nav-link" href="/compras">Listar Compras</a>
+							</li>
+							
+							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
 							

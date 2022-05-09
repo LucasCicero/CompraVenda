@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.CompraVenda.cv.model.Clientes;
 import com.CompraVenda.cv.model.Compras;
 import com.CompraVenda.cv.model.Funcionarios;
 import com.CompraVenda.cv.model.Produtos;
@@ -105,6 +106,7 @@ public class VendasController {
 	// POST que atualiza as vendas
 	@RequestMapping(value = "/vendas/editar-venda", method = RequestMethod.POST)
 	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="quantidade_venda")Integer quantidade_venda){
+
 		/*
 		Integer nova_quantidade=0;
 		if (quantidade_venda != vendas.getQuantidade_venda()) {
@@ -118,6 +120,8 @@ public class VendasController {
 		}
 		*/
 		
+		vendas.setClientes(vendas.getClientes());
+		vendas.setFuncionarios( vendas.getFuncionarios());
 		vr.save(vendas);
 		attributes.addFlashAttribute("success", "Venda alterada com sucesso!");
 			

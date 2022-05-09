@@ -1,11 +1,17 @@
 package com.CompraVenda.cv.model;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -19,35 +25,44 @@ public class Produtos implements Serializable{
 	private int id;
 	
 	@NotEmpty
+	@Column(name="nome_produto")
 	private String nome_produto;
 	
 	@NotEmpty
+	@Column(name="descricao")
 	private String descricao;
 	
 	
 	@NotNull
+	@Column(name="preco_compra")
 	private double preco_compra;
 	
 	@NotNull
+	@Column(name="preco_venda")
 	private double preco_venda;
 	
 	@NotNull
+	@Column(name="quantidade_disponÃ­vel")
 	private int quantidade_disponivel;
 	
 	@NotEmpty
+	@Column(name="liberado_venda")
 	private String liberado_venda;
 	
 	
 	@ManyToOne
+	@JoinColumn(name="id_categoria", updatable=false)
 	private Categorias categorias;
 	
 	
-	@ManyToOne
-	private Vendas vendas;
+	@OneToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE)
+	//@JoinColumn(name="id_venda")
+	private List<Vendas> vendas;
 	
 	
-	@ManyToOne
-	private Compras compras;
+	@OneToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE )
+	//@JoinColumn(name="id_compra")
+	private List<Compras> compras;
 	
 	
 
@@ -114,21 +129,22 @@ public class Produtos implements Serializable{
 		this.categorias = categorias;
 	}
 
-	public Vendas getVendas() {
+	public List<Vendas> getVendas() {
 		return vendas;
 	}
 
-	public void setVendas(Vendas vendas) {
+	public void setVendas(List<Vendas> vendas) {
 		this.vendas = vendas;
 	}
 
-	public Compras getCompras() {
+	public List<Compras> getCompras() {
 		return compras;
 	}
 
-	public void setCompras(Compras compras) {
+	public void setCompras(List<Compras> compras) {
 		this.compras = compras;
 	}
+
 
 	
 	

@@ -50,6 +50,11 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
 							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/compras">Listar Compras</a>
+							</li>
+							
 							</sec:authorize>
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>

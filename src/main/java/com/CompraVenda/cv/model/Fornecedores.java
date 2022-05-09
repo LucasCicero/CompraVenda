@@ -3,6 +3,7 @@ package com.CompraVenda.cv.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,27 +29,34 @@ public class Fornecedores implements Serializable{
 	private String cnpj;
 	
 	@NotEmpty
+	@Column(name="endereco")
 	private String endereco;
 	
 	@NotEmpty
+	@Column(name="bairro")
 	private String bairro;
 	
 	@NotEmpty
+	@Column(name="cidade")
 	private String cidade;
 	
 	@NotEmpty
+	@Column(name="uf")
 	private String uf;
 	
 	@NotEmpty
+	@Column(name="cep")
 	private String cep;
 	
 	@NotEmpty
+	@Column(name="telefone")
 	private String telefone;
 	
 	@NotEmpty
+	@Column(name="email")
 	private String email;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "fornecedores", cascade = CascadeType.REMOVE)
 	private List<Compras> compras;
 	
 	

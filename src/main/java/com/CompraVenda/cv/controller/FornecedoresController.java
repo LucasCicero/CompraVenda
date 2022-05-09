@@ -76,7 +76,7 @@ public class FornecedoresController {
 	public ModelAndView editarFornecedor(int id) {
 		Fornecedores fornecedores = fcr.findById(id);
 		ModelAndView mv = new ModelAndView("fornecedor/update-fornecedor");
-		mv.addObject("fornecedor", fornecedores);
+		mv.addObject("fornecedores", fornecedores);
 		return mv;
 	}
 	

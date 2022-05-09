@@ -3,6 +3,7 @@ package com.CompraVenda.cv.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Categorias implements Serializable{
 	@Column(name="nome_categoria", unique=true)
 	private String nome_categoria;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "categorias", cascade = CascadeType.REMOVE)
 	private List<Produtos> produtos;
 
 	public int getId() {

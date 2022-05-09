@@ -34,15 +34,27 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores/cadastrarCliente">Cadastrar Clientes</a>
+								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias">Listar Categorias</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/fornecedores/cadastrarCategoria">Cadastrar Categorias</a>
 							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/produtos">Listar Produtos</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/compras">Listar Compras</a>
 							</li>
 							
 							<li class="nav-item">
@@ -59,39 +71,39 @@
 			
 			<div class="container">
 				<p>
-					<strong>Razão Social:</strong> <span>${fornecedores.razao_social}></span>
+					<strong>Razão Social:</strong> <span>${fornecedores.razao_social}</span>
 				</p>
 				
 				<p>
-					<strong>CNPJ:</strong> <span>${fornecedores.cnpj}></span>
+					<strong>CNPJ:</strong> <span>${fornecedores.cnpj}</span>
 				</p>
 				
 				<p>
-					<strong>Endereço:</strong> <span>${fornecedores.endereco}></span>
+					<strong>Endereço:</strong> <span>${fornecedores.endereco}</span>
 				</p>
 				
 				<p>
-					<strong>Bairro:</strong> <span>${fornecedores.bairro}></span>
+					<strong>Bairro:</strong> <span>${fornecedores.bairro}</span>
 				</p>
 				
 				<p>
-					<strong>Cidade:</strong> <span>${fornecedores.cidade}></span>
+					<strong>Cidade:</strong> <span>${fornecedores.cidade}</span>
 				</p>
 				
 				<p>
-					<strong>UF:</strong> <span>${fornecedores.uf}></span>
+					<strong>UF:</strong> <span>${fornecedores.uf}</span>
 				</p>
 				
 				<p>
-					<strong>CEP:</strong> <span>${fornecedores.cep}></span>
+					<strong>CEP:</strong> <span>${fornecedores.cep}</span>
 				</p>
 				
 				<p>
-					<strong>Telefone:</strong> <span>${fornecedores.telefone}></span>
+					<strong>Telefone:</strong> <span>${fornecedores.telefone}</span>
 				</p>
 				
 				<p>
-					<strong>E-mail:</strong> <span>${fornecedores.email}></span>
+					<strong>E-mail:</strong> <span>${fornecedores.email}</span>
 				</p>
 				
 				<a class="btn-link" href="/fornecedores">

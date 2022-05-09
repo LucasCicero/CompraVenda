@@ -59,6 +59,10 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/compras">Listar Compras</a>
+							</li>
 						
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
@@ -135,7 +139,7 @@
 				</tbody>
 			</table>
 		   <sec:authorize access="hasRole('COMPRADOR')">	
-				 <a class="btn-link" href="/produtos/cadastrarProduto">
+				 <a class="btn-link" href="/categorias">
 					<button type="button" class="btn btn-success">Cadastrar Produto</button>
 				</a>
 		  </sec:authorize>

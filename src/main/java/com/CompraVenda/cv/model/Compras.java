@@ -25,26 +25,29 @@ public class Compras implements Serializable{
 	private int id;
 	
 	@NotNull
+	@Column(name="quantidade_compra")
 	private int quantidade_compra;
 	
 	@NotEmpty
+	@Column(name="data_compra")
 	private String data_compra;
 	
 	@NotNull
+	@Column(name="valor_compra")
 	private int valor_compra;
 	
 	@ManyToOne
-	@JoinColumn(name="id_fornecedor")
+	@JoinColumn(name="id_fornecedor", updatable=false)
 	private Fornecedores fornecedores;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_produto")
+	@JoinColumn(name="id_produto", updatable=false)
 	private Produtos produtos;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_funcionario")
+	@JoinColumn(name="id_funcionario", updatable=false)
 	private Funcionarios funcionarios;
 
 	public int getId() {
