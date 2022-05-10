@@ -92,7 +92,7 @@ public class CategoriasController {
 		Categorias categorias= cr.findById(id);
 		produtos.setCategorias(categorias);
 		pr.save(produtos);
-		attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Produto registrado com sucesso!");
 		return "redirect:/categorias/detalhes-categoria/{id}";
 	}
 

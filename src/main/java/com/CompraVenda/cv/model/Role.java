@@ -49,7 +49,15 @@ public class Role implements GrantedAuthority {
 		// TODO Auto-generated method stub
 		return this.nome;
 	}
-	
-	
 
+	public Role(String nome) {
+		this.nome = nome;
+	}
+	
+	public Role() {
+		
+	}
+	
+	
+	
 }

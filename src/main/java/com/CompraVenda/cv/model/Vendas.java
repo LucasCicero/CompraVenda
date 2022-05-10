@@ -35,17 +35,17 @@ public class Vendas implements Serializable{
 	
 
 	@ManyToOne
-	@JoinColumn(name="id_cliente", updatable=false)
+	@JoinColumn(name="id_cliente")
 	private Clientes clientes;
 	
 
 	@ManyToOne
-	@JoinColumn(name="id_produto",updatable=false)
+	@JoinColumn(name="id_produto")
 	private Produtos produtos;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_funcionario",updatable=false)
+	@JoinColumn(name="id_funcionario")
 	private Funcionarios funcionarios;
 
 	public int getId() {

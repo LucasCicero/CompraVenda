@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.CompraVenda.cv.model.Funcionarios;
 import com.CompraVenda.cv.model.Produtos;
+import com.CompraVenda.cv.model.Role;
 import com.CompraVenda.cv.model.Vendas;
+import com.CompraVenda.cv.repository.FuncionariosRepository;
 import com.CompraVenda.cv.repository.ProdutosRepository;
+import com.CompraVenda.cv.repository.RoleRepository;
 import com.CompraVenda.cv.repository.VendasRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -33,9 +38,41 @@ public class IndexController {
 	@Autowired
 	private VendasRepository vr;
 	
+	@Autowired
+	private RoleRepository rr;
+	
+	@Autowired
+	private FuncionariosRepository fr;
+	
 	@RequestMapping("/")
 	public ModelAndView listaProdutosIndex() {
 		ModelAndView mv = new ModelAndView("index");
+		
+		Role role = rr.findByNome("ROLE_ADMIN");
+		//System.out.println(role);
+		
+		
+		if(role == null) {
+			Role role1 = new Role("ROLE_ADMIN");
+			//role1.setNome("ROLE_ADMIN");
+			System.out.println(role1);
+			Role role2 = new Role("ROLE_VENDEDOR");
+			//role2.setNome("ROLE_VENDEDOR");
+			Role role3 = new Role("ROLE_COMPRADOR");
+			rr.save(role1);
+			rr.save(role2);
+			rr.save(role3);
+
+			
+			Funcionarios funcionario = fr.findByCpf("249.252.810-38");
+			BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+			funcionario.setSenha(passwordEncoder.encode("111"));
+			funcionario.setRole(role1);
+			fr.save(funcionario);
+		}
+		
+		
+		
 		Iterable<Produtos> produtosIndex = pr.findAllByQuantidade();
 		mv.addObject("produtosIndex", produtosIndex);
 		return mv;
