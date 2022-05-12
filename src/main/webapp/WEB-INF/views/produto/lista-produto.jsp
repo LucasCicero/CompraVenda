@@ -90,8 +90,10 @@
 						<th scope="col">Quantidade Disponivel:</th>
 						<th scope="col">Liberado:</th>
 						<th scope="col"></th>
-						<th scope="col">Ação</th>
-						<th scope="col"></th>
+                                                <sec:authorize access="hasRole('COMPRADOR')">
+                                                   <th scope="col">Ação</th>
+                                                   <th scope="col"></th>
+                                                </sec:authorize>
 					</tr>
 				</thead>
 				
@@ -127,19 +129,13 @@
 								</a>
 							</td>
 						</sec:authorize>
-						<sec:authorize access="hasRole('VENDEDOR')">
-							<td>
-								<a href='<c:url value="/produtos/detalhes-produto-venda/${produtos.id}"/>'>
-									<button type="button" class="btn btn-success">Vender</button>
-								</a>
-							</td>
-						</sec:authorize>
+						
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		   <sec:authorize access="hasRole('COMPRADOR')">	
-				 <a class="btn-link" href="/categorias">
+				 <a class="btn-link" href="/produtos/cadastrarProduto">
 					<button type="button" class="btn btn-success">Cadastrar Produto</button>
 				</a>
 		  </sec:authorize>

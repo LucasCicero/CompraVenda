@@ -97,11 +97,6 @@
 									<button type="button" class="btn btn-primary">Editar</button>
 								</a>
 							</td>
-							<td>
-								<a href='<c:url value="/categorias/detalhes-categoria/${categorias.id}"/>'>
-									<button type="button" class="btn btn-success">Cadastrar Produto</button>
-								</a>
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

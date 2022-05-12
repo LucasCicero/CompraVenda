@@ -81,17 +81,18 @@ public class CategoriasController {
 			return "redirect:/categorias/detalhes-categoria/{id}";
 		}
 		
-
+            
 		/*
-		if (cr.findByRg(candidato.getRg()) != null) {
-			attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
-			return "redirect:/vaga/{codigo}";
+		if (pr.findByNomeProduto(produtos.getNome_produto()) != null) {
+			attributes.addFlashAttribute("mensagem_erro", "Nome duplicado");
+			return "redirect:/categorias/detalhes-categoria/{id}";
 		}
 		*/		
-
+               
 		Categorias categorias= cr.findById(id);
 		produtos.setCategorias(categorias);
-		pr.save(produtos);
+		//pr.save(produtos);
+
 		attributes.addFlashAttribute("mensagem", "Produto registrado com sucesso!");
 		return "redirect:/categorias/detalhes-categoria/{id}";
 	}

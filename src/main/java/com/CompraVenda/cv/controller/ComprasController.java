@@ -13,9 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.CompraVenda.cv.model.Compras;
+import com.CompraVenda.cv.model.Fornecedores;
 import com.CompraVenda.cv.model.Funcionarios;
+import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.repository.ComprasRepository;
+import com.CompraVenda.cv.repository.FornecedoresRepository;
 import com.CompraVenda.cv.repository.FuncionariosRepository;
+import com.CompraVenda.cv.repository.ProdutosRepository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ComprasController {
@@ -25,6 +30,12 @@ public class ComprasController {
 	
 	@Autowired
 	private FuncionariosRepository fr;
+        
+        @Autowired
+	private ProdutosRepository pr;
+        
+        @Autowired
+	private FornecedoresRepository fcr;
 	
 	// GET que chama o form para cadastrar a compra
 	@RequestMapping("/compras/cadastrarCompra")
@@ -101,8 +112,27 @@ public class ComprasController {
 	
 	// POST que atualiza a compra
 	@RequestMapping(value = "/compras/editar-compra", method = RequestMethod.POST)
-	public String updateCompra(@Valid Compras compras, BindingResult result, RedirectAttributes attributes){
-		cpr.save(compras);
+	public String updateCompra(@Valid Compras compras, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor,@RequestParam(value="id_produtos")Integer id_produtos){
+		String cpf="";
+		
+                
+                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (auth instanceof UserDetails) {
+				 cpf= ((UserDetails)auth).getUsername();
+			}
+			else {
+				 cpf= auth.toString();
+			}
+			
+		Funcionarios funcionarios= fr.findByCpf(cpf);
+                compras.setFuncionarios(funcionarios);
+                Fornecedores fornecedores = fcr.findById(id_fornecedor);
+		compras.setFornecedores(fornecedores);
+                Produtos produtos = pr.findById(id_produtos);
+		compras.setProdutos(produtos);
+                
+            
+                cpr.save(compras);
 		attributes.addFlashAttribute("success", "Compra alterada com sucesso!");
 			
 		int idInt = compras.getId();

@@ -67,15 +67,15 @@
 			
 			<div class="container">
 				<p>
-					<strong>Quantidade Comprada:</strong> <span>${compras.quantidade_compra}></span>
+					<strong>Quantidade Comprada:</strong> <span>${compras.quantidade_compra}</span>
 				</p>
 				
 				<p>
-					<strong>Data da Compra:</strong> <span>${compras.data_compra}></span>
+					<strong>Data da Compra:</strong> <span>${compras.data_compra}</span>
 				</p>
 				
 				<p>
-					<strong>Valor da Compra:</strong> <span>${compras.valor_compra}></span>
+					<strong>Valor da Compra:</strong> <span>${compras.valor_compra}</span>
 				</p>
 				
 				<a class="btn-link" href="/compras">

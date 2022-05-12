@@ -14,11 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.CompraVenda.cv.model.Clientes;
-import com.CompraVenda.cv.model.Compras;
 import com.CompraVenda.cv.model.Funcionarios;
 import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.model.Vendas;
+import com.CompraVenda.cv.repository.ClientesRepository;
 import com.CompraVenda.cv.repository.FuncionariosRepository;
+import com.CompraVenda.cv.repository.ProdutosRepository;
 import com.CompraVenda.cv.repository.VendasRepository;
 
 @Controller
@@ -26,9 +27,15 @@ public class VendasController {
 	
 	@Autowired
 	private VendasRepository vr;
-	
-	@Autowired
-	private FuncionariosRepository fr;
+        
+        @Autowired
+	private ClientesRepository cr;
+                
+        @Autowired
+	private FuncionariosRepository fcr;
+        
+        @Autowired
+	private ProdutosRepository pr;
 	
 	// GET que chama o form para cadastrar venda
 	@RequestMapping("/vendas/cadastrarVenda")
@@ -38,16 +45,45 @@ public class VendasController {
 	
 	// POST que cadastra as vendas
 	@RequestMapping(value = "/vendas/cadastrarVenda", method = RequestMethod.POST)
-	public String form(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes) {
-
+	public String form(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente,@RequestParam(value="id_produtos")Integer id_produtos) {
+            String cpf="";
+            Integer quantidadeDisponivel,quantidadeVenda= 0;
+            
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/vendas/cadastrarVendas";
+			return "redirect:/vendas/cadastrarVenda";
 		}
-
+                		 
+                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (auth instanceof UserDetails) {
+				 cpf= ((UserDetails)auth).getUsername();
+			}
+			else {
+				 cpf= auth.toString();
+			}
+                        
+                Produtos produtos = pr.findById(id_produtos);		
+			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
+				attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
+				return "redirect:/produtos/detalhes-produto-venda/{id}";							
+			}
+			
+		else {
+                
+                Funcionarios funcionarios= fcr.findByCpf(cpf);
+                vendas.setFuncionarios(funcionarios);
+		Clientes clientes = cr.findById(id_cliente);
+		vendas.setClientes(clientes);
+		vendas.setProdutos(produtos);
+                
+                quantidadeVenda= vendas.getQuantidade_venda();
+		quantidadeDisponivel= produtos.getQuantidade_disponivel();
+		produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
+                
 		vr.save(vendas);
 		attributes.addFlashAttribute("mensagem", "Venda cadastrada com sucesso!");
 		return "redirect:/vendas/cadastrarVenda";
+                }
 	}
 	
 	// GET que lista as vendas
@@ -64,7 +100,7 @@ public class VendasController {
 			 cpf= auth.toString();
 		}
 		
-		Funcionarios funcionario = fr.findByCpf(cpf);
+		Funcionarios funcionario = fcr.findByCpf(cpf);
 		Integer id= funcionario.getId();
 		 Iterable<Vendas> vendas = vr.findByVendedorId(id);
 		mv.addObject("vendas", vendas);
@@ -105,24 +141,26 @@ public class VendasController {
 	
 	// POST que atualiza as vendas
 	@RequestMapping(value = "/vendas/editar-venda", method = RequestMethod.POST)
-	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="quantidade_venda")Integer quantidade_venda){
-
-		/*
-		Integer nova_quantidade=0;
-		if (quantidade_venda != vendas.getQuantidade_venda()) {
-			Produtos produtos = vendas.getProdutos();
-			nova_quantidade= quantidade_venda-vendas.getQuantidade_venda();
-			if (nova_quantidade<0) {
-				nova_quantidade=nova_quantidade*-1;
+	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente,@RequestParam(value="id_produtos")Integer id_produtos){
+        String cpf="";
+		 
+                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (auth instanceof UserDetails) {
+				 cpf= ((UserDetails)auth).getUsername();
+			}
+			else {
+				 cpf= auth.toString();
 			}
 			
-			produtos.setQuantidade_disponivel(produtos.getQuantidade_disponivel()-nova_quantidade);
-		}
-		*/
-		
-		vendas.setClientes(vendas.getClientes());
-		vendas.setFuncionarios( vendas.getFuncionarios());
-		vr.save(vendas);
+		Funcionarios funcionarios= fcr.findByCpf(cpf);
+                vendas.setFuncionarios(funcionarios);
+		Clientes clientes = cr.findById(id_cliente);
+		vendas.setClientes(clientes);
+                Produtos produtos = pr.findById(id_produtos);
+		vendas.setProdutos(produtos);
+              
+		vr.save(vendas);              
+                
 		attributes.addFlashAttribute("success", "Venda alterada com sucesso!");
 			
 		int idInt = vendas.getId();

@@ -22,6 +22,8 @@ public interface VendasRepository extends CrudRepository<Vendas, Long>{
 	
 	@Query(value = "SELECT u FROM Vendas u WHERE u.funcionarios.id =:id")
 	List<Vendas> findByVendedorId(Integer id);
+        
+
 	/*
 	List<Vendas> findByQuantidadeVenda(int quantidadeVenda);
 	List<Vendas> findByDataVenda(Date dataVenda);

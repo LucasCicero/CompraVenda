@@ -84,6 +84,20 @@
 						<label for=""><strong>Valor da Venda:</strong></label>
 						<input type="number" value="" name="valor_venda" class="form-control" placeholder="Valor da venda" required />
 					</div>
+                                        
+                                         <div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id do Cliente:</strong></label>
+							<input type="number" class="form-control" value="${vendas.clientes.id}" name="id_cliente" placeholder="Id do Cliente" required />
+						</div>
+					</div>
+
+                                        <div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id do Produto:</strong></label>
+							<input type="number" class="form-control" value="${vendas.produtos.id}" name="id_produtos" placeholder="Id do Produto" required />
+						</div>
+					</div>
 				</div>
 				
 				<button type="submit" class="btn btn-success">Cadastrar Venda</button>

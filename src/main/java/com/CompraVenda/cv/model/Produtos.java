@@ -55,12 +55,12 @@ public class Produtos implements Serializable{
 	private Categorias categorias;
 	
 	
-	@OneToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "produtos",cascade = CascadeType.REMOVE )
 	//@JoinColumn(name="id_venda")
 	private List<Vendas> vendas;
 	
 	
-	@OneToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE )
+	@OneToMany(mappedBy = "produtos",cascade = CascadeType.REMOVE )
 	//@JoinColumn(name="id_compra")
 	private List<Compras> compras;
 	

@@ -27,6 +27,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -68,7 +69,16 @@ public class IndexController {
 			BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 			funcionario.setSenha(passwordEncoder.encode("111"));
 			funcionario.setRole(role1);
+                        Funcionarios funcionario2 = fr.findByCpf("081.599.500-80");
+                        funcionario2.setSenha(passwordEncoder.encode("111"));
+                        funcionario2.setRole(role2);
+                        Funcionarios funcionario3 = fr.findByCpf("167.740.300-41");
+                        funcionario3.setSenha(passwordEncoder.encode("111"));
+                        funcionario3.setRole(role3);
+                       
 			fr.save(funcionario);
+                        fr.save(funcionario2);
+                        fr.save(funcionario3);
 		}
 		
 		
@@ -83,6 +93,7 @@ public class IndexController {
 		//ModelAndView mv = new ModelAndView("index");
 		return "login";
 	}
+       
 	
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {

@@ -15,6 +15,10 @@ import com.CompraVenda.cv.model.Vendas;
 public interface ProdutosRepository extends CrudRepository<Produtos, Long>{
 	
 	Produtos findById(int id);
+        
+        @Query(value = "SELECT u FROM Produtos u WHERE u.nome_produto LIKE %?1%")
+        Produtos findByNomeProduto(String nomeProduto);
+        
 	List<Produtos> findByCategorias(Categorias categorias);
 	
 	@Query(value = "SELECT u FROM Produtos u WHERE u.quantidade_disponivel > 0")

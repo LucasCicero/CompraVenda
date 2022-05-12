@@ -86,6 +86,20 @@
 							<input type="number" class="form-control" value="${compras.valor_compra}" name="valor_compra" required />
 						</div>
 					</div>
+                                        
+                                         <div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id do Fornecedor:</strong></label>
+							<input type="number" class="form-control" value="${compras.fornecedores.id}" name="id_fornecedor" required />
+						</div>
+					</div>
+
+                                         <div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id do Produto:</strong></label>
+							<input type="number" class="form-control" value="${compras.produtos.id}" name="id_produtos" required />
+						</div>
+					</div>
 				</div>
 	
 				<button type="submit" class="btn btn-success">

@@ -1,5 +1,6 @@
 package com.CompraVenda.cv.controller;
 
+import com.CompraVenda.cv.model.Categorias;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,7 @@ import com.CompraVenda.cv.repository.FornecedoresRepository;
 import com.CompraVenda.cv.repository.FuncionariosRepository;
 import com.CompraVenda.cv.repository.ProdutosRepository;
 import com.CompraVenda.cv.repository.VendasRepository;
+import com.CompraVenda.cv.repository.CategoriasRepository;
 
 @Controller
 public class ProdutosController {
@@ -47,6 +49,9 @@ public class ProdutosController {
 	
 	@Autowired
 	private ClientesRepository clr;
+        
+        @Autowired
+	private CategoriasRepository ctr;
 	
 	// GET que chama o form para cadastrar produto
 	@RequestMapping("/produtos/cadastrarProduto")
@@ -55,14 +60,17 @@ public class ProdutosController {
 	}
 	
 	// POST que cadastra produto
+       
 	@RequestMapping(value = "/produtos/cadastrarProduto", method = RequestMethod.POST)
-	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes) {		
+	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes, @RequestParam(value="id_categoria")Integer id_categoria) {		
 		
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
 			return "redirect:/produtos/cadastrarProduto";
 		}
-
+                
+                Categorias categorias = ctr.findById(id_categoria);
+                produtos.setCategorias(categorias);
 		pr.save(produtos);
 		attributes.addFlashAttribute("mensagem", "Produto cadastrado com sucesso!");
 		return "redirect:/produtos/cadastrarProduto";
@@ -137,18 +145,17 @@ public class ProdutosController {
 			}
 			
 			else {
+                        
 			Funcionarios funcionarios= fcr.findByCpf(cpf);
 			vendas.setFuncionarios(funcionarios);
 			vendas.setProdutos(produtos);
 			Clientes clientes= clr.findById(id_cliente);
+                        vendas.setClientes(clientes);                     
 			
 			quantidadeVenda= vendas.getQuantidade_venda();
 			quantidadeDisponivel= produtos.getQuantidade_disponivel();
-			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
-			vendas.setClientes(clientes);
-			
-			
-			
+			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);	
+						
 			vr.save(vendas);
 			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
 			return "redirect:/produtos/detalhes-produto-venda/{id}";
@@ -157,7 +164,7 @@ public class ProdutosController {
 	
 	
 	
-	// POST que adiciona candidato a vaga
+	// POST que adiciona compra a produtos
 		@RequestMapping(value = "/produtos/detalhes-produto/{id}", method = RequestMethod.POST)
 		public String detalhesProdutosPost(@PathVariable("id") int id, @Valid Compras compras,
 				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
@@ -190,7 +197,6 @@ public class ProdutosController {
 			Produtos produtos = pr.findById(id);
 			compras.setProdutos(produtos);
 			Fornecedores fornecedores= fr.findById(id_fornecedor);
-			System.out.print("teste"+ id_fornecedor );
 			compras.setFornecedores(fornecedores);
 			
 			quantidadeCompra= compras.getQuantidade_compra();
@@ -198,6 +204,7 @@ public class ProdutosController {
 			quantidadeDisponivel= produtos.getQuantidade_disponivel();
 			produtos.setQuantidade_disponivel(quantidadeCompra+quantidadeDisponivel);
 			produtos.setPreco_compra(precoCompra);
+                        
 			cr.save(compras);
 			attributes.addFlashAttribute("mensagem", "Compra registrada com sucesso!");
 			return "redirect:/produtos/detalhes-produto/{id}";
@@ -226,8 +233,11 @@ public class ProdutosController {
 	
 	// POST que atualiza o produto
 	@RequestMapping(value = "/produtos/editar-produto", method = RequestMethod.POST)
-	public String updateProduto(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes){
-		pr.save(produtos);
+	public String updateProduto(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_categoria")Integer id_categoria){
+           
+            Categorias categorias = ctr.findById(id_categoria);
+            produtos.setCategorias(categorias);
+            pr.save(produtos);
 		attributes.addFlashAttribute("success", "Produto alterado com sucesso!");
 			
 		int idInt = produtos.getId();

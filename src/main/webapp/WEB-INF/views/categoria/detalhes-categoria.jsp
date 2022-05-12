@@ -74,50 +74,13 @@
 					<button type="button" class="btn btn-info">Voltar</button>
 				</a>
 			</div>
+                        <br>
 			
 			<%@include file="../mensagem-validacao.jsp" %>
 			
-			<h2>Registrar Produtos</h2>
+			<h2>Produtos</h2>
 			
 			<br>
-			
-			<form method="post">
-				<div class="form-group">
-					<div class="row">
-						<div class="col">
-							<label for=""><strong>Nome do Produto</strong></label>
-							<input type="text" value="" name="nome_produto" class="form-control" placeholder="Nome do Produto" required />
-						</div>
-
-						<div class="col">
-							<label for=""><strong>Descrição</strong></label>
-							<input type="text" value="" name="descricao" class="validate form-control" required />
-						</div>
-
-						<div class="col">
-							<label for=""><strong>Preço de Compra</strong></label>
-							<input type="number" value="" name="preco_compra" class="form-control" placeholder="Preço da Compra" required />
-						</div>
-						
-						<div class="col">
-							<label for=""><strong>Preço de Venda</strong></label>
-							<input type="number" value="" name="preco_venda" class="form-control" placeholder="Preço de Venda" required />
-						</div>
-						<div class="col">
-							<label for=""><strong>Quantidade Disponível</strong></label>
-							<input type="number" value="" name="quantidade_disponivel" class="form-control" placeholder="Quantidade Disponível" required />
-						</div>
-						<div class="col">
-							<label for=""><strong>Liberado</strong></label>
-							<input type="text" value="" name="liberado_venda" class="form-control" placeholder="Liberado" required />
-						</div>
-					</div>
-				</div>
-
-				<button type="submit" class="btn btn-success">
-					Adicionar Compra
-				</button>
-			</form>
 			
 			<br>
 			

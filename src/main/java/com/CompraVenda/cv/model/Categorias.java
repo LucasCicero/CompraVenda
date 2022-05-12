@@ -24,7 +24,7 @@ public class Categorias implements Serializable{
 	@Column(name="nome_categoria", unique=true)
 	private String nome_categoria;
 	
-	@OneToMany(mappedBy = "categorias", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "categorias", cascade= CascadeType.ALL)
 	private List<Produtos> produtos;
 
 	public int getId() {
@@ -42,6 +42,14 @@ public class Categorias implements Serializable{
 	public void setNome_categoria(String nome_categoria) {
 		this.nome_categoria = nome_categoria;
 	}
+
+        public List<Produtos> getProdutos() {
+            return produtos;
+        }
+
+        public void setProdutos(List<Produtos> produtos) {
+            this.produtos = produtos;
+        }
 	
 	
 }

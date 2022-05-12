@@ -119,6 +119,13 @@
 							<input type="text" class="form-control" value="${produtos.liberado_venda}" name="liberado_venda" required />
 						</div>
 					</div>
+                                        
+                                        <div class="col">
+						<div class="form-group">
+							<label for=""><strong>Id da Categoria:</strong></label>
+							<input type="number" class="form-control" value="${produtos.categorias.id}" name="id_categoria" required />
+						</div>
+					</div>
 				</div>
 	
 				<button type="submit" class="btn btn-success">

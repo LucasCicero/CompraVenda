@@ -16,8 +16,10 @@
 	<body>
 		<main>
 			<div id="login-container">
+                        <%@include file="mensagem-validacao.jsp" %>
 				<h1 class="login-title input-field first">Compra & Venda</h1>
 				
+
 				<form method="post" id="form-login" action="<c:url value='/login'/>"> 
 					<input type="text" id="cpf" name="username" placeholder="Digite seu CPF" class="input-field second">
 					<input type="password" id="password" name="password" placeholder="Digite sua senha" class="input-field third">				

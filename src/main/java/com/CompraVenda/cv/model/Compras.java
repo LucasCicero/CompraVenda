@@ -37,17 +37,17 @@ public class Compras implements Serializable{
 	private int valor_compra;
 	
 	@ManyToOne
-	@JoinColumn(name="id_fornecedor", updatable=false)
+	@JoinColumn(name="id_fornecedor")
 	private Fornecedores fornecedores;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_produto", updatable=false)
+	@JoinColumn(name="id_produto")
 	private Produtos produtos;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_funcionario", updatable=false)
+	@JoinColumn(name="id_funcionario")
 	private Funcionarios funcionarios;
 
 	public int getId() {

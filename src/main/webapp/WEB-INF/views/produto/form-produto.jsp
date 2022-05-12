@@ -34,35 +34,23 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios">Funcionários</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/funcionarios/cadastrarFuncionario">Cadastrar Funcionário</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/clientes">Listar Clientes</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/compras">Listar Compras</a>
+								<a class="nav-link" href="/fornecedores">Listar Fornecedor</a>
 							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/categorias">Listar Categoria</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="/produtos">Listar Produtos</a>
 							</li>
 							
 							<li class="nav-item">
@@ -112,6 +100,10 @@
 					<div class="col">
 						<label for=""><strong>Liberado:</strong></label>
 						<input type="text" value="" name="liberado_venda" class="form-control" placeholder="Liberado para venda?" required />
+					</div>
+                                         <div class="col">
+							<label for=""><strong>Id Categoria</strong></label>
+							<input type="number" value="" name="id_categoria" class="form-control" placeholder="Id da Categoria" required />
 					</div>
 				</div>
 				
