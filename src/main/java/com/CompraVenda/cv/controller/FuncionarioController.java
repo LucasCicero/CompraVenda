@@ -48,17 +48,14 @@ public class FuncionarioController {
 		funcionarios.setSenha(passwordEncoder.encode(senha));
 		
 		if (papel==0) {
-		
-		role_name="ROLE_ADMIN";
+			role_name="ROLE_ADMIN";
 		}
 		else if (papel==1) {
-		role_name="ROLE_VENDEDOR";
+			role_name="ROLE_VENDEDOR";
 		}
-		
 		else if(papel==2) {
-		role_name="ROLE_COMPRADOR";
+			role_name="ROLE_COMPRADOR";
 		}
-
 		
 		Role role =rr.findByNome(role_name);
 		funcionarios.setRole(role);
@@ -72,19 +69,20 @@ public class FuncionarioController {
 	public ModelAndView listaFuncionarios() {
 		
 		String cpf="";
+		
 		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		if (auth instanceof UserDetails) {
 			 cpf= ((UserDetails)auth).getUsername();
 		}
 		else {
 			 cpf= auth.toString();
 		}
-		System.out.println("cpf>>"+cpf);
-		
 		
 		ModelAndView mv = new ModelAndView("funcionario/lista-funcionario");
 		Iterable<Funcionarios> funcionarios = fr.findAll();
 		mv.addObject("funcionarios", funcionarios);
+		
 		return mv;
 	}
 	
@@ -103,8 +101,8 @@ public class FuncionarioController {
 	public String deletarFuncionario(int id) {
 		Funcionarios funcionarios = fr.findById(id);
 		fr.delete(funcionarios);
+		
 		return "redirect:/funcionarios";
-			
 	}
 	
 	// Métodos que atualizam funcionário
@@ -114,6 +112,7 @@ public class FuncionarioController {
 		Funcionarios funcionarios = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/update-funcionario");
 		mv.addObject("funcionarios", funcionarios);
+		
 		return mv;
 	}
 	
@@ -121,21 +120,19 @@ public class FuncionarioController {
 	@RequestMapping(value = "/funcionarios/editar-funcionario", method = RequestMethod.POST)
 	public String updateFuncionario(@Valid Funcionarios funcionarios,  BindingResult result, RedirectAttributes attributes,@RequestParam(value="papel")Integer papel){
 		String role_name="";
+		
 		if (papel==0) {
-			
 			role_name="ROLE_ADMIN";
-			}
-			else if (papel==1) {
+		}
+		else if (papel==1) {
 			role_name="ROLE_VENDEDOR";
-			}
-			
-			else if(papel==2) {
+		}
+		else if(papel==2) {
 			role_name="ROLE_COMPRADOR";
-			}
-
-			
-			Role role =rr.findByNome(role_name);
-			funcionarios.setRole(role);
+		}
+		
+		Role role =rr.findByNome(role_name);
+		funcionarios.setRole(role);
 		
 		fr.save(funcionarios);
 		attributes.addFlashAttribute("mensagem", "Funcionário alterado com sucesso!");
@@ -145,4 +142,3 @@ public class FuncionarioController {
 		return "redirect:/funcionarios/editar-funcionario?id=" + id;
 	}
 }
-

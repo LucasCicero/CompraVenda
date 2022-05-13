@@ -28,13 +28,13 @@ public class VendasController {
 	@Autowired
 	private VendasRepository vr;
         
-        @Autowired
+    @Autowired
 	private ClientesRepository cr;
                 
-        @Autowired
+    @Autowired
 	private FuncionariosRepository fcr;
         
-        @Autowired
+    @Autowired
 	private ProdutosRepository pr;
 	
 	// GET que chama o form para cadastrar venda
@@ -46,50 +46,50 @@ public class VendasController {
 	// POST que cadastra as vendas
 	@RequestMapping(value = "/vendas/cadastrarVenda", method = RequestMethod.POST)
 	public String form(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente,@RequestParam(value="id_produtos")Integer id_produtos) {
-            String cpf="";
-            Integer quantidadeDisponivel,quantidadeVenda= 0;
+        String cpf="";
+            
+        Integer quantidadeDisponivel,quantidadeVenda= 0;
             
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
 			return "redirect:/vendas/cadastrarVenda";
 		}
                 		 
-                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if (auth instanceof UserDetails) {
-				 cpf= ((UserDetails)auth).getUsername();
-			}
-			else {
-				 cpf= auth.toString();
-			}
-                        
-                Produtos produtos = pr.findById(id_produtos);		
-			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
-				attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
-				return "redirect:/produtos/detalhes-produto-venda/{id}";							
-			}
-			
+        Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (auth instanceof UserDetails) {
+			cpf= ((UserDetails)auth).getUsername();
+		}
 		else {
+			cpf= auth.toString();
+		}
+                        
+        Produtos produtos = pr.findById(id_produtos);		
+		if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
+			attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
+			return "redirect:/produtos/detalhes-produto-venda/{id}";							
+		}
+		else{
+			Funcionarios funcionarios= fcr.findByCpf(cpf);
+            vendas.setFuncionarios(funcionarios);
+			Clientes clientes = cr.findById(id_cliente);
+			vendas.setClientes(clientes);
+			vendas.setProdutos(produtos);
+			
+			quantidadeVenda= vendas.getQuantidade_venda();
+			quantidadeDisponivel= produtos.getQuantidade_disponivel();
+			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
                 
-                Funcionarios funcionarios= fcr.findByCpf(cpf);
-                vendas.setFuncionarios(funcionarios);
-		Clientes clientes = cr.findById(id_cliente);
-		vendas.setClientes(clientes);
-		vendas.setProdutos(produtos);
-                
-                quantidadeVenda= vendas.getQuantidade_venda();
-		quantidadeDisponivel= produtos.getQuantidade_disponivel();
-		produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
-                
-		vr.save(vendas);
-		attributes.addFlashAttribute("mensagem", "Venda cadastrada com sucesso!");
-		return "redirect:/vendas/cadastrarVenda";
-                }
+			vr.save(vendas);
+			attributes.addFlashAttribute("mensagem", "Venda cadastrada com sucesso!");
+			return "redirect:/vendas/cadastrarVenda";
+        }
 	}
 	
 	// GET que lista as vendas
 	@RequestMapping("/vendas")
 	public ModelAndView listaVendas() {
 		ModelAndView mv = new ModelAndView("venda/lista-venda");
+		
 		String cpf="";
 
 		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -138,21 +138,23 @@ public class VendasController {
 	// POST que atualiza as vendas
 	@RequestMapping(value = "/vendas/editar-venda", method = RequestMethod.POST)
 	public String updateVenda(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente,@RequestParam(value="id_produtos")Integer id_produtos){
+		
         String cpf="";
 		 
-                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if (auth instanceof UserDetails) {
-				 cpf= ((UserDetails)auth).getUsername();
-			}
-			else {
-				 cpf= auth.toString();
-			}
+        Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        
+		if (auth instanceof UserDetails) {
+			 cpf= ((UserDetails)auth).getUsername();
+		}
+		else {
+			 cpf= auth.toString();
+		}
 			
 		Funcionarios funcionarios= fcr.findByCpf(cpf);
-                vendas.setFuncionarios(funcionarios);
+        vendas.setFuncionarios(funcionarios);
 		Clientes clientes = cr.findById(id_cliente);
 		vendas.setClientes(clientes);
-                Produtos produtos = pr.findById(id_produtos);
+        Produtos produtos = pr.findById(id_produtos);
 		vendas.setProdutos(produtos);           
 		vr.save(vendas);              
                 

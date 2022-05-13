@@ -74,14 +74,14 @@
 					<button type="button" class="btn btn-info">Voltar</button>
 				</a>
 			</div>
-                        <br>
+			
+            <br>
 			
 			<%@include file="../mensagem-validacao.jsp" %>
 			
 			<h2>Produtos</h2>
 			
 			<br>
-			
 			<br>
 			
 			<table class="table table-hover table-responsive w-auto table-striped">
@@ -97,35 +97,38 @@
 				</thead>
 				
 				<tbody>
-				<c:forEach var="produtos" items="${produtos}" varStatus="i">
-					<tr>
-						<td>
-							<span>${produtos.nome_produto}</span>
-						</td>
-						
-						<td>
-							<span>${produtos.descricao}</span>
-						</td>
-						
-						<td>
-							<span>${produtos.preco_compra}</span>
-						</td>
-						<td>
-							<span>${produtos.preco_venda}</span>
-						</td>
-						<td>
-							<span>${produtos.quantidade_disponivel}</span>
-						</td>
-						<td>
-							<span>${produtos.liberado_venda}</span>
-						</td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="produtos" items="${produtos}" varStatus="i">
+						<tr>
+							<td>
+								<span>${produtos.nome_produto}</span>
+							</td>
+							
+							<td>
+								<span>${produtos.descricao}</span>
+							</td>
+							
+							<td>
+								<span>${produtos.preco_compra}</span>
+							</td>
+							
+							<td>
+								<span>${produtos.preco_venda}</span>
+							</td>
+							
+							<td>
+								<span>${produtos.quantidade_disponivel}</span>
+							</td>
+							
+							<td>
+								<span>${produtos.liberado_venda}</span>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-		
 		</main>
-				
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

@@ -72,7 +72,7 @@ main{
 	color: #fff;
 }
 
-/* AnimaÁ„o ao entrar na p·gina de Login*/
+/* Anima√ß√£o entrar na p√°gina de Login*/
 #login-container{
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
@@ -108,7 +108,7 @@ main{
     }
 }
 
-/* AnimaÁıes dos inputs ao entrar na p·gina */
+/* Anima√ß√µes dos inputs ao entrar na p√°gina */
 
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

@@ -27,8 +27,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
-
 @Controller
 public class IndexController {	
 	@Autowired
@@ -49,7 +47,6 @@ public class IndexController {
 		
 		Role role = rr.findByNome("ROLE_ADMIN");
 		
-		
 		if(role == null) {
 			Role role1 = new Role("ROLE_ADMIN");
 			Role role2 = new Role("ROLE_VENDEDOR");
@@ -58,24 +55,21 @@ public class IndexController {
 			rr.save(role2);
 			rr.save(role3);
 
-			
 			Funcionarios funcionario = fr.findByCpf("249.252.810-38");
 			BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 			funcionario.setSenha(passwordEncoder.encode("111"));
 			funcionario.setRole(role1);
-                        Funcionarios funcionario2 = fr.findByCpf("081.599.500-80");
-                        funcionario2.setSenha(passwordEncoder.encode("111"));
-                        funcionario2.setRole(role2);
-                        Funcionarios funcionario3 = fr.findByCpf("167.740.300-41");
-                        funcionario3.setSenha(passwordEncoder.encode("111"));
-                        funcionario3.setRole(role3);
-                       
+            Funcionarios funcionario2 = fr.findByCpf("081.599.500-80");
+            funcionario2.setSenha(passwordEncoder.encode("111"));
+            funcionario2.setRole(role2);
+            Funcionarios funcionario3 = fr.findByCpf("167.740.300-41");
+            funcionario3.setSenha(passwordEncoder.encode("111"));
+            funcionario3.setRole(role3);
+            
 			fr.save(funcionario);
-                        fr.save(funcionario2);
-                        fr.save(funcionario3);
+            fr.save(funcionario2);
+            fr.save(funcionario3);
 		}
-		
-		
 		
 		Iterable<Produtos> produtosIndex = pr.findAllByQuantidade();
 		mv.addObject("produtosIndex", produtosIndex);
@@ -84,17 +78,14 @@ public class IndexController {
 	
 	@RequestMapping("/login")
 	public String abrirLogin() {
-		//ModelAndView mv = new ModelAndView("index");
 		return "login";
 	}
         
-        @RequestMapping("/login-error")
+    @RequestMapping("/login-error")
 	public String errorLogin() {
-		//ModelAndView mv = new ModelAndView("index");
 		return "notFound";
 	}
-       
-	
+    
 	@RequestMapping("/default")
 	public String defaultAfterLogin(HttpServletRequest request) {
 		if (request.isUserInRole("ROLE_ADMIN")) {
@@ -103,10 +94,9 @@ public class IndexController {
 		else if (request.isUserInRole("ROLE_VENDEDOR")) {
 			return "redirect:/clientes";
 		}
-			return "redirect:/produtos";
-
+		
+		return "redirect:/produtos";
 	}
-	
 	
 	@RequestMapping("/relatorio-produtos")
 	public void gerarRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -153,10 +143,7 @@ public class IndexController {
 			System.out.println(e);
 			documento.close();
 		}
-		
 	}
-	
-	
 	
 	@RequestMapping("/relatorio-vendas")
 	public void gerarRelatorioVendas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -180,7 +167,6 @@ public class IndexController {
 			PdfPCell col2 = new PdfPCell(new Paragraph("Data da Venda"));
 			PdfPCell col3 = new PdfPCell(new Paragraph("Valor da Venda"));
 
-			
 			tabela.addCell(col1);
 			tabela.addCell(col2);
 			tabela.addCell(col3);
@@ -212,11 +198,5 @@ public class IndexController {
 			System.out.println(e);
 			documento.close();
 		}
-		
 	}
-	
-	
-	
-	
-	
 }

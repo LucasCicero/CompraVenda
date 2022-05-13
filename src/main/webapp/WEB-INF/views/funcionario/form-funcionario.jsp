@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Cadastrar Funcionario</title>
-	    <link rel="stylesheet" href="../css/views.css">
+	    <link rel="stylesheet" href="/css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -91,6 +91,8 @@
 				</a>
 			</form>
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

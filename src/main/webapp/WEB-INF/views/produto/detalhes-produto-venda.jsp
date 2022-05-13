@@ -10,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes dos produtos</title>
-	    <link rel="stylesheet" href="../css/views.css">
+	    <link rel="stylesheet" href="/css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -22,7 +22,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -136,25 +136,26 @@
 				</thead>
 				
 				<tbody>
-				<c:forEach var="vendas" items="${vendas}" varStatus="i">
-					<tr>
-						<td>
-							<span>${vendas.quantidade_venda}</span>
-						</td>
-						
-						<td>
-							<span>${vendas.data_venda}</span>
-						</td>
-						
-						<td>
-							<span>${vendas.valor_venda}</span>
-						</td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="vendas" items="${vendas}" varStatus="i">
+						<tr>
+							<td>
+								<span>${vendas.quantidade_venda}</span>
+							</td>
+							
+							<td>
+								<span>${vendas.data_venda}</span>
+							</td>
+							
+							<td>
+								<span>${vendas.valor_venda}</span>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-			
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

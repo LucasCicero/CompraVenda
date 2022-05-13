@@ -49,7 +49,7 @@ public class ProdutosController {
 	@Autowired
 	private ClientesRepository clr;
         
-        @Autowired
+    @Autowired
 	private CategoriasRepository ctr;
 	
 	// GET que chama o form para cadastrar produto
@@ -59,7 +59,6 @@ public class ProdutosController {
 	}
 	
 	// POST que cadastra produto
-       
 	@RequestMapping(value = "/produtos/cadastrarProduto", method = RequestMethod.POST)
 	public String form(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes, @RequestParam(value="id_categoria")Integer id_categoria) {		
 		
@@ -68,8 +67,8 @@ public class ProdutosController {
 			return "redirect:/produtos/cadastrarProduto";
 		}
                 
-                Categorias categorias = ctr.findById(id_categoria);
-                produtos.setCategorias(categorias);
+        Categorias categorias = ctr.findById(id_categoria);
+        produtos.setCategorias(categorias);
 		pr.save(produtos);
 		attributes.addFlashAttribute("mensagem", "Produto cadastrado com sucesso!");
 		return "redirect:/produtos/cadastrarProduto";
@@ -98,76 +97,67 @@ public class ProdutosController {
 	}
 	
 	// GET que detalha os produtos
-		@RequestMapping("/produtos/detalhes-produto-venda/{id}")
-		public ModelAndView detalhesProdutoVenda(@PathVariable("id") int id) {
-			Produtos produtos = pr.findById(id);
-			ModelAndView mv = new ModelAndView("produto/detalhes-produto-venda");
-			mv.addObject("produtos", produtos);
+	@RequestMapping("/produtos/detalhes-produto-venda/{id}")
+	public ModelAndView detalhesProdutoVenda(@PathVariable("id") int id) {
+		Produtos produtos = pr.findById(id);
+		ModelAndView mv = new ModelAndView("produto/detalhes-produto-venda");
+		mv.addObject("produtos", produtos);
 			
-			Iterable<Vendas> vendas = vr.findByProdutos(produtos);
-			mv.addObject("vendas", vendas);
+		Iterable<Vendas> vendas = vr.findByProdutos(produtos);
+		mv.addObject("vendas", vendas);
 			
-			return mv;
-		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "/produtos/detalhes-produto-venda/{id}", method = RequestMethod.POST)
+	public String detalhesProdutosVendaPost(@PathVariable("id") int id, @Valid Vendas vendas,
+	BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente) {
+		String cpf="";
 		
+		Integer quantidadeDisponivel,quantidadeVenda= 0;
 		
-		@RequestMapping(value = "/produtos/detalhes-produto-venda/{id}", method = RequestMethod.POST)
-		public String detalhesProdutosVendaPost(@PathVariable("id") int id, @Valid Vendas vendas,
-				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente) {
-			String cpf="";
-			Integer quantidadeDisponivel,quantidadeVenda= 0;
-			if (result.hasErrors()) {
+		if (result.hasErrors()) {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
 				return "redirect:/produtos/detalhes-produto-venda/{id}";
 			}
-
-			/*
-			if (cr.findByRg(candidato.getRg()) != null) {
-				attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
-				return "redirect:/vaga/{codigo}";
-			}
-			*/
 			
+		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if (auth instanceof UserDetails) {
+			cpf= ((UserDetails)auth).getUsername();
+		}
+		else {
+			cpf= auth.toString();
+		}
 			
-			Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if (auth instanceof UserDetails) {
-				 cpf= ((UserDetails)auth).getUsername();
-			}
-			else {
-				 cpf= auth.toString();
-			}
-			
-			Produtos produtos = pr.findById(id);		
-			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
-				attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
+		Produtos produtos = pr.findById(id);		
+		if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
+			attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
 				return "redirect:/produtos/detalhes-produto-venda/{id}";							
 			}
+			else {  
+				Funcionarios funcionarios= fcr.findByCpf(cpf);
+				vendas.setFuncionarios(funcionarios);
+				vendas.setProdutos(produtos);
+				Clientes clientes= clr.findById(id_cliente);
+	            vendas.setClientes(clientes);                     
 			
-			else {
-                        
-			Funcionarios funcionarios= fcr.findByCpf(cpf);
-			vendas.setFuncionarios(funcionarios);
-			vendas.setProdutos(produtos);
-			Clientes clientes= clr.findById(id_cliente);
-                        vendas.setClientes(clientes);                     
-			
-			quantidadeVenda= vendas.getQuantidade_venda();
-			quantidadeDisponivel= produtos.getQuantidade_disponivel();
-			produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);	
+				quantidadeVenda= vendas.getQuantidade_venda();
+				quantidadeDisponivel= produtos.getQuantidade_disponivel();
+				produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
 						
-			vr.save(vendas);
-			attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
-			return "redirect:/produtos/detalhes-produto-venda/{id}";
+				vr.save(vendas);
+				attributes.addFlashAttribute("mensagem", "Venda registrada com sucesso!");
+				return "redirect:/produtos/detalhes-produto-venda/{id}";
 			}
 		}
 	
-	
-	
-	// POST que adiciona compra a produtos
+		// POST que adiciona compra a produtos
 		@RequestMapping(value = "/produtos/detalhes-produto/{id}", method = RequestMethod.POST)
 		public String detalhesProdutosPost(@PathVariable("id") int id, @Valid Compras compras,
-				BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
+			BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor) {
 			String cpf="";
+			
 			Integer quantidadeDisponivel,quantidadeCompra,precoCompra =0;
 			
 			if (result.hasErrors()) {
@@ -175,8 +165,8 @@ public class ProdutosController {
 				return "redirect:/produtos/detalhes-produto/{id}";
 			}
 			
-			
 			Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
 			if (auth instanceof UserDetails) {
 				 cpf= ((UserDetails)auth).getUsername();
 			}
@@ -201,39 +191,35 @@ public class ProdutosController {
 			attributes.addFlashAttribute("mensagem", "Compra registrada com sucesso!");
 			return "redirect:/produtos/detalhes-produto/{id}";
 		}
+		
+		//GET que deleta produto
+		@RequestMapping("/produtos/deletarProduto")
+		public String deletarProduto(int id) {
+			Produtos produtos = pr.findById(id);
+			pr.delete(produtos);
+			return "redirect:/produtos";
+		}
 	
+		// Métodos que atualizam produto
+		// GET que chama o FORM de edição de produto
+		@RequestMapping("/produtos/editar-produto")
+		public ModelAndView editarProduto(int id) {
+			Produtos produtos = pr.findById(id);
+			ModelAndView mv = new ModelAndView("produto/update-produto");
+			mv.addObject("produtos", produtos);
+			return mv;
+		}
 	
-	
-	
-	//GET que deleta produto
-	@RequestMapping("/produtos/deletarProduto")
-	public String deletarProduto(int id) {
-		Produtos produtos = pr.findById(id);
-		pr.delete(produtos);
-		return "redirect:/produtos";
-	}
-	
-	// Métodos que atualizam produto
-	// GET que chama o FORM de edição de produto
-	@RequestMapping("/produtos/editar-produto")
-	public ModelAndView editarProduto(int id) {
-		Produtos produtos = pr.findById(id);
-		ModelAndView mv = new ModelAndView("produto/update-produto");
-		mv.addObject("produtos", produtos);
-		return mv;
-	}
-	
-	// POST que atualiza o produto
-	@RequestMapping(value = "/produtos/editar-produto", method = RequestMethod.POST)
-	public String updateProduto(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_categoria")Integer id_categoria){
-           
-            Categorias categorias = ctr.findById(id_categoria);
+		// POST que atualiza o produto
+		@RequestMapping(value = "/produtos/editar-produto", method = RequestMethod.POST)
+		public String updateProduto(@Valid Produtos produtos, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_categoria")Integer id_categoria){
+			Categorias categorias = ctr.findById(id_categoria);
             produtos.setCategorias(categorias);
             pr.save(produtos);
-		attributes.addFlashAttribute("success", "Produto alterado com sucesso!");
+            attributes.addFlashAttribute("success", "Produto alterado com sucesso!");
 			
-		int idInt = produtos.getId();
-		String id = "" + idInt;
-		return "redirect:/produtos/detalhes-produto/" + id;
+			int idInt = produtos.getId();
+			String id = "" + idInt;
+			return "redirect:/produtos/detalhes-produto/" + id;
 	}
 }

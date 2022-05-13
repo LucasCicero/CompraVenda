@@ -58,8 +58,6 @@ public class Fornecedores implements Serializable{
 	@OneToMany(mappedBy = "fornecedores", cascade = CascadeType.REMOVE)
 	private List<Compras> compras;
 	
-	
-
 	public int getId() {
 		return id;
 	}
@@ -139,5 +137,4 @@ public class Fornecedores implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 }

@@ -37,11 +37,9 @@ public class Compras implements Serializable{
 	@JoinColumn(name="id_fornecedor")
 	private Fornecedores fornecedores;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="id_produto")
 	private Produtos produtos;
-	
 	
 	@ManyToOne
 	@JoinColumn(name="id_funcionario")
@@ -102,5 +100,4 @@ public class Compras implements Serializable{
 	public void setFuncionarios(Funcionarios funcionarios) {
 		this.funcionarios = funcionarios;
 	}
-
 }

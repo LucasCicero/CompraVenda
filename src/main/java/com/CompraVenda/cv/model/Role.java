@@ -24,8 +24,6 @@ public class Role implements GrantedAuthority {
 	@OneToMany
 	private List<Funcionarios> funcionarios;
 
-	
-
 	public String getNome() {
 		return nome;
 	}
@@ -55,7 +53,4 @@ public class Role implements GrantedAuthority {
 	public Role() {
 		
 	}
-	
-	
-	
 }

@@ -32,7 +32,6 @@ public class Produtos implements Serializable{
 	@Column(name="descricao")
 	private String descricao;
 	
-	
 	@NotNull
 	@Column(name="preco_compra")
 	private double preco_compra;
@@ -49,23 +48,17 @@ public class Produtos implements Serializable{
 	@Column(name="liberado_venda")
 	private String liberado_venda;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private Categorias categorias;
 	
-	
 	@OneToMany(mappedBy = "produtos",cascade = CascadeType.REMOVE )
-	//@JoinColumn(name="id_venda")
 	private List<Vendas> vendas;
 	
 	
 	@OneToMany(mappedBy = "produtos",cascade = CascadeType.REMOVE )
-	//@JoinColumn(name="id_compra")
 	private List<Compras> compras;
 	
-	
-
 	public int getId() {
 		return id;
 	}
@@ -144,8 +137,4 @@ public class Produtos implements Serializable{
 	public void setCompras(List<Compras> compras) {
 		this.compras = compras;
 	}
-
-
-	
-	
 }

@@ -7,6 +7,5 @@ import com.CompraVenda.cv.model.Produtos;
 public interface CategoriasRepository extends CrudRepository<Categorias, Long>{
 	Categorias findById(int id);
 	List<Produtos> findByProdutos(Produtos produtos);
-        
 }
 

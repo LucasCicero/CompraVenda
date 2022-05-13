@@ -51,7 +51,9 @@
 		</header>
 		
 		<main class="container">
+		
 		<%@include file="../mensagem-validacao.jsp" %>
+		
 			<form method="post">
 				<h1>Atualizar Funcionário</h1>
 
@@ -92,6 +94,8 @@
 				</a>
 			</form>
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

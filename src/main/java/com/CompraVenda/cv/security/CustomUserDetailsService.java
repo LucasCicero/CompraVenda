@@ -1,16 +1,12 @@
 package com.CompraVenda.cv.security;
 
-import java.util.Collection;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.CompraVenda.cv.model.Funcionarios;
 import com.CompraVenda.cv.repository.FuncionariosRepository;
@@ -32,7 +28,4 @@ public class CustomUserDetailsService implements UserDetailsService {
                 
 		return funcionario;
 	}
-
- 
-
 }

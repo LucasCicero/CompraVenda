@@ -43,14 +43,11 @@ public class Categorias implements Serializable{
 		this.nome_categoria = nome_categoria;
 	}
 
-        public List<Produtos> getProdutos() {
-            return produtos;
-        }
+    public List<Produtos> getProdutos() {
+        return produtos;
+    }
 
-        public void setProdutos(List<Produtos> produtos) {
-            this.produtos = produtos;
-        }
-	
-	
+    public void setProdutos(List<Produtos> produtos) {
+        this.produtos = produtos;
+    }
 }
-

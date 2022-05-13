@@ -11,7 +11,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Detalhes dos produtos</title>
-	    <link rel="stylesheet" href="../css/views.css">
+	    <link rel="stylesheet" href="/css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -23,7 +23,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -33,8 +33,6 @@
 					
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-
-							
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
@@ -42,20 +40,21 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
+							
 							<sec:authorize access="hasRole('COMPRADOR')">
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="/compras">Listar Compras</a>
-							</li>
-							
+								<li class="nav-item">
+									<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
+								</li>
+								
+								<li class="nav-item">
+									<a class="nav-link" href="/fornecedores/cadastrarFornecedor">Cadastrar Fornecedor</a>
+								</li>
+								
+								<li class="nav-item">
+									<a class="nav-link" href="/compras">Listar Compras</a>
+								</li>
 							</sec:authorize>
+							
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>
 							</li>
@@ -97,44 +96,48 @@
 					<button type="button" class="btn btn-info">Voltar</button>
 				</a>
 			</div>
+			
 			<br>
 			
 			<%@include file="../mensagem-validacao.jsp" %>
-		<sec:authorize access="hasRole('COMPRADOR')">
-			<h2>Registrar Compra do produto</h2>
 			
-			<br>
+			<sec:authorize access="hasRole('COMPRADOR')">
 			
-			<form method="post">
-				<div class="form-group">
-					<div class="row">
-						<div class="col">
-							<label for=""><strong>Quantidade Comprada:</strong></label>
-							<input type="number" value="" name="quantidade_compra" class="form-control" placeholder="Quantidade Comprada" required />
-						</div>
-
-						<div class="col">
-							<label for=""><strong>Data da Compra:</strong></label>
-							<input type="date" value="" name="data_compra" class="validate form-control" required />
-						</div>
-
-						<div class="col">
-							<label for=""><strong>Valor da Compra</strong></label>
-							<input type="number" value="" name="valor_compra" class="form-control" placeholder="Valor da Compra" required />
-						</div>
-						
-						<div class="col">
-							<label for=""><strong>Id Fornecedor</strong></label>
-							<input type="number" value="" name="id_fornecedor" class="form-control" placeholder="Id do fornecedor" required />
+				<h2>Registrar Compra do produto</h2>
+				
+				<br>
+				
+				<form method="post">
+					<div class="form-group">
+						<div class="row">
+							<div class="col">
+								<label for=""><strong>Quantidade Comprada:</strong></label>
+								<input type="number" value="" name="quantidade_compra" class="form-control" placeholder="Quantidade Comprada" required />
+							</div>
+	
+							<div class="col">
+								<label for=""><strong>Data da Compra:</strong></label>
+								<input type="date" value="" name="data_compra" class="validate form-control" required />
+							</div>
+	
+							<div class="col">
+								<label for=""><strong>Valor da Compra</strong></label>
+								<input type="number" value="" name="valor_compra" class="form-control" placeholder="Valor da Compra" required />
+							</div>
+							
+							<div class="col">
+								<label for=""><strong>Id Fornecedor</strong></label>
+								<input type="number" value="" name="id_fornecedor" class="form-control" placeholder="Id do fornecedor" required />
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<button type="submit" class="btn btn-success">
-					Adicionar Compra
-				</button>
-			</form>
-		</sec:authorize>	
+	
+					<button type="submit" class="btn btn-success">
+						Adicionar Compra
+					</button>
+				</form>
+			</sec:authorize>
+			
 			<br>
 			
 			<table class="table table-hover table-responsive w-auto table-striped">
@@ -147,25 +150,26 @@
 				</thead>
 				
 				<tbody>
-				<c:forEach var="compras" items="${compras}" varStatus="i">
-					<tr>
-						<td>
-							<span>${compras.quantidade_compra}</span>
-						</td>
-						
-						<td>
-							<span>${compras.data_compra}</span>
-						</td>
-						
-						<td>
-							<span>${compras.valor_compra}</span>
-						</td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="compras" items="${compras}" varStatus="i">
+						<tr>
+							<td>
+								<span>${compras.quantidade_compra}</span>
+							</td>
+							
+							<td>
+								<span>${compras.data_compra}</span>
+							</td>
+							
+							<td>
+								<span>${compras.valor_compra}</span>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-			
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright bg-dark text-center py-3">
 			<span class="text-light align-middle">

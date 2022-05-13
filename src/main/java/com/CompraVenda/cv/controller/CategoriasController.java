@@ -39,7 +39,6 @@ public class CategoriasController {
 			return "redirect:/categorias/cadastrarCategoria";
 		}
 		
-		
 		cr.save(categorias);
 		attributes.addFlashAttribute("mensagem", "Categoria cadastrada com sucesso!");
 		return "redirect:/categorias/cadastrarCategoria";
@@ -80,7 +79,6 @@ public class CategoriasController {
 		attributes.addFlashAttribute("mensagem", "Produto registrado com sucesso!");
 		return "redirect:/categorias/detalhes-categoria/{id}";
 	}
-
 
 	//GET que deleta categoria
 	@RequestMapping("/categorias/deletarCategoria")

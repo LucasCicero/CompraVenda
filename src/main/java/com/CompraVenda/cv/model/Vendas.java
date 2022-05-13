@@ -31,21 +31,17 @@ public class Vendas implements Serializable{
 	@Column(name="valor_venda")
 	private double valor_venda;
 	
-
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
 	private Clientes clientes;
-	
 
 	@ManyToOne
 	@JoinColumn(name="id_produto")
 	private Produtos produtos;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="id_funcionario")
 	private Funcionarios funcionarios;
-
         
 	public int getId() {
 		return id;
@@ -54,8 +50,7 @@ public class Vendas implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-		
-
+	
 	public Clientes getClientes() {
 		return clientes;
 	}
@@ -103,5 +98,4 @@ public class Vendas implements Serializable{
 	public void setValor_venda(double valor_venda) {
 		this.valor_venda = valor_venda;
 	}
-	
 }

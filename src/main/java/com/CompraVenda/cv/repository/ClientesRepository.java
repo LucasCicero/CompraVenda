@@ -4,5 +4,4 @@ import com.CompraVenda.cv.model.Clientes;
 
 public interface ClientesRepository extends CrudRepository<Clientes, Long>{
 	Clientes findById(int id);
-
 }

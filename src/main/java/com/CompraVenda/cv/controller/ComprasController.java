@@ -31,10 +31,10 @@ public class ComprasController {
 	@Autowired
 	private FuncionariosRepository fr;
         
-        @Autowired
+    @Autowired
 	private ProdutosRepository pr;
         
-        @Autowired
+    @Autowired
 	private FornecedoresRepository fcr;
 	
 	// GET que chama o form para cadastrar a compra
@@ -61,6 +61,7 @@ public class ComprasController {
 	@RequestMapping("/compras")
 	public ModelAndView listaCompras() {
 		ModelAndView mv = new ModelAndView("compra/lista-compra");
+		
 		String cpf="";
 
 		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -111,24 +112,23 @@ public class ComprasController {
 	public String updateCompra(@Valid Compras compras, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_fornecedor")Integer id_fornecedor,@RequestParam(value="id_produtos")Integer id_produtos){
 		String cpf="";
 		
-                
-                Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if (auth instanceof UserDetails) {
-				 cpf= ((UserDetails)auth).getUsername();
-			}
-			else {
-				 cpf= auth.toString();
-			}
+        Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        
+		if (auth instanceof UserDetails) {
+			 cpf= ((UserDetails)auth).getUsername();
+		}
+		else {
+			 cpf= auth.toString();
+		}
 			
 		Funcionarios funcionarios= fr.findByCpf(cpf);
-                compras.setFuncionarios(funcionarios);
-                Fornecedores fornecedores = fcr.findById(id_fornecedor);
+        compras.setFuncionarios(funcionarios);
+        Fornecedores fornecedores = fcr.findById(id_fornecedor);
 		compras.setFornecedores(fornecedores);
-                Produtos produtos = pr.findById(id_produtos);
+        Produtos produtos = pr.findById(id_produtos);
 		compras.setProdutos(produtos);
-                
-            
-                cpr.save(compras);
+		
+        cpr.save(compras);
 		attributes.addFlashAttribute("success", "Compra alterada com sucesso!");
 			
 		int idInt = compras.getId();
@@ -136,4 +136,3 @@ public class ComprasController {
 		return "redirect:/compras/detalhes-compra/" + id;
 	}
 }
-

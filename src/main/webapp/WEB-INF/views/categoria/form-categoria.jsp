@@ -64,8 +64,7 @@
 		<main class="container">
 			<h1>Cadastrar Categoria</h1>
 	
-
-	<%@include file="../mensagem-validacao.jsp" %>
+			<%@include file="../mensagem-validacao.jsp" %>
 	
 			<form method="post">
 				<div class="form-group">
@@ -81,6 +80,8 @@
 				</a>
 			</form>
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" >
 	<head>
@@ -11,7 +10,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Compra & Venda - Listar Vendas</title>
-	    <link rel="stylesheet" href="../css/views.css">
+	    <link rel="stylesheet" href="/css/views.css">
 	    <!-- Bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -74,33 +73,32 @@
 				</thead>
 				
 				<tbody>
-				
 					<c:forEach var="vendas" items="${vendas}" varStatus="i">
-					<tr>
-						<td>
-							<a href='<c:url value="/vendas/detalhes-venda/${vendas.id}"/>'>
-								<span >${vendas.quantidade_venda}</span>
-							</a>
-						</td>
-						
-						<td>${vendas.data_venda}</td>
-						
-						<td>${vendas.valor_venda}</td>
-						
-						<td>
-							<a href='<c:url value="/vendas/deletarVenda?id=${vendas.id}"/>'
-								class="waves-effect waves-light btn-small">
-								<button type="button" class="btn btn-danger">Excluir</button>
-							</a>
-						</td>
-						
-						<td>
-							<a href='<c:url value="/vendas/editar-venda?id=${vendas.id}"/>'>
-								<button type="button" class="btn btn-primary">Editar</button>
-							</a>
-						</td>
-					</tr>
-				</c:forEach>
+						<tr>
+							<td>
+								<a href='<c:url value="/vendas/detalhes-venda/${vendas.id}"/>'>
+									<span >${vendas.quantidade_venda}</span>
+								</a>
+							</td>
+							
+							<td>${vendas.data_venda}</td>
+							
+							<td>${vendas.valor_venda}</td>
+							
+							<td>
+								<a href='<c:url value="/vendas/deletarVenda?id=${vendas.id}"/>'
+									class="waves-effect waves-light btn-small">
+									<button type="button" class="btn btn-danger">Excluir</button>
+								</a>
+							</td>
+							
+							<td>
+								<a href='<c:url value="/vendas/editar-venda?id=${vendas.id}"/>'>
+									<button type="button" class="btn btn-primary">Editar</button>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			
@@ -108,6 +106,8 @@
 				<button type="button" class="btn btn-success">Cadastrar Venda</button>
 			</a>
 		</main>
+		
+		<br>
 		
 		<footer class="footer-copyright fixed-bottom bg-dark text-center py-3">
 			<span class="text-light align-middle">

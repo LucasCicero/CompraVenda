@@ -53,7 +53,6 @@ public class Funcionarios implements Serializable, UserDetails{
 	@ManyToOne
 	private Role role;
 
-
 	public Funcionarios() {
 	
 	}
@@ -73,7 +72,6 @@ public class Funcionarios implements Serializable, UserDetails{
 	public void setVendas(List<Vendas> vendas) {
 		this.vendas = vendas;
 	}
-
 
 	public int getId() {
 		return id;
@@ -128,11 +126,9 @@ public class Funcionarios implements Serializable, UserDetails{
 		return role;
 	}
 
-
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
 
 	@Override
 	public String getPassword() {
@@ -169,7 +165,4 @@ public class Funcionarios implements Serializable, UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
-	
 }
