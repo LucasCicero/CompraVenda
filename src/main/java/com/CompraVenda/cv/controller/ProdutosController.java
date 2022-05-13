@@ -3,7 +3,6 @@ package com.CompraVenda.cv.controller;
 import com.CompraVenda.cv.model.Categorias;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -175,13 +174,6 @@ public class ProdutosController {
 				attributes.addFlashAttribute("mensagem", "Verifique os campos");
 				return "redirect:/produtos/detalhes-produto/{id}";
 			}
-
-			/*
-			if (cr.findByRg(candidato.getRg()) != null) {
-				attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
-				return "redirect:/vaga/{codigo}";
-			}
-			*/
 			
 			
 			Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -29,9 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(funcionario == null) {
 			throw new UsernameNotFoundException("Usuario não encontrado");
 		}
-		
-		System.out.println("Usuário>>"+funcionario.getAuthorities());
-		//return new Funcionarios(funcionario.getUsername(), funcionario.getPassword(),true,true,true,true,funcionario.getAuthorities());
+                
 		return funcionario;
 	}
 

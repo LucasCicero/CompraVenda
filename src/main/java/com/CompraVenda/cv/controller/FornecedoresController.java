@@ -55,10 +55,6 @@ public class FornecedoresController {
 		ModelAndView mv = new ModelAndView("fornecedor/detalhes-fornecedor");
 		mv.addObject("fornecedores", fornecedores);
 
-		// lista de dependentes baseada no id do funcionário
-		//Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
-		//mv.addObject("dependentes", dependentes);
-
 		return mv;
 	}
 	

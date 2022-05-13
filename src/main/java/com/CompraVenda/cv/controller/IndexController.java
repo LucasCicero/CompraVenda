@@ -3,7 +3,6 @@ package com.CompraVenda.cv.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -50,15 +48,11 @@ public class IndexController {
 		ModelAndView mv = new ModelAndView("index");
 		
 		Role role = rr.findByNome("ROLE_ADMIN");
-		//System.out.println(role);
 		
 		
 		if(role == null) {
 			Role role1 = new Role("ROLE_ADMIN");
-			//role1.setNome("ROLE_ADMIN");
-			System.out.println(role1);
 			Role role2 = new Role("ROLE_VENDEDOR");
-			//role2.setNome("ROLE_VENDEDOR");
 			Role role3 = new Role("ROLE_COMPRADOR");
 			rr.save(role1);
 			rr.save(role2);
@@ -93,6 +87,12 @@ public class IndexController {
 		//ModelAndView mv = new ModelAndView("index");
 		return "login";
 	}
+        
+        @RequestMapping("/login-error")
+	public String errorLogin() {
+		//ModelAndView mv = new ModelAndView("index");
+		return "notFound";
+	}
        
 	
 	@RequestMapping("/default")
@@ -110,7 +110,7 @@ public class IndexController {
 	
 	@RequestMapping("/relatorio-produtos")
 	public void gerarRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ModelAndView mv = new ModelAndView("index");
+
 		Document documento = new Document();
 		try {
 			response.setContentType("aplication/pdf");
@@ -160,7 +160,7 @@ public class IndexController {
 	
 	@RequestMapping("/relatorio-vendas")
 	public void gerarRelatorioVendas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ModelAndView mv = new ModelAndView("index");
+	
 		Date data = new Date();
 		String dataAtual = new SimpleDateFormat("yyyy-MM-dd").format(data);
 		Long total;

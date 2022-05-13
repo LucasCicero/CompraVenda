@@ -62,7 +62,7 @@ public class ComprasController {
 	public ModelAndView listaCompras() {
 		ModelAndView mv = new ModelAndView("compra/lista-compra");
 		String cpf="";
-		//Iterable<Compras> compras = cpr.findAll();
+
 		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (auth instanceof UserDetails) {
 			 cpf= ((UserDetails)auth).getUsername();
@@ -84,10 +84,6 @@ public class ComprasController {
 		Compras compras = cpr.findById(id);
 		ModelAndView mv = new ModelAndView("compra/detalhes-compra");
 		mv.addObject("compras", compras);
-
-		// lista de dependentes baseada no id do funcionário
-		//Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
-		//mv.addObject("dependentes", dependentes);
 
 		return mv;
 	}

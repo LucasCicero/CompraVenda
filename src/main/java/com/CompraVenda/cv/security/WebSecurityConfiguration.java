@@ -26,34 +26,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	
 public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());	
-	//auth.userDetailsService(userDetailsService);
+	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 protected void configure(HttpSecurity http) throws Exception{
 	
 	http.csrf().disable().authorizeRequests()
-	/*
-	
-	.antMatchers("/funcionarios**").hasRole("ADMIN")
-	.antMatchers("/funcionarios**").hasRole("ADMIN")
-	.antMatchers("/clientes**").hasRole("VENDEDOR")
-	.antMatchers("/vendas**").hasRole("VENDEDOR")
-	.antMatchers("/produtos").hasRole("COMPRADOR")
-	.antMatchers("/compras**").hasRole("COMPRADOR")
-	.antMatchers("/fornecedor**").hasRole("COMPRADOR")
-	.antMatchers("/categorias**").hasRole("COMPRADOR")
-	.and().formLogin().loginPage("/login").permitAll()
-	.defaultSuccessUrl("/default")
-	.and().logout().permitAll()
-	
-	*/
-	
 	.antMatchers("/resources/**").permitAll()
 	.antMatchers("/static/**").permitAll()
 	.antMatchers("/css/**").permitAll()
 	.antMatchers("/").permitAll()
 	.antMatchers("/login").permitAll()
+        .antMatchers("/login-error").permitAll()
 	.antMatchers("/relatorio-produtos").hasRole("ADMIN")
 	.antMatchers("/relatorio-vendas").hasRole("ADMIN")
 	.antMatchers("/clientes**").hasRole("VENDEDOR")
@@ -66,19 +50,18 @@ protected void configure(HttpSecurity http) throws Exception{
 	.antMatchers("/funcionarios**").hasRole("ADMIN")
 	.anyRequest().authenticated() 
 	.and().formLogin().loginPage("/login").permitAll()
-	.failureUrl("/login")
+	.failureUrl("/login-error")
 	.defaultSuccessUrl("/default")
 	.and().logout().permitAll()
-	.and().exceptionHandling().accessDeniedPage("/login");
+	.and().exceptionHandling().accessDeniedPage("/login-error");
 }
   @Override
   public void configure(WebSecurity web) throws Exception{
-	  web.ignoring().antMatchers("/resources/**","/static/**","/bootstrap/**","/css**/","/js**/","/error","/favicon.ico");
-	//  registry.addResourceHandler("/resources/**").addResourceLocations("/resources/css", "/resources/images","resources/js");
+	 web.ignoring().antMatchers("/resources/**","/static/**","/bootstrap/**","/css**/","/js**/","/error","/favicon.ico");
   }
   //@Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-      registry.addResourceHandler("/resources/**").addResourceLocations("/resources/css", "/resources/images","resources/js");
+         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/css", "/resources/images","resources/js");
   }
 
 }

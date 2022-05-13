@@ -7,13 +7,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
@@ -53,14 +50,6 @@ public class Funcionarios implements Serializable, UserDetails{
 	@OneToMany(mappedBy = "funcionarios", cascade = CascadeType.REMOVE)
 	private List<Vendas> vendas;
 	
-	//@ManyToMany
-	//@JoinTable(name= "funcionarios_roles",
-	//joinColumns=@JoinColumn(
-	//name="funcionario_id", referencedColumnName="id"),
-	// inverseJoinColumns=@JoinColumn(
-		//	 name= "role_id", referencedColumnName = "id"
-		//	))
-//	private List<Role> roles;
 	@ManyToOne
 	private Role role;
 
@@ -68,22 +57,6 @@ public class Funcionarios implements Serializable, UserDetails{
 	public Funcionarios() {
 	
 	}
-
-
-	//public Funcionarios(String username, String password, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean credentialsNonExpired, boolean isEnabled,
-			//Collection<? extends GrantedAuthority> authorities) {
-		// TODO Auto-generated constructor stub
-		/*
-		this.cpf= username;
-		this.senha=password;
-		isAccountNonExpired= true;
-		isAccountNonLocked=true;
-		credentialsNonExpired=true;
-		isEnabled=true;
-		*/		
-		
-	//}
-
 
 	public List<Compras> getCompras() {
 		return compras;
@@ -149,7 +122,6 @@ public class Funcionarios implements Serializable, UserDetails{
 		List<GrantedAuthority> auths = new ArrayList<>();
 		auths.add((new SimpleGrantedAuthority((this.role.getNome()))));
 		return auths;
-		//return  this.role;
 	}
 
 	public Role getRole() {

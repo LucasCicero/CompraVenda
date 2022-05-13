@@ -91,7 +91,7 @@ public class VendasController {
 	public ModelAndView listaVendas() {
 		ModelAndView mv = new ModelAndView("venda/lista-venda");
 		String cpf="";
-		//Iterable<Compras> compras = cpr.findAll();
+
 		Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (auth instanceof UserDetails) {
 			 cpf= ((UserDetails)auth).getUsername();
@@ -102,7 +102,7 @@ public class VendasController {
 		
 		Funcionarios funcionario = fcr.findByCpf(cpf);
 		Integer id= funcionario.getId();
-		 Iterable<Vendas> vendas = vr.findByVendedorId(id);
+		Iterable<Vendas> vendas = vr.findByVendedorId(id);
 		mv.addObject("vendas", vendas);
 		return mv;
 	}
@@ -113,10 +113,6 @@ public class VendasController {
 		Vendas vendas = vr.findById(id);
 		ModelAndView mv = new ModelAndView("venda/detalhes-venda");
 		mv.addObject("vendas", vendas);
-		
-		// lista de dependentes baseada no id do funcionário
-		//Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
-		//mv.addObject("dependentes", dependentes);
 
 		return mv;
 	}
@@ -157,8 +153,7 @@ public class VendasController {
 		Clientes clientes = cr.findById(id_cliente);
 		vendas.setClientes(clientes);
                 Produtos produtos = pr.findById(id_produtos);
-		vendas.setProdutos(produtos);
-              
+		vendas.setProdutos(produtos);           
 		vr.save(vendas);              
                 
 		attributes.addFlashAttribute("success", "Venda alterada com sucesso!");
