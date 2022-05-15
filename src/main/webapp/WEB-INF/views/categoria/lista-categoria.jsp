@@ -69,6 +69,7 @@
 			<table class="table table-hover table-responsive w-auto table-striped">
 				<thead>
 					<tr>
+                                                <th scope="col">Id</th>
 						<th scope="col">Nome da Categoria:</th>
 						<th scope="col"></th>
 						<th scope="col">Ação</th>
@@ -79,6 +80,10 @@
 				<tbody>
 					<c:forEach var="categorias" items="${categorias}" varStatus="i">
 						<tr>
+                                                        <td>
+                                                               ${categorias.id}
+                                                        </td>
+
 							<td>
 								<a href='<c:url value="/categorias/detalhes-categoria/${categorias.id}"/>'>
 									${categorias.nome_categoria}

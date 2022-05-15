@@ -43,9 +43,13 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/vendas">Listar Vendas</a>
 							</li>
+
+                                                        <li class="nav-item">
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
+							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="/produtos">Cadastrar Vendas</a>
+								<a class="nav-link" href="/produtos">Produtos</a>
 							</li>
 							
 							<li class="nav-item">
@@ -63,6 +67,7 @@
 			<table class="table table-hover table-responsive w-auto table-striped">
 				<thead>
 					<tr>
+                                                <th scope="col">Id:</th>
 						<th scope="col">Nome:</th>
 						<th scope="col">CPF:</th>
 						<th scope="col"></th>
@@ -74,6 +79,7 @@
 				<tbody>
 				<c:forEach var="clientes" items="${clientes}" varStatus="i">
 					<tr>
+                                                <td>${clientes.id}</td>
 						<td>
 								<a href='<c:url value="/clientes/detalhes-cliente/${clientes.id}"/>'>
 									${clientes.nome}

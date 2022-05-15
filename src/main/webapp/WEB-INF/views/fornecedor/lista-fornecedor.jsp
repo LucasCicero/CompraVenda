@@ -72,6 +72,7 @@
 			<table class="table table-hover table-responsive w-auto table-striped">
 				<thead>
 					<tr>
+                                                <th scope="col">Id</th>
 						<th scope="col">Razão Social:</th>
 						<th scope="col">CNPJ:</th>
 						<th scope="col"></th>
@@ -83,6 +84,7 @@
 				<tbody>
 					<c:forEach var="fornecedores" items="${fornecedores}" varStatus="i">
 						<tr>
+                                                        <td>${fornecedores.id} </td>
 							<td>
 								<a href='<c:url value="/fornecedores/detalhes-fornecedor/${fornecedores.id}"/>'>
 									${fornecedores.razao_social}

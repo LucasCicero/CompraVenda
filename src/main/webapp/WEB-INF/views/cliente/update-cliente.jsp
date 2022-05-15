@@ -44,8 +44,12 @@
 								<a class="nav-link" href="/vendas">Listar Vendas</a>
 							</li>
 							
+                                                        <li class="nav-item">
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
+							</li>
+
 							<li class="nav-item">
-								<a class="nav-link" href="/produtos">Cadastrar Vendas</a>
+								<a class="nav-link" href="/produtos">Produtos</a>
 							</li>
 							
 							<li class="nav-item">

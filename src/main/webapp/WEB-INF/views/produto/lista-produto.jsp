@@ -24,7 +24,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -46,7 +46,12 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/vendas">Listar Vendas</a>
 							</li>
-							</sec:authorize>
+
+                                                        <li class="nav-item">
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
+							</li>
+
+						</sec:authorize>
 							<sec:authorize access="hasRole('COMPRADOR')">
 							<li class="nav-item">
 								<a class="nav-link" href="/categorias/cadastrarCategoria">Cadastrar Categoria</a>
@@ -83,6 +88,7 @@
 			<table class="table table-hover table-responsive w-auto table-striped">
 				<thead>
 					<tr>
+                                                <th scope="col">Id:</th>
 						<th scope="col">Nome do Produto:</th>
 						<th scope="col">Descrição:</th>
 						<th scope="col">Preço de Compra:</th>
@@ -100,6 +106,7 @@
 				<tbody>
 					<c:forEach var="produtos" items="${produtos}" varStatus="i">
 						<tr>
+                                                        <td>${produtos.id}</td>
 							<td>
 								<a href='<c:url value="/produtos/detalhes-produto/${produtos.id}"/>'>
 									${produtos.nome_produto}

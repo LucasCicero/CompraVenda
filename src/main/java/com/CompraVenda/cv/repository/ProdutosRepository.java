@@ -17,7 +17,7 @@ public interface ProdutosRepository extends CrudRepository<Produtos, Long>{
         
 	List<Produtos> findByCategorias(Categorias categorias);
 	
-	@Query(value = "SELECT u FROM Produtos u WHERE u.quantidade_disponivel > 0")
+	@Query(value = "SELECT u FROM Produtos u WHERE u.quantidade_disponivel > 0 and liberado_venda='S' ")
 	List<Produtos> findAllByQuantidade();
 
 }

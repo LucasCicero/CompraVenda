@@ -23,7 +23,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Compra & Venda</a>
+					<a class="navbar-brand" href="#">Compra & Venda</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
@@ -34,7 +34,7 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 
-							
+						    <sec:authorize access="hasRole('VENDEDOR')">
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes">Listar Clientes</a>
 							</li>
@@ -42,7 +42,16 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/clientes/cadastrarCliente">Cadastrar Cliente</a>
 							</li>
-							<sec:authorize access="hasRole('COMPRADOR')">
+
+                                                        <li class="nav-item">
+								<a class="nav-link" href="/vendas">Listar Vendas</a>
+							</li>
+
+                                                        <li class="nav-item">
+								<a class="nav-link" href="/vendas/cadastrarVenda">Cadastrar Vendas</a>
+							</li>
+                                                    </sec:authorize>
+					            <sec:authorize access="hasRole('COMPRADOR')">
 							<li class="nav-item">
 								<a class="nav-link" href="/fornecedores">Listar Fornecedores</a>
 							</li>
@@ -55,7 +64,7 @@
 								<a class="nav-link" href="/compras">Listar Compras</a>
 							</li>
 							
-							</sec:authorize>
+						    </sec:authorize>
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Sair</a>
 							</li>

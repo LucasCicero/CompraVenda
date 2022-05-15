@@ -107,7 +107,7 @@
 				</tbody>
 			</table>
 			
-			<a class="btn-link" href="/compras/cadastrarCompra">
+			<a class="btn-link" href="/produtos">
 				<button type="button" class="btn btn-success">Cadastrar Compra</button>
 			</a>
 		</main>
