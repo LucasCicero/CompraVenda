@@ -44,8 +44,8 @@ public class FuncionarioController {
 			return "redirect:/funcionarios/cadastrarFuncionario";
 		}
 		
-		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-		funcionarios.setSenha(passwordEncoder.encode(senha));
+		//BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+		funcionarios.setSenha(senha);
 		
 		if (papel==0) {
 		

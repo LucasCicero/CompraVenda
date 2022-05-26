@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
@@ -19,14 +20,21 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+	// @Bean
+	//public BCryptPasswordEncoder passwordEncoder() {
+	//	return new BCryptPasswordEncoder();
+	//}
+        
+        @SuppressWarnings("deprecation")
+        @Bean
+	public NoOpPasswordEncoder passwordEncoder() {
+		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
 	}
 	
 	
 public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	//auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 protected void configure(HttpSecurity http) throws Exception{

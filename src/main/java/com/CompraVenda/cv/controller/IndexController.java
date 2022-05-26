@@ -60,14 +60,14 @@ public class IndexController {
 
 			
 			Funcionarios funcionario = fr.findByCpf("249.252.810-38");
-			BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-			funcionario.setSenha(passwordEncoder.encode("111"));
+			//BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+			//funcionario.setSenha(passwordEncoder.encode("111"));
 			funcionario.setRole(role1);
                         Funcionarios funcionario2 = fr.findByCpf("081.599.500-80");
-                        funcionario2.setSenha(passwordEncoder.encode("111"));
+                        //funcionario2.setSenha(passwordEncoder.encode("111"));
                         funcionario2.setRole(role2);
                         Funcionarios funcionario3 = fr.findByCpf("167.740.300-41");
-                        funcionario3.setSenha(passwordEncoder.encode("111"));
+                        //funcionario3.setSenha(passwordEncoder.encode("111"));
                         funcionario3.setRole(role3);
                        
 			fr.save(funcionario);
