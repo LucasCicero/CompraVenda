@@ -47,7 +47,8 @@ public class VendasController {
 	@RequestMapping(value = "/vendas/cadastrarVenda", method = RequestMethod.POST)
 	public String form(@Valid Vendas vendas, BindingResult result, RedirectAttributes attributes,@RequestParam(value="id_cliente")Integer id_cliente,@RequestParam(value="id_produtos")Integer id_produtos) {
             String cpf="";
-            Integer quantidadeDisponivel,quantidadeVenda= 0;
+            Integer quantidadeDisponivel= 0;
+            Integer quantidadeVenda= vendas.getQuantidade_venda();
             
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
@@ -63,9 +64,9 @@ public class VendasController {
 			}
                         
                 Produtos produtos = pr.findById(id_produtos);		
-			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0) {
+			if(produtos.getLiberado_venda().equals("N") || produtos.getQuantidade_disponivel()<=0 || quantidadeVenda> produtos.getQuantidade_disponivel()) {
 				attributes.addFlashAttribute("mensagem_erro", "Produto não disponível para a venda!");
-				return "redirect:/produtos/detalhes-produto-venda/{id}";							
+				return "redirect:/vendas/cadastrarVenda";							
 			}
 			
 		else {
@@ -76,7 +77,7 @@ public class VendasController {
 		vendas.setClientes(clientes);
 		vendas.setProdutos(produtos);
                 
-                quantidadeVenda= vendas.getQuantidade_venda();
+                
 		quantidadeDisponivel= produtos.getQuantidade_disponivel();
 		produtos.setQuantidade_disponivel(quantidadeDisponivel-quantidadeVenda);
                 

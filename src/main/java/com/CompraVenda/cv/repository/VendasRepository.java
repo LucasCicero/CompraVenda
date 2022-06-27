@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.CompraVenda.cv.model.Produtos;
 import com.CompraVenda.cv.model.Vendas;
+import org.springframework.data.repository.query.Param;
 
 public interface VendasRepository extends CrudRepository<Vendas, Long>{
 	Vendas findById(int id);
@@ -15,6 +16,6 @@ public interface VendasRepository extends CrudRepository<Vendas, Long>{
 	Long findByDataVendido(String dataVendido);
 	
 	@Query(value = "SELECT u FROM Vendas u WHERE u.funcionarios.id =:id")
-	List<Vendas> findByVendedorId(Integer id);
+	List<Vendas> findByVendedorId(@Param("id")Integer id);
 
 }

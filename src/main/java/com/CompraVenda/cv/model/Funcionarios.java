@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Lob;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
